@@ -52,6 +52,8 @@ public class Application {
 		Actor player = new Player("Player", '@', 100);
 		world.addPlayer(player, gameMap.at(9, 4));
 		
+		gameMap.at(8, 4).addActor(new Store());
+		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
 		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));
