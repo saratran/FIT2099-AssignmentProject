@@ -1,5 +1,6 @@
 package game;
 
+import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
@@ -20,18 +21,12 @@ public class Tree extends Ground {
 		int y = location.y();
 		GameMap map = location.map();
 		
-		// Go through surrounding locations
-		for (int m = x - 1; m <= x + 1; m++) {
-			for (int n = y - 1; n <= y + 1; n++) {
-				// Is it a good idea to use an empty try-catch block for out-of-bound cases?
-				try {
-					// TODO: what if ground is wall or something else
-					if (!map.at(m, n).getGround().getClass().equals(Tree.class)) {
-						if (Math.random() <= this.GROW_NEW_TREE) {
-							map.at(m, n).setGround(new Tree());
-						}
-					}
-				} catch (Exception e) {
+		
+		for(Exit exit : location.getExits()) {
+			Location location1 = exit.getDestination();
+			if(location1.getGround().getClass().equals(Dirt.class)){
+				if (Math.random() <= this.GROW_NEW_TREE) {
+					location1.setGround(new Tree());
 				}
 			}
 		}
