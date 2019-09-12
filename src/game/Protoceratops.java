@@ -1,6 +1,5 @@
 package game;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,18 +15,21 @@ import edu.monash.fit2099.engine.GameMap;
  *
  */
 public class Protoceratops extends Actor {
-	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
+	// Will need to change this to a collection if Protoceratops gets additional
+	// Behaviours.
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
+	private int food_level = 10;
+	private final int MAX_FOOD_LEVEL = 50;
 
-	/** 
-	 * Constructor.
-	 * All Protoceratops are represented by a 'd' and have 100 hit points.
+	/**
+	 * Constructor. All Protoceratops are represented by a 'd' and have 100 hit
+	 * points.
 	 * 
 	 * @param name the name of this Protoceratops
 	 */
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
-		
+
 //		behaviours.add(new FindGroundBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}
@@ -40,20 +42,26 @@ public class Protoceratops extends Actor {
 	/**
 	 * Figure out what to do next.
 	 * 
-	 * FIXME: Protoceratops wanders around at random, or if no suitable MoveActions are available, it
-	 * just stands there.  That's boring.
+	 * FIXME: Protoceratops wanders around at random, or if no suitable MoveActions
+	 * are available, it just stands there. That's boring.
 	 * 
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap,
+	 *      Display)
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		for(Behaviour behaviour : behaviours) {
-			Action action = behaviour.getAction(this, map) ;
-			if (action != null)
-				return action;
-		}
+		food_level--;
+		if (food_level <= 0) {
+			map.locationOf(this).addItem(new Corpse("protoceratops corpse", 'c', Species.PROTOCERATOPS));
+			map.removeActor(this);
+		} else {
+			for (Behaviour behaviour : behaviours) {
+				Action action = behaviour.getAction(this, map);
+				if (action != null)
+					return action;
+			}
 
-		
+		}
 		return new DoNothingAction();
 	}
 

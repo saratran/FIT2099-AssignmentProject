@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Item;
  * TODO:
  * - Need to take money into account
  * - Potential problem(?): after buying an item, menu shows option to drop it --> can get clutter if bought many item
+ * - Egg bought from store cannot hatch due super class PortableDinoItem does not have Egg tick() method implementation
  */
 public class StoreSellAction extends Action {
 	protected Item item;

@@ -1,32 +1,37 @@
 package game;
 
-import edu.monash.fit2099.engine.Action;
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 
-public class Store extends Actor {
-
-	public Store() {
-		super("Store", 'S', 100);
-		addItemToInventory(new PortableDinoItem("egg", 'e'));
-		addItemToInventory(new PortableDinoItem("food", 'f'));
+public class Store extends Ground {
+	private List<Item> items = new ArrayList<Item>();
+	
+	public Store(char displayChar) {
+		super(displayChar);
+		items.add(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
 	}
 
 	@Override
-	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		return new DoNothingAction();
-	}
-
-	@Override
-	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
-		for(Item item : this.getInventory()) {
+		for (Item item : items) {
 			actions.add(new StoreSellAction(item));
 		}
+		
 		return actions;
 	}
+
+	@Override
+	public void tick(Location location) {
+		super.tick(location);
+	}
+	
+	
+
 }

@@ -52,7 +52,7 @@ public class Application {
 		Actor player = new Player("Player", '@', 100);
 		world.addPlayer(player, gameMap.at(9, 4));
 
-		gameMap.at(9, 3).addActor(new Store());
+		gameMap.at(9, 3).setGround(new Store('S'));
 
 		gameMap.at(9, 6).addItem(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
 		
