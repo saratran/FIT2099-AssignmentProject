@@ -14,12 +14,9 @@ import edu.monash.fit2099.engine.GameMap;
  * A herbivorous dinosaur.
  *
  */
-public class Protoceratops extends Actor {
+public class Protoceratops extends Dinosaur {
 	// Will need to change this to a collection if Protoceratops gets additional
 	// Behaviours.
-	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
-	private int food_level = 10;
-	private final int MAX_FOOD_LEVEL = 50;
 
 	/**
 	 * Constructor. All Protoceratops are represented by a 'd' and have 100 hit
@@ -29,7 +26,8 @@ public class Protoceratops extends Actor {
 	 */
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
-
+		food_level = 10;
+		MAX_FOOD_LEVEL = 50;
 //		behaviours.add(new FindGroundBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}
@@ -50,11 +48,10 @@ public class Protoceratops extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		food_level--;
-		if (food_level <= 0) {
-			map.locationOf(this).addItem(new Corpse("protoceratops corpse", 'c', Species.PROTOCERATOPS));
-			map.removeActor(this);
-		} else {
+		// actions is the actions got from inventory, surrounding actors and items
+//		if(actions.get(0).getClass().equals(AttackAction.class))
+		super.playTurn(actions, lastAction, map, display);
+		if (!this.die(map)) {
 			for (Behaviour behaviour : behaviours) {
 				Action action = behaviour.getAction(this, map);
 				if (action != null)

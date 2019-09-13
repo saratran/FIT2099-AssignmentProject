@@ -21,7 +21,7 @@ public class Store extends Ground {
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
 		for (Item item : items) {
-			actions.add(new StoreSellAction(item));
+			actions.add(new BuyAction(item));
 		}
 		
 		return actions;

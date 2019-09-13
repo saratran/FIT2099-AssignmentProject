@@ -1,5 +1,8 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DoNothingAction;
@@ -18,7 +21,14 @@ public class FindGroundBehaviour implements Behaviour {
 		int y = here.y();
 
 		here.getExits();
+		List<Exit> checkedExits = new ArrayList<Exit>();
+		List<Location> nextLocations = new ArrayList<Location>();
 
+		for (Exit exit : here.getExits()) {
+			nextLocations.add(exit.getDestination());
+			checkedExits.add(exit);
+		}
+		
 //		int offset = 0;
 //		while (true) {
 //			offset += 1;

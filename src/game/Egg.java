@@ -20,9 +20,13 @@ public class Egg extends PortableDinoItem {
 			switch(species) {
 			case PROTOCERATOPS:
 				currentLocation.addActor(new Protoceratops("Protoceratops"));
-				currentLocation.removeItem(this);
 			}
+			currentLocation.removeItem(this);
 		}
+	}
+
+	public Species getSpecies() {
+		return species;
 	}
 	
 	
