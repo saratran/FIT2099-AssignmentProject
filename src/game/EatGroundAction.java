@@ -19,15 +19,15 @@ public class EatGroundAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 		// TODO: Any checking before casting?
 		((Dinosaur) actor).addFoodValue(target.getFoodValue());
-		
+
 		// TODO: Better way to set new ground?
 		location.setGround(new Dirt());
-		return actor + " ate " + target.toString() + " and gained " + target.getFoodValue() + " food points";
+		return actor + " ate " + target.getClass().getName() + " and gained " + target.getFoodValue() + " food points";
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " eats " + target.toString();
+		return actor + " eats " + target.getClass().getName();
 	}
 
 }

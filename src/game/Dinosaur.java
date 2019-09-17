@@ -30,6 +30,9 @@ public abstract class Dinosaur extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		food_level--;
+		if(this.isHungry()) {
+			System.out.println(name + " is hungry!");
+		}
 		return null;
 	}
 

@@ -26,14 +26,22 @@ public class SeekFoodBehaviour implements Behaviour {
 		if (!((Dinosaur) actor).isHungry()) {
 			return null;
 		}
-		
+
 		Location here = map.locationOf(dinosaur);
 		int x = here.x();
 		int y = here.y();
 
+		List<Location> checkedLocations = new ArrayList<Location>();
+		List<Location> locationsToGetExits = new ArrayList<Location>();
+
+		checkedLocations.add(here);
+
 		// Checking nearby locations first
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
+			checkedLocations.add(destination);
+			locationsToGetExits.add(destination);
+
 			if (dinosaur.isFood(destination.getActor())) {
 				return new AttackAction(destination.getActor());
 			}
@@ -46,7 +54,35 @@ public class SeekFoodBehaviour implements Behaviour {
 					return new EatItemAction(item, destination);
 				}
 			}
+		}
 
+		while (!locationsToGetExits.isEmpty()) {
+			// TODO: need to break when checked all of the map
+			List<Exit> exits = new ArrayList<Exit>();
+			for (Location location : locationsToGetExits) {
+				exits.addAll(location.getExits());
+			}
+			locationsToGetExits.clear();
+			
+			for(Exit exit : exits) {
+				Location destination = exit.getDestination();
+				// TODO: could improve efficiency, currently searching through ArrayList is O(N)
+				if(!checkedLocations.contains(destination)) {
+					checkedLocations.add(destination);
+					locationsToGetExits.add(destination);
+					if (dinosaur.isFood(destination.getActor())) {
+						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
+					}
+					if (dinosaur.isFood(destination.getGround())){
+						return new ToLocationBehaviour(destination).getAction(actor, map);
+					}
+					for (Item item : destination.getItems()) {
+						if (dinosaur.isFood(item)) {
+							return new ToLocationBehaviour(destination).getAction(actor, map);
+						}
+					}
+				}
+			}
 		}
 
 //		here.getExits();
@@ -88,7 +124,7 @@ public class SeekFoodBehaviour implements Behaviour {
 //				}
 //			}
 //		}
-		return null;
+	return null;
 	}
 
 	private int distance(Location a, Location b) {
