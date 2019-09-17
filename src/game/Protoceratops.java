@@ -29,7 +29,7 @@ public class Protoceratops extends Dinosaur {
 		food_level = 10;
 		HUNGRY_LEVEL = 10;
 		MAX_FOOD_LEVEL = 50;
-		food_grounds.add(new Tree());
+		food_grounds.add(new Tree()); // TODO: is this a good way to keep track of edible food?
 		behaviours.add(new SeekFoodBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}

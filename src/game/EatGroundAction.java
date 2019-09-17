@@ -22,12 +22,12 @@ public class EatGroundAction extends Action {
 
 		// TODO: Better way to set new ground?
 		location.setGround(new Dirt());
-		return actor + " ate " + target.getClass().getName() + " and gained " + target.getFoodValue() + " food points";
+		return actor + " ate " + target.getClass().getSimpleName() + " and gained " + target.getFoodValue() + " food points";
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " eats " + target.getClass().getName();
+		return actor + " eats " + target.getClass().getSimpleName();
 	}
 
 }

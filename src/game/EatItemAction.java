@@ -22,13 +22,13 @@ public class EatItemAction extends Action {
 		
 		// Any checking before removing? (here or in constructor)
 		location.removeItem(target);
-		return actor + " ate " + target.getClass().getName() + " and gained " + target.getFoodValue() + " food points";
+		return actor + " ate " + target.getClass().getSimpleName() + " and gained " + target.getFoodValue() + " food points";
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
 		// TODO: target name
-		return actor + " eats " + target.getClass().getName();
+		return actor + " eats " + target.getClass().getSimpleName();
 	}
 
 }
