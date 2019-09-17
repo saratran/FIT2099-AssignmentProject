@@ -37,9 +37,9 @@ public class FollowBehaviour implements Behaviour {
 				}
 			}
 		}
-
 		return null;
 	}
+
 
 	/**
 	 * Compute the Manhattan distance between two locations.

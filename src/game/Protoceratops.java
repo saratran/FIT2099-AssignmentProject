@@ -27,8 +27,10 @@ public class Protoceratops extends Dinosaur {
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
 		food_level = 10;
+		HUNGRY_LEVEL = 10;
 		MAX_FOOD_LEVEL = 50;
-//		behaviours.add(new FindGroundBehaviour());
+		food_grounds.add(new Tree());
+		behaviours.add(new SeekFoodBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}
 

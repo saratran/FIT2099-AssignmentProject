@@ -37,4 +37,12 @@ public class Tree extends Ground {
 		if (age == 20)
 			displayChar = 'T';
 	}
+
+	@Override
+	public int getFoodValue() {
+		// TODO Auto-generated method stub
+		return 10;
+	}
+	
+	
 }

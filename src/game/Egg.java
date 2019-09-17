@@ -1,5 +1,8 @@
 package game;
 
+import java.util.List;
+
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Location;
 
 public class Egg extends PortableDinoItem {
@@ -11,6 +14,7 @@ public class Egg extends PortableDinoItem {
 	public Egg(String name, char displayChar, Species species) {
 		super(name, displayChar);
 		this.species = species;
+//		this.allowableActions.add(new EatItemAction(this));
 	}
 
 	@Override
@@ -28,6 +32,10 @@ public class Egg extends PortableDinoItem {
 	public Species getSpecies() {
 		return species;
 	}
+
+	
+	
+	
 	
 	
 

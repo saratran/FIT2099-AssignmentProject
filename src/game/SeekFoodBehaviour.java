@@ -9,26 +9,60 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
+import edu.monash.fit2099.engine.NumberRange;
 
-public class FindGroundBehaviour implements Behaviour {
+public class SeekFoodBehaviour implements Behaviour {
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
-		Location here = map.locationOf(actor);
+		if (!(actor instanceof Dinosaur)) {
+			return null;
+		}
+		Dinosaur dinosaur = (Dinosaur) actor;
+
+		if (!((Dinosaur) actor).isHungry()) {
+			return null;
+		}
+		
+		Location here = map.locationOf(dinosaur);
 		int x = here.x();
 		int y = here.y();
 
-		here.getExits();
-		List<Exit> checkedExits = new ArrayList<Exit>();
-		List<Location> nextLocations = new ArrayList<Location>();
-
+		// Checking nearby locations first
 		for (Exit exit : here.getExits()) {
-			nextLocations.add(exit.getDestination());
-			checkedExits.add(exit);
+			Location destination = exit.getDestination();
+			if (dinosaur.isFood(destination.getActor())) {
+				return new AttackAction(destination.getActor());
+			}
+
+			if (dinosaur.isFood(destination.getGround())) {
+				return new EatGroundAction(destination.getGround(), destination);
+			}
+			for (Item item : destination.getItems()) {
+				if (dinosaur.isFood(item)) {
+					return new EatItemAction(item, destination);
+				}
+			}
+
 		}
-		
+
+//		here.getExits();
+//		List<Exit> checkedExits = new ArrayList<Exit>();
+//		List<Location> nextLocations = new ArrayList<Location>();
+//
+//		for (Exit exit : here.getExits()) {
+//			nextLocations.add(exit.getDestination());
+//			checkedExits.add(exit);
+//		}
+//		
+//		int xMax = map.getXRange().max();
+//		int xMin = map.getXRange().min();
+//		int yMax = map.getYRange().max();
+//		int yMin = map.getYRange().min();
+
 //		int offset = 0;
 //		while (true) {
 //			offset += 1;
