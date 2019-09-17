@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
@@ -12,20 +14,24 @@ import edu.monash.fit2099.engine.GameMap;
  * A herbivorous dinosaur.
  *
  */
-public class Protoceratops extends Actor {
-	// Will need to change this to a collection if Protoceratops gets additional Behaviours.
-	private Behaviour behaviour;
+public class Protoceratops extends Dinosaur {
+	// Will need to change this to a collection if Protoceratops gets additional
+	// Behaviours.
 
-	/** 
-	 * Constructor.
-	 * All Protoceratops are represented by a 'd' and have 100 hit points.
+	/**
+	 * Constructor. All Protoceratops are represented by a 'd' and have 100 hit
+	 * points.
 	 * 
 	 * @param name the name of this Protoceratops
 	 */
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
-		
-		behaviour = new WanderBehaviour();
+		food_level = 10;
+		HUNGRY_LEVEL = 10;
+		MAX_FOOD_LEVEL = 50;
+		food_grounds.add(new Tree()); // TODO: is this a good way to keep track of edible food?
+		behaviours.add(new SeekFoodBehaviour());
+		behaviours.add(new WanderBehaviour());
 	}
 
 	@Override
@@ -36,17 +42,25 @@ public class Protoceratops extends Actor {
 	/**
 	 * Figure out what to do next.
 	 * 
-	 * FIXME: Protoceratops wanders around at random, or if no suitable MoveActions are available, it
-	 * just stands there.  That's boring.
+	 * FIXME: Protoceratops wanders around at random, or if no suitable MoveActions
+	 * are available, it just stands there. That's boring.
 	 * 
-	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap, Display)
+	 * @see edu.monash.fit2099.engine.Actor#playTurn(Actions, Action, GameMap,
+	 *      Display)
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		Action wander = behaviour.getAction(this, map);
-		if (wander != null)
-			return wander;
-		
+		// actions is the actions got from inventory, surrounding actors and items
+//		if(actions.get(0).getClass().equals(AttackAction.class))
+		super.playTurn(actions, lastAction, map, display);
+		if (!this.die(map)) {
+			for (Behaviour behaviour : behaviours) {
+				Action action = behaviour.getAction(this, map);
+				if (action != null)
+					return action;
+			}
+
+		}
 		return new DoNothingAction();
 	}
 

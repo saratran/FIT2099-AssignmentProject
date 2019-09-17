@@ -30,6 +30,36 @@ public class Player extends Actor {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		actions.add(new SleepAction());
 		return menu.showMenu(this, actions, display);
 	}
+	
+	private class SleepAction extends Action {
+		// TODO: Copied from conwayslife (is this ok?)
+		private int sleepTime = 200;
+
+		@Override
+		public String execute(Actor actor, GameMap map) {
+			sleepTime--;
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+			}
+			return actor + " is sleeping.";
+		}
+
+		@Override
+		public String menuDescription(Actor actor) {
+			return "Sleep a while";
+		}
+
+		@Override
+		public Action getNextAction() {
+			if (sleepTime > 0)
+				return this;
+
+			return null;
+		}
+	}
+
 }

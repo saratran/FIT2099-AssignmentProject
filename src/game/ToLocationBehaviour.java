@@ -1,37 +1,28 @@
 package game;
 
-import edu.monash.fit2099.engine.*;
+import edu.monash.fit2099.engine.Action;
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Exit;
+import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.MoveActorAction;
 
-/**
- * A class that figures out a MoveAction that will move the actor one step 
- * closer to a target Actor.
- */
-public class FollowBehaviour implements Behaviour {
+public class ToLocationBehaviour implements Behaviour {
+	// TODO: this class is very similar to FollowBehaviour, is there a better way to do this?
+	private Location target;
 
-	private Actor target;
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param subject the Actor to follow
-	 */
-	public FollowBehaviour(Actor subject) {
-		this.target = subject;
+	public ToLocationBehaviour(Location target) {
+		this.target = target;
 	}
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
-		if(!map.contains(target) || !map.contains(actor))
-			return null;
-		
 		Location here = map.locationOf(actor);
-		Location there = map.locationOf(target);
-
-		int currentDistance = distance(here, there);
+		int currentDistance = distance(here, target);
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
 			if (destination.canActorEnter(actor)) {
-				int newDistance = distance(destination, there);
+				int newDistance = distance(destination, target);
 				if (newDistance < currentDistance) {
 					return new MoveActorAction(destination, exit.getName());
 				}
@@ -39,8 +30,7 @@ public class FollowBehaviour implements Behaviour {
 		}
 		return null;
 	}
-
-
+	
 	/**
 	 * Compute the Manhattan distance between two locations.
 	 * 
@@ -51,4 +41,5 @@ public class FollowBehaviour implements Behaviour {
 	private int distance(Location a, Location b) {
 		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
 	}
+
 }
