@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.Menu;
  * Class representing the Player.
  */
 public class Player extends Actor {
-
+	private int money = 0;
 	private Menu menu = new Menu();
 
 	/**
@@ -36,7 +36,7 @@ public class Player extends Actor {
 	
 	private class SleepAction extends Action {
 		// TODO: Copied from conwayslife (is this ok?)
-		private int sleepTime = 200;
+		private int sleepTime = 100;
 
 		@Override
 		public String execute(Actor actor, GameMap map) {
@@ -61,5 +61,27 @@ public class Player extends Actor {
 			return null;
 		}
 	}
+	
+	public void addMoney(int value) {
+		//TODO: needs exception?
+//		if(value < 0) {
+//			throw new Exception("Cannot add negative value");
+//		}
+		
+		money += value;
+	}
+	
+	public void deductMoney(int value) {
+//		if(value < 0) {
+//			throw new Exception("Cannot remove negative value");
+//		}
+		
+		money -= value;
+	}
+	
+	public int getMoney() {
+		return money;
+	}
+	
 
 }

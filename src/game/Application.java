@@ -49,12 +49,17 @@ public class Application {
 		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 
-		Actor player = new Player("Player", '@', 100);
+		Player player = new Player("Player", '@', 100);
+		player.addMoney(100);
 		world.addPlayer(player, gameMap.at(9, 4));
 
 		gameMap.at(9, 3).setGround(new Store('S'));
 
 		gameMap.at(9, 6).addItem(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
+		gameMap.at(19, 6).addItem(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
+		gameMap.at(9, 16).addItem(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
+
+
 		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
