@@ -14,7 +14,7 @@ import edu.monash.fit2099.engine.Item;
 public abstract class Dinosaur extends Actor {
 	protected int age = 0;
 	protected Species species;
-	protected List<Behaviour> behaviours = new ArrayList<Behaviour>();
+	public List<Behaviour> behaviours = new ArrayList<Behaviour>();//TODO: access modifier
 	protected int food_level;
 	protected int MAX_FOOD_LEVEL;
 	protected int HUNGRY_LEVEL;
