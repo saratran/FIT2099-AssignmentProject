@@ -9,20 +9,24 @@ import edu.monash.fit2099.engine.MoveActorAction;
 
 public class ToLocationBehaviour implements Behaviour {
 	// TODO: this class is very similar to FollowBehaviour, is there a better way to do this?
-	private Location target;
+	protected Location target_location;
 
 	public ToLocationBehaviour(Location target) {
-		this.target = target;
+		this.target_location = target;
 	}
 
+	protected ToLocationBehaviour() {
+		
+	}
+	
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		Location here = map.locationOf(actor);
-		int currentDistance = distance(here, target);
+		int currentDistance = distance(here, target_location);
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
 			if (destination.canActorEnter(actor)) {
-				int newDistance = distance(destination, target);
+				int newDistance = distance(destination, target_location);
 				if (newDistance < currentDistance) {
 					return new MoveActorAction(destination, exit.getName());
 				}
