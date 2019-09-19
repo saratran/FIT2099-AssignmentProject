@@ -1,8 +1,5 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -26,8 +23,8 @@ public class Protoceratops extends Dinosaur {
 	 */
 	public Protoceratops(String name) {
 		super(name, 'd', 100);
-		food_level = 10;
-		HUNGRY_LEVEL = 10;
+		food_level = 30;
+		HUNGRY_LEVEL = 15;
 		MAX_FOOD_LEVEL = 50;
 		food_grounds.add(new Tree()); // TODO: is this a good way to keep track of edible food?
 		behaviours.add(new SeekFoodBehaviour());

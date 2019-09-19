@@ -20,19 +20,27 @@ public class BuyAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		// TODO: need to check for actor instanceof Player before casting? Should check when calling execute or inside or both
+		Player player = (Player) actor;
+		if (player.getMoney() < item.getBuyValue()) {
+			return "Player does not have enough money to buy " + item.toString() + "\nCurrent balance is ($"
+					+ player.getMoney() + ")";
+		}
 		// Downcasting for specific items
+		// TODO: good way to this?
 		if (item instanceof Egg) {
 			item = (Egg) item;
-			actor.addItemToInventory(new Egg(item.toString(), item.getDisplayChar(), ((Egg) item).getSpecies()));
-		}else {
+			player.addItemToInventory(new Egg(item.toString(), item.getDisplayChar(), ((Egg) item).getSpecies()));
+		} else {
 			actor.addItemToInventory(new PortableDinoItem(item.toString(), item.getDisplayChar()));
 		}
+		player.deductMoney(item.getBuyValue());
 		return "Player bought " + item.toString();
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return "Buy " + item.toString();
+		return "Buy " + item.toString() + " ($" + item.getBuyValue() + ")";
 	}
 
 }
