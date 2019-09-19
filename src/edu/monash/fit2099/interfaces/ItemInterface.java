@@ -17,4 +17,8 @@ public interface ItemInterface {
 	default int getSellValue() {
 		return 0;
 	}
+	
+	default boolean isSellable() {
+		return false;
+	}
 }
