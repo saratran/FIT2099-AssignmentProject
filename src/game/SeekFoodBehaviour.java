@@ -85,49 +85,4 @@ public class SeekFoodBehaviour implements Behaviour {
 			}
 		}
 
-//		here.getExits();
-//		List<Exit> checkedExits = new ArrayList<Exit>();
-//		List<Location> nextLocations = new ArrayList<Location>();
-//
-//		for (Exit exit : here.getExits()) {
-//			nextLocations.add(exit.getDestination());
-//			checkedExits.add(exit);
-//		}
-//		
-//		int xMax = map.getXRange().max();
-//		int xMin = map.getXRange().min();
-//		int yMax = map.getYRange().max();
-//		int yMin = map.getYRange().min();
-
-//		int offset = 0;
-//		while (true) {
-//			offset += 1;
-//			for (int m = x - offset; m <= x + 1; m++) {
-//				for (int n = y - offset; n <= y + 1; n++) {
-//					// TODO: loop to check 1 space away, then 2, 3, etc.
-//					// Currently repeated inner points
-//					Ground ground = map.at(m, n).getGround();
-//					if (ground.getClass().equals(Tree.class)) {
-//						// TODO: out of map range
-//						Location there = map.at(m, n);
-//						int currentDistance = distance(here, there);
-//						for (Exit exit : here.getExits()) {
-//							Location destination = exit.getDestination();
-//							if (destination.canActorEnter(actor)) {
-//								int newDistance = distance(destination, there);
-//								if (newDistance < currentDistance) {
-//									return new MoveActorAction(destination, exit.getName());
-//								}
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-	return null;
-	}
-
-	private int distance(Location a, Location b) {
-		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
-	}
 }
