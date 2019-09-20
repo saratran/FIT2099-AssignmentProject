@@ -41,4 +41,10 @@ public class Egg extends PortableDinoItem {
 		return species;
 	}
 
+	@Override
+	public boolean isSellable() {
+		return true;
+	}
+
+	
 }
