@@ -21,4 +21,8 @@ public interface ItemInterface {
 	default boolean isSellable() {
 		return false;
 	}
+	
+	default boolean isFeedable() {
+		return false;
+	}
 }

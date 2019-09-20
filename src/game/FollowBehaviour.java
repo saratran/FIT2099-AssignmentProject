@@ -16,6 +16,7 @@ public class FollowBehaviour extends ToLocationBehaviour {
 	 * @param subject the Actor to follow
 	 */
 	public FollowBehaviour(Actor subject) {
+		// TODO: or maybe change this constructor to take in both Actor and Location
 		super();
 		this.target = subject;
 	}
