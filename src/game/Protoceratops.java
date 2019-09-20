@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * A herbivorous dinosaur.
@@ -27,13 +28,22 @@ public class Protoceratops extends Dinosaur {
 		HUNGRY_LEVEL = 15;
 		MAX_FOOD_LEVEL = 50;
 		food_grounds.add(new Tree()); // TODO: is this a good way to keep track of edible food?
+		food_items.add(new Food("food",'f'));
 		behaviours.add(new SeekFoodBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}
 
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-		return new Actions(new AttackAction(this));
+		Actions actions = new Actions(new AttackAction(this));
+		if (otherActor instanceof Player) {
+			for (Item item : otherActor.getInventory()) {
+				if (item.isFeedable() && this.isFood(item)) {
+					actions.add(new FeedAction(item, this));
+				}
+			}
+		}
+		return actions;
 	}
 
 	/**

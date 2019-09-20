@@ -51,6 +51,7 @@ public class Application {
 
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(100);
+		player.addItemToInventory(new Food("Food", 'f'));
 		world.addPlayer(player, gameMap.at(9, 4));
 
 		gameMap.at(9, 3).setGround(new Store('S'));
@@ -64,6 +65,8 @@ public class Application {
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
 		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));
+		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
+
 
 		world.run();
 	}
