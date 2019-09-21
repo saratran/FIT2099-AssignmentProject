@@ -21,7 +21,13 @@ public class Store extends Ground {
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
 		if(actor instanceof Player) {
-			for (Item item : items) {
+//			Passing the same Item objects every time
+//			for (Item item : items) {
+//				actions.add(new BuyAction(item));
+//			}
+			
+//			Create new Item objects every time (may be inefficient?)
+			for (Item item : createItemList()) {
 				actions.add(new BuyAction(item));
 			}
 			for (Item item : actor.getInventory()) {
@@ -38,7 +44,11 @@ public class Store extends Ground {
 	public void tick(Location location) {
 		super.tick(location);
 	}
-	
-	
 
+	
+	private List<Item> createItemList() {
+		List<Item> item_list = new ArrayList<Item>();
+		item_list.add(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
+		return item_list;
+	}
 }

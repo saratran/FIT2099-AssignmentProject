@@ -24,7 +24,7 @@ public class BuyAction extends Action {
 						+ player.getMoney();
 			}
 //			// Downcasting for specific items
-//			// TODO: good way to this?
+//			// TODO: good way to this? --> NOPE
 //			if (item instanceof Egg) {
 //				item = (Egg) item;
 //				player.addItemToInventory(new Egg(item.toString(), item.getDisplayChar(), ((Egg) item).getSpecies()));
@@ -32,12 +32,16 @@ public class BuyAction extends Action {
 //				actor.addItemToInventory(new PortableDinoItem(item.toString(), item.getDisplayChar()));
 //			}
 
-			// Add a shallow copy to player inventory
-			try {
-				player.addItemToInventory((Item) ((PortableDinoItem)item).clone());
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
+			
+//			// Add a shallow copy to player inventory
+			// Allow passing in the same Item object from Store
+//			try {
+//				player.addItemToInventory((Item) ((PortableDinoItem)item).clone());
+//			} catch (CloneNotSupportedException e) {
+//				e.printStackTrace();
+//			}
+			
+			player.addItemToInventory(item);
 			player.deductMoney(item.getBuyValue());
 		}
 		return actor + " bought " + item.toString();
