@@ -6,20 +6,17 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.MoveActorAction;
-import edu.monash.fit2099.engine.NumberRange;
 
 public class SeekFoodBehaviour implements Behaviour {
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
-		HashMap<String, Location> checkedLocations = new HashMap<String, Location>();
+		HashMap<String, Location> checkedLocations = new HashMap<String, Location>(); // To store locations that have been checked for food
+		List<Location> locationsToGetExits = new ArrayList<Location>(); // To store locations that need to get Exits next
 
 		if (!(actor instanceof Dinosaur)) {
 			return null;
@@ -31,16 +28,12 @@ public class SeekFoodBehaviour implements Behaviour {
 		}
 
 		Location here = map.locationOf(dinosaur);
-
-		List<Location> locationsToGetExits = new ArrayList<Location>();
-
 		checkedLocations.put(locationToKey(here), here);
 		
-		// Checking nearby locations first
+		// Checking locations nearby first
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
 			checkedLocations.put(locationToKey(destination), destination);
-			
 			locationsToGetExits.add(destination);
 
 			if (dinosaur.isFood(destination.getActor())) {
@@ -57,19 +50,22 @@ public class SeekFoodBehaviour implements Behaviour {
 			}
 		}
 
+		// Check locations further away
 		while (!locationsToGetExits.isEmpty()) {
 			List<Exit> exits = new ArrayList<Exit>();
 			for (Location location : locationsToGetExits) {
 				exits.addAll(location.getExits());
 			}
-			locationsToGetExits.clear();
+			locationsToGetExits.clear(); // Empty list after getting the exits
 
 			for (Exit exit : exits) {
 				Location destination = exit.getDestination();
 
+				// Only continue to check if location has not been checked before
 				if (!checkedLocations.containsKey(locationToKey(destination))) {
 					checkedLocations.put(locationToKey(destination), destination);
 					locationsToGetExits.add(destination);
+					
 					if (dinosaur.isFood(destination.getActor())) {
 						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
 					}
@@ -84,6 +80,8 @@ public class SeekFoodBehaviour implements Behaviour {
 				}
 			}
 		}
+		
+		// null when there is no available food
 		return null;
 	}
 	
