@@ -23,13 +23,20 @@ public class BuyAction extends Action {
 				return "Player does not have enough money to buy " + item.toString() + "\nCurrent balance is $"
 						+ player.getMoney();
 			}
-			// Downcasting for specific items
-			// TODO: good way to this?
-			if (item instanceof Egg) {
-				item = (Egg) item;
-				player.addItemToInventory(new Egg(item.toString(), item.getDisplayChar(), ((Egg) item).getSpecies()));
-			} else {
-				actor.addItemToInventory(new PortableDinoItem(item.toString(), item.getDisplayChar()));
+//			// Downcasting for specific items
+//			// TODO: good way to this?
+//			if (item instanceof Egg) {
+//				item = (Egg) item;
+//				player.addItemToInventory(new Egg(item.toString(), item.getDisplayChar(), ((Egg) item).getSpecies()));
+//			} else {
+//				actor.addItemToInventory(new PortableDinoItem(item.toString(), item.getDisplayChar()));
+//			}
+
+			// Add a shallow copy to player inventory
+			try {
+				player.addItemToInventory((Item) ((PortableDinoItem)item).clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
 			}
 			player.deductMoney(item.getBuyValue());
 		}

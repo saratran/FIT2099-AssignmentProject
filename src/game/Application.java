@@ -67,7 +67,6 @@ public class Application {
 		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));
 		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
 
-
 		world.run();
 	}
 }
