@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
@@ -18,6 +19,8 @@ public class SeekFoodBehaviour implements Behaviour {
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
+		HashMap<String, Location> checkedLocations = new HashMap<String, Location>();
+
 		if (!(actor instanceof Dinosaur)) {
 			return null;
 		}
@@ -28,18 +31,16 @@ public class SeekFoodBehaviour implements Behaviour {
 		}
 
 		Location here = map.locationOf(dinosaur);
-		int x = here.x();
-		int y = here.y();
 
-		List<Location> checkedLocations = new ArrayList<Location>();
 		List<Location> locationsToGetExits = new ArrayList<Location>();
 
-		checkedLocations.add(here);
-
+		checkedLocations.put(locationToKey(here), here);
+		
 		// Checking nearby locations first
 		for (Exit exit : here.getExits()) {
 			Location destination = exit.getDestination();
-			checkedLocations.add(destination);
+			checkedLocations.put(locationToKey(destination), destination);
+			
 			locationsToGetExits.add(destination);
 
 			if (dinosaur.isFood(destination.getActor())) {
@@ -57,7 +58,6 @@ public class SeekFoodBehaviour implements Behaviour {
 		}
 
 		while (!locationsToGetExits.isEmpty()) {
-			// TODO: need to break when checked all of the map
 			List<Exit> exits = new ArrayList<Exit>();
 			for (Location location : locationsToGetExits) {
 				exits.addAll(location.getExits());
@@ -66,9 +66,9 @@ public class SeekFoodBehaviour implements Behaviour {
 
 			for (Exit exit : exits) {
 				Location destination = exit.getDestination();
-				// TODO: could improve efficiency, currently searching through ArrayList is O(N)
-				if (!checkedLocations.contains(destination)) {
-					checkedLocations.add(destination);
+
+				if (!checkedLocations.containsKey(locationToKey(destination))) {
+					checkedLocations.put(locationToKey(destination), destination);
 					locationsToGetExits.add(destination);
 					if (dinosaur.isFood(destination.getActor())) {
 						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
@@ -85,5 +85,9 @@ public class SeekFoodBehaviour implements Behaviour {
 			}
 		}
 		return null;
+	}
+	
+	private String locationToKey(Location location) {
+		return  location.x() + "," + location.y();
 	}
 }
