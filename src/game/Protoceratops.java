@@ -13,8 +13,6 @@ import edu.monash.fit2099.engine.Item;
  *
  */
 public class Protoceratops extends Dinosaur {
-	// Will need to change this to a collection if Protoceratops gets additional
-	// Behaviours.
 
 	/**
 	 * Constructor. All Protoceratops are represented by a 'd' and have 100 hit
@@ -58,7 +56,6 @@ public class Protoceratops extends Dinosaur {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// actions is the actions got from inventory, surrounding actors and items
-//		if(actions.get(0).getClass().equals(AttackAction.class))
 		super.playTurn(actions, lastAction, map, display);
 		if (!this.die(map)) {
 			for (Behaviour behaviour : behaviours) {

@@ -16,11 +16,13 @@ public class FollowBehaviour extends ToLocationBehaviour {
 	 * @param subject the Actor to follow
 	 */
 	public FollowBehaviour(Actor subject) {
-		// TODO: or maybe change this constructor to take in both Actor and Location
 		super();
 		this.target = subject;
 	}
-
+	
+	/**
+	 * return a MoveActorAction to move the actor nearer to the target Actor
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))

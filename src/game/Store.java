@@ -9,24 +9,31 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * This class can interact with the Player by buying from and selling items to them.
+ * @author Sara Tran
+ *
+ */
 public class Store extends Ground {
-	private List<Item> items = new ArrayList<Item>();
 	
+	/**
+	 * Constructor
+	 * @param displayChar character displayed on the GameMap
+	 */
 	public Store(char displayChar) {
 		super(displayChar);
-		items.add(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
 	}
 
+	/**
+	 * return list of BuyAction and SellAction for different items
+	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
+		// Don't want a Dinosaur to buy from and sell to the Store ;)
 		if(actor instanceof Player) {
-//			Passing the same Item objects every time
-//			for (Item item : items) {
-//				actions.add(new BuyAction(item));
-//			}
-			
-//			Create new Item objects every time (may be inefficient?)
+			// Create new Item objects every time (may be inefficient?)
+			// But this way we can just pass the object to the Player in BuyAction
 			for (Item item : createItemList()) {
 				actions.add(new BuyAction(item));
 			}
@@ -40,12 +47,10 @@ public class Store extends Ground {
 		return actions;
 	}
 
-	@Override
-	public void tick(Location location) {
-		super.tick(location);
-	}
-
-	
+	/**
+	 * Modify this to add more items being sold at the Store
+	 * @return list of items that the Store is selling
+	 */
 	private List<Item> createItemList() {
 		List<Item> item_list = new ArrayList<Item>();
 		item_list.add(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
