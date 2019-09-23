@@ -13,7 +13,7 @@ public class ProceratopsEgg extends Egg{
 	}
 
 	@Override
-	public Dinosaur hatchInto() {
+	protected Dinosaur hatchInto() {
 		// TODO: change to baby version
 		return new Protoceratops("Protoceratops");
 	}

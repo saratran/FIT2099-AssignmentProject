@@ -13,7 +13,7 @@ public class VelociraptorEgg extends Egg {
 	}
 
 	@Override
-	public Dinosaur hatchInto() {
+	protected Dinosaur hatchInto() {
 		// TODO: change to baby version
 		return new Velociraptor("Velociraptor");
 	}

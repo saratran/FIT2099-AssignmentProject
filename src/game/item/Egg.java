@@ -39,6 +39,6 @@ public abstract class Egg extends PortableDinoItem {
 		return true;
 	}
 
-	public abstract Dinosaur hatchInto();
+	protected abstract Dinosaur hatchInto();
 
 }
