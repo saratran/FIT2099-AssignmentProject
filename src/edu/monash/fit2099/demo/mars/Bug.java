@@ -2,8 +2,8 @@ package edu.monash.fit2099.demo.mars;
 
 import java.util.*;
 
-import game.Behaviour;
 import edu.monash.fit2099.engine.*;
+import game.behaviour.Behaviour;
 
 
 public class Bug extends Actor {

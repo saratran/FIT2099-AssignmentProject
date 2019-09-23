@@ -1,4 +1,4 @@
-package game;
+package game.actor.dinosaur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,11 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.Species;
+import game.actor.Player;
+import game.behaviour.action.BuyAction;
+import game.behaviour.action.SellAction;
+import game.item.Egg;
 
 /**
  * This class can interact with the Player by buying from and selling items to them.

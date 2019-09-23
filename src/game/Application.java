@@ -8,6 +8,15 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
+import game.actor.Player;
+import game.actor.dinosaur.Protoceratops;
+import game.actor.dinosaur.Store;
+import game.ground.Dirt;
+import game.ground.Floor;
+import game.ground.Tree;
+import game.ground.Wall;
+import game.item.Egg;
+import game.item.Food;
 
 /**
  * The main class for the dinosaur park game.

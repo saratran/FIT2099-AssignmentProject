@@ -1,4 +1,6 @@
-package game;
+package game.item;
+
+import game.Species;
 
 public class Corpse extends PortableDinoItem {
 	private Species species;

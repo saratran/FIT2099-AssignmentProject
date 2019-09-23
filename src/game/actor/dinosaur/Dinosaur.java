@@ -1,4 +1,4 @@
-package game;
+package game.actor.dinosaur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,9 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import game.Species;
+import game.behaviour.Behaviour;
+import game.item.Corpse;
 
 public abstract class Dinosaur extends Actor {
 	protected int age = 0;

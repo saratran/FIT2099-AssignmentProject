@@ -1,4 +1,4 @@
-package game;
+package game.item;
 
 public class Food extends PortableDinoItem {
 	// TODO: herbivore and carnivore food, food replenish to full 

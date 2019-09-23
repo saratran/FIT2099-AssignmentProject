@@ -1,4 +1,4 @@
-package game;
+package game.behaviour;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,10 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.actor.dinosaur.Dinosaur;
+import game.behaviour.action.AttackAction;
+import game.behaviour.action.EatGroundAction;
+import game.behaviour.action.EatItemAction;
 
 /**
  * A class that is used to determine the appropriate action for a Dinosaur to
