@@ -12,6 +12,7 @@ import game.Species;
 import game.actor.Player;
 import game.behaviour.action.BuyAction;
 import game.behaviour.action.SellAction;
+import game.item.DinosaurTag;
 import game.item.Egg;
 import game.item.ProceratopsEgg;
 
@@ -58,8 +59,9 @@ public class Store extends Ground {
 	 * @return list of items that the Store is selling
 	 */
 	private List<Item> createItemList() {
-		List<Item> item_list = new ArrayList<Item>();
-		item_list.add(new ProceratopsEgg("Protoceratops egg", 'p'));
-		return item_list;
+		List<Item> items = new ArrayList<Item>();
+		items.add(new ProceratopsEgg("Protoceratops egg", 'p'));
+		items.add(new DinosaurTag("Dinosaur tag",'-'));
+		return items;
 	}
 }

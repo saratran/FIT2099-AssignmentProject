@@ -1,6 +1,5 @@
 package game.item;
 
-import edu.monash.fit2099.engine.Location;
 import game.Species;
 import game.actor.dinosaur.Dinosaur;
 import game.actor.dinosaur.Protoceratops;
@@ -16,7 +15,7 @@ public class ProceratopsEgg extends Egg{
 	@Override
 	public Dinosaur hatchInto() {
 		// TODO: change to baby version
-		return new Protoceratops("Velociraptor");
+		return new Protoceratops("Protoceratops");
 	}
 
 }

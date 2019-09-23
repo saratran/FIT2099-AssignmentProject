@@ -16,7 +16,8 @@ import game.ground.Floor;
 import game.ground.Tree;
 import game.ground.Wall;
 import game.item.Egg;
-import game.item.Food;
+import game.item.FoodItem;
+import game.item.HerbivoreFoodItem;
 import game.item.ProceratopsEgg;
 
 /**
@@ -61,7 +62,7 @@ public class Application {
 
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(100);
-		player.addItemToInventory(new Food("Food", 'f'));
+		player.addItemToInventory(new HerbivoreFoodItem("Herbivore food item", 'f'));
 		world.addPlayer(player, gameMap.at(9, 4));
 
 		gameMap.at(9, 3).setGround(new Store('S'));
