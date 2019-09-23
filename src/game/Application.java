@@ -17,6 +17,7 @@ import game.ground.Tree;
 import game.ground.Wall;
 import game.item.Egg;
 import game.item.Food;
+import game.item.ProceratopsEgg;
 
 /**
  * The main class for the dinosaur park game.
@@ -64,10 +65,12 @@ public class Application {
 		world.addPlayer(player, gameMap.at(9, 4));
 
 		gameMap.at(9, 3).setGround(new Store('S'));
+		gameMap.at(0, 0).setGround(new Store('S'));
 
-		gameMap.at(9, 6).addItem(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
-		gameMap.at(19, 6).addItem(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
-		gameMap.at(9, 16).addItem(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
+
+		gameMap.at(9, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
+		gameMap.at(19, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
+		gameMap.at(9, 16).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
 
 
 		

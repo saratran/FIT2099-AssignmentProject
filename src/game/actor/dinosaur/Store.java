@@ -13,6 +13,7 @@ import game.actor.Player;
 import game.behaviour.action.BuyAction;
 import game.behaviour.action.SellAction;
 import game.item.Egg;
+import game.item.ProceratopsEgg;
 
 /**
  * This class can interact with the Player by buying from and selling items to them.
@@ -58,7 +59,7 @@ public class Store extends Ground {
 	 */
 	private List<Item> createItemList() {
 		List<Item> item_list = new ArrayList<Item>();
-		item_list.add(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
+		item_list.add(new ProceratopsEgg("Protoceratops egg", 'p'));
 		return item_list;
 	}
 }
