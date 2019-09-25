@@ -5,8 +5,8 @@ import java.util.List;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Location;
 import game.Species;
-import game.actor.dinosaur.Dinosaur;
-import game.actor.dinosaur.Protoceratops;
+import game.dinosaur.Dinosaur;
+import game.dinosaur.Protoceratops;
 
 public abstract class Egg extends PortableDinoItem {
 	private int age = 0;

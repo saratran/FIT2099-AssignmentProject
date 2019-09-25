@@ -1,4 +1,4 @@
-package game.actor.dinosaur;
+package game.dinosaur;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
@@ -7,12 +7,12 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import game.action.AttackAction;
+import game.action.FeedAction;
 import game.actor.Player;
 import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
-import game.behaviour.action.AttackAction;
-import game.behaviour.action.FeedAction;
 import game.ground.Tree;
 import game.item.FoodItem;
 import game.item.HerbivoreFoodItem;

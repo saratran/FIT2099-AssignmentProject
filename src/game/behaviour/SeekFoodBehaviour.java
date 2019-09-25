@@ -10,10 +10,10 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import game.actor.dinosaur.Dinosaur;
-import game.behaviour.action.AttackAction;
-import game.behaviour.action.EatGroundAction;
-import game.behaviour.action.EatItemAction;
+import game.action.AttackAction;
+import game.action.EatGroundAction;
+import game.action.EatItemAction;
+import game.dinosaur.Dinosaur;
 
 /**
  * A class that is used to determine the appropriate action for a Dinosaur to

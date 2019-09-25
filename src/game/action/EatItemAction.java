@@ -1,11 +1,11 @@
-package game.behaviour.action;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import game.actor.dinosaur.Dinosaur;
+import game.dinosaur.Dinosaur;
 
 public class EatItemAction extends Action {
 	private Item target;

@@ -2,7 +2,7 @@ package game.item;
 
 import edu.monash.fit2099.engine.Location;
 import game.Species;
-import game.actor.dinosaur.Dinosaur;
+import game.dinosaur.Dinosaur;
 
 public class VelociraptorEgg extends Egg {
 

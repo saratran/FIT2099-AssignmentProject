@@ -1,8 +1,8 @@
 package game.item;
 
 import game.Species;
-import game.actor.dinosaur.Dinosaur;
-import game.actor.dinosaur.Protoceratops;
+import game.dinosaur.Dinosaur;
+import game.dinosaur.Protoceratops;
 
 public class ProceratopsEgg extends Egg{
 

@@ -1,4 +1,4 @@
-package game.actor.dinosaur;
+package game.ground;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.Species;
+import game.action.BuyAction;
+import game.action.SellAction;
 import game.actor.Player;
-import game.behaviour.action.BuyAction;
-import game.behaviour.action.SellAction;
 import game.item.DinosaurTag;
 import game.item.Egg;
 import game.item.ProceratopsEgg;

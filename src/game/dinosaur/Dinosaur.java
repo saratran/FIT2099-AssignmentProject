@@ -1,4 +1,4 @@
-package game.actor.dinosaur;
+package game.dinosaur;
 
 import java.util.ArrayList;
 import java.util.List;
