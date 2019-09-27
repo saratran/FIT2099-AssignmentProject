@@ -21,7 +21,8 @@ import game.ground.Tree;
 import game.item.Corpse;
 import game.item.FoodItem;
 import game.item.HerbivoreFoodItem;
-import game.item.ProceratopsEgg;
+import game.item.ProtoceratopsCorpse;
+import game.item.ProtoceratopsEgg;
 
 /**
  * A herbivorous dinosaur.
@@ -63,14 +64,14 @@ public class Protoceratops extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Proceratops corpse", 'c'));
+		items.add(new ProtoceratopsCorpse("Proceratops corpse", 'c'));
 		return items;
 	}
 
 
 	@Override
 	protected Item getEgg() {
-		return new ProceratopsEgg("proceratops egg", 'e');
+		return new ProtoceratopsEgg("proceratops egg", 'e');
 	}
 	
 	

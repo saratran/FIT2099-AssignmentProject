@@ -10,7 +10,8 @@ import edu.monash.fit2099.engine.Item;
 import game.FoodSkill;
 import game.item.CarnivoreFoodItem;
 import game.item.Corpse;
-import game.item.ProceratopsEgg;
+import game.item.ProtoceratopsEgg;
+import game.item.VelociraptorCorpse;
 import game.item.VelociraptorEgg;
 
 public class Velociraptor extends Dinosaur {
@@ -23,7 +24,7 @@ public class Velociraptor extends Dinosaur {
 		super(name, displayChar, 100);
 		edibleFoodSkills.add(FoodSkill.CARNIVORE); // TODO: May be a good idea to have CarnivoreDino and HerbivoreDino base classes
 		
-		initFoodLevel(30, 100, 30);
+		initFoodLevel(50, 100, 30);
 		
 //		foodActors.add(new Protoceratops("proceratops")); 
 //		foodItems.add(new CarnivoreFoodItem("food",'f'));
@@ -40,7 +41,7 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Velociraptor corpse", 'c'));
+		items.add(new VelociraptorCorpse("Velociraptor corpse", 'c'));
 		return items;
 	}
 	
