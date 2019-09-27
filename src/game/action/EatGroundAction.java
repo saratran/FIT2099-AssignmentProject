@@ -1,11 +1,11 @@
-package game.behaviour.action;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import game.actor.dinosaur.Dinosaur;
+import game.dinosaur.Dinosaur;
 import game.ground.Dirt;
 
 public class EatGroundAction extends Action {

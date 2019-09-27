@@ -1,4 +1,4 @@
-package game.actor.dinosaur;
+package game.ground;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,12 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.Species;
+import game.action.BuyAction;
+import game.action.SellAction;
 import game.actor.Player;
-import game.behaviour.action.BuyAction;
-import game.behaviour.action.SellAction;
+import game.item.DinosaurTag;
 import game.item.Egg;
+import game.item.ProceratopsEgg;
 
 /**
  * This class can interact with the Player by buying from and selling items to them.
@@ -57,8 +59,9 @@ public class Store extends Ground {
 	 * @return list of items that the Store is selling
 	 */
 	private List<Item> createItemList() {
-		List<Item> item_list = new ArrayList<Item>();
-		item_list.add(new Egg("Protoceratops egg", 'p', Species.PROTOCERATOPS));
-		return item_list;
+		List<Item> items = new ArrayList<Item>();
+		items.add(new ProceratopsEgg("Protoceratops egg", 'p'));
+		items.add(new DinosaurTag("Dinosaur tag",'-'));
+		return items;
 	}
 }

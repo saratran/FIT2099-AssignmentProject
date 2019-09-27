@@ -1,5 +1,6 @@
 package game;
 
 public enum Species {
-	PROTOCERATOPS
+	PROTOCERATOPS,
+	VELOCIRAPTOR
 }

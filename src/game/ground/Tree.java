@@ -40,7 +40,6 @@ public class Tree extends Ground {
 
 	@Override
 	public int getFoodValue() {
-		// TODO Auto-generated method stub
 		return 10;
 	}
 	

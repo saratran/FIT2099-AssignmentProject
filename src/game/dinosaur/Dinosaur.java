@@ -1,4 +1,4 @@
-package game.actor.dinosaur;
+package game.dinosaur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +85,8 @@ public abstract class Dinosaur extends Actor {
 	}
 	
 	public void addFoodValue(int food_value) {
-		this.food_level += food_value;
+		food_level += food_value;
+		food_level = Math.min(food_level,MAX_FOOD_LEVEL); // capped at max
 	}
 
 }
