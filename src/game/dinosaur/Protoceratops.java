@@ -49,7 +49,8 @@ public class Protoceratops extends Dinosaur {
 		 * 
 		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
 		 */
-		foodGrounds.add(new Tree()); 
+//		foodGrounds.add(new Tree()); 
+		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		foodItems.add(new HerbivoreFoodItem("food",'f'));
 	}
 

@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
-public class Tree extends Ground {
+public class Tree extends Vegetation {
 	private int age = 0;
 	private double GROW_NEW_TREE = 0.005;
 
@@ -16,12 +16,6 @@ public class Tree extends Ground {
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
-
-		int x = location.x();
-		int y = location.y();
-		GameMap map = location.map();
-		
-		
 		for(Exit exit : location.getExits()) {
 			Location location1 = exit.getDestination();
 			if(location1.getGround().getClass().equals(Dirt.class)){

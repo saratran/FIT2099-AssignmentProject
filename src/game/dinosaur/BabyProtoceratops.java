@@ -33,7 +33,7 @@ public class BabyProtoceratops extends Protoceratops implements BabyDinoInterfac
 
 	// TODO: interface method has to be public?
 	public boolean canGrow() {
-		return age >= 10;
+		return age >= 30;
 	}
 
 	public Actor growInto() {

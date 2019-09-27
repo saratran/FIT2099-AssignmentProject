@@ -19,7 +19,7 @@ import game.ground.Tree;
 import game.item.Corpse;
 
 public abstract class Dinosaur extends Actor {
-	private static double LAY_EGG_CHANCE = 0.01;
+	private static double LAY_EGG_CHANCE = 0.002;
 	protected int age = 0;
 	public List<Behaviour> behaviours = new ArrayList<Behaviour>();// TODO: access modifier
 

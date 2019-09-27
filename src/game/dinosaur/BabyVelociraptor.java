@@ -39,7 +39,7 @@ public class BabyVelociraptor extends Velociraptor implements BabyDinoInterface 
 	
 	// TODO: interface method has to be public?
 	public boolean canGrow() {
-		return age >= 10;
+		return age >= 30;
 	}
 	
 	public Actor growInto() { 
