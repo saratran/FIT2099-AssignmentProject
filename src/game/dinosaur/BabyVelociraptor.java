@@ -15,6 +15,8 @@ public class BabyVelociraptor extends Velociraptor implements BabyDinoInterface 
 	public BabyVelociraptor(String name) {
 		super(name, 'v');
 		foodLevel = 20; // TODO: hard code food level :/
+		sellValue = 30;
+
 	}
 
 	@Override

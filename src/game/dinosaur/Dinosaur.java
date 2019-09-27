@@ -12,16 +12,23 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import game.FoodSkill;
+import game.action.AttackAction;
+import game.action.FeedAction;
+import game.action.PlaceTagAction;
+import game.actor.Player;
 import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.ground.Tree;
 import game.item.Corpse;
+import game.item.DinosaurTag;
 
 public abstract class Dinosaur extends Actor {
 	private static double LAY_EGG_CHANCE = 0.002;
 	protected int age = 0;
 	public List<Behaviour> behaviours = new ArrayList<Behaviour>();// TODO: access modifier
+
+	protected int sellValue = 0;
 
 	protected int foodLevel = 30;
 	protected int maxFoodLevel = 15;
@@ -65,6 +72,25 @@ public abstract class Dinosaur extends Actor {
 		}
 
 		return new DoNothingAction();
+	}
+	
+	@Override
+	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+		Actions actions = new Actions();
+		if (otherActor instanceof Player) {
+			actions.add(new AttackAction(this));
+			for (Item item : otherActor.getInventory()) {
+				if (item.isFeedable() && this.isFood(item)) {
+					actions.add(new FeedAction(item, this));
+				}
+				
+				// TODO: better way to do this? 
+				if (item instanceof DinosaurTag) {
+					actions.add(new PlaceTagAction(item, this));
+				}
+			}
+		}
+		return actions;
 	}
 
 	protected abstract Item getEgg();
@@ -152,4 +178,8 @@ public abstract class Dinosaur extends Actor {
 		return true;
 	}
 
+	@Override
+	public int getSellValue() {
+		return sellValue;
+	}
 }

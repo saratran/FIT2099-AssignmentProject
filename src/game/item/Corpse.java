@@ -7,6 +7,7 @@ public abstract class Corpse extends PortableDinoItem {
 	public Corpse(String name, char displayChar) {
 		super(name, displayChar);
 		addSkill(FoodSkill.CARNIVORE);
+		foodValue = 50;
 	}
 
 	@Override

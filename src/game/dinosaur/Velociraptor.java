@@ -25,6 +25,7 @@ public class Velociraptor extends Dinosaur {
 		edibleFoodSkills.add(FoodSkill.CARNIVORE); // TODO: May be a good idea to have CarnivoreDino and HerbivoreDino base classes
 		
 		initFoodLevel(50, 100, 30);
+		sellValue = 300;
 		
 //		foodActors.add(new Protoceratops("proceratops")); 
 //		foodItems.add(new CarnivoreFoodItem("food",'f'));

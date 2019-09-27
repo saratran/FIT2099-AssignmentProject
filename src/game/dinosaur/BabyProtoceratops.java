@@ -14,6 +14,7 @@ public class BabyProtoceratops extends Protoceratops implements BabyDinoInterfac
 	public BabyProtoceratops(String name) {
 		super(name, 'p');
 		foodLevel = 20;
+		sellValue = 20;
 
 	}
 

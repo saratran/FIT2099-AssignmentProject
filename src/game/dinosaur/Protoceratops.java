@@ -53,6 +53,8 @@ public class Protoceratops extends Dinosaur {
 //		foodGrounds.add(new Tree()); 
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		foodItems.add(new HerbivoreFoodItem("food",'f'));
+		
+		sellValue = 100;
 	}
 
 	
