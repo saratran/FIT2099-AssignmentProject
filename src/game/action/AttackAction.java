@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.dinosaur.Dinosaur;
 import game.item.PortableDinoItem;
 
 /**
@@ -47,8 +48,9 @@ public class AttackAction extends Action {
 
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			Item corpse = new PortableDinoItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
+			if(target instanceof Dinosaur) {
+				((Dinosaur)target).die(map);
+			}
 			
 			Actions dropActions = new Actions();
 			for (Item item : target.getInventory())

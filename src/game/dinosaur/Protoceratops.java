@@ -11,7 +11,6 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.FoodSkill;
-import game.Species;
 import game.action.AttackAction;
 import game.action.FeedAction;
 import game.actor.Player;
@@ -22,6 +21,7 @@ import game.ground.Tree;
 import game.item.Corpse;
 import game.item.FoodItem;
 import game.item.HerbivoreFoodItem;
+import game.item.ProceratopsEgg;
 
 /**
  * A herbivorous dinosaur.
@@ -34,13 +34,11 @@ public class Protoceratops extends Dinosaur {
 	 * 
 	 * @param name the name of this Protoceratops
 	 */
-	public Protoceratops(String name) {
-		super(name, 'P', 100);		
-		species = Species.PROTOCERATOPS;
+	public Protoceratops(String name, char displayChar) {
+		super(name, displayChar, 100);		
 
 		// TODO: good way to initialise values?
 		initFoodLevel(30, 50, 15);
-		initHealthLevel(100, 100, 50);
 		
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
@@ -53,15 +51,27 @@ public class Protoceratops extends Dinosaur {
 		 */
 		foodGrounds.add(new Tree()); 
 		foodItems.add(new HerbivoreFoodItem("food",'f'));
-		
+	}
+
+	
+	public Protoceratops(String name) {
+		this(name, 'P');		
 	}
 
 
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Proceratops corpse", 'c', Species.PROTOCERATOPS));
+		items.add(new Corpse("Proceratops corpse", 'c'));
 		return items;
 	}
+
+
+	@Override
+	protected Item getEgg() {
+		return new ProceratopsEgg("proceratops egg", 'e');
+	}
+	
+	
 
 }

@@ -12,34 +12,31 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import game.FoodSkill;
-import game.Species;
 import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
+import game.ground.Tree;
 import game.item.Corpse;
 
 public abstract class Dinosaur extends Actor {
+	private static double LAY_EGG_CHANCE = 0.01;
 	protected int age = 0;
-	protected Species species;
 	public List<Behaviour> behaviours = new ArrayList<Behaviour>();// TODO: access modifier
 
-	private int foodLevel = 30;
-	private int maxFoodLevel = 15;
-	private int hungryLevel = 50;
-
-	private int healthLevel = 100;
-	private int maxHealthLevel = 100;
-	private int healthyLevel = 50;
+	protected int foodLevel = 30;
+	protected int maxFoodLevel = 15;
+	protected int hungryLevel = 50;
 
 	protected List<Item> foodItems = new ArrayList<Item>();
 	protected List<Ground> foodGrounds = new ArrayList<Ground>();
 	protected List<Actor> foodActors = new ArrayList<Actor>();
-	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the dino can eat
-
+	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the dino can
+																				// eat
 
 	public Dinosaur(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and attack all other dino
+		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and
+										// attack all other dino
 
 		behaviours.add(new SeekFoodBehaviour());
 		behaviours.add(new WanderBehaviour());
@@ -47,24 +44,33 @@ public abstract class Dinosaur extends Actor {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		age++;
 		foodLevel--;
 		if (isDead()) {
 			this.die(map);
+			return new DoNothingAction();
+		}
+		if (this.isHungry()) {
+			System.out.println(name + " is hungry!");
 		} else {
-			if (this.isHungry()) {
-				System.out.println(name + " is hungry!");
-			}
-			for (Behaviour behaviour : behaviours) {
-				Action action = behaviour.getAction(this, map);
-				if (action != null)
-					return action;
+			// TODO: Only lay egg if not a baby
+			if (isAdult() && Math.random() <= Dinosaur.LAY_EGG_CHANCE) {
+				map.locationOf(this).addItem(getEgg());
 			}
 		}
+		for (Behaviour behaviour : behaviours) {
+			Action action = behaviour.getAction(this, map);
+			if (action != null)
+				return action;
+		}
+
 		return new DoNothingAction();
 	}
 
+	protected abstract Item getEgg();
+
 	public void die(GameMap map) {
-		for(Item item : itemsDroppedWhenDead()) {
+		for (Item item : itemsDroppedWhenDead()) {
 			map.locationOf(this).addItem(item);
 		}
 		map.removeActor(this);
@@ -83,7 +89,7 @@ public abstract class Dinosaur extends Actor {
 				return true;
 			}
 		}
-		
+
 		for (FoodSkill skill : edibleFoodSkills) {
 			if (item.hasSkill(skill)) {
 				return true;
@@ -114,7 +120,7 @@ public abstract class Dinosaur extends Actor {
 				return true;
 			}
 		}
-		
+
 		for (FoodSkill skill : edibleFoodSkills) {
 			if (actor.hasSkill(skill)) {
 				return true;
@@ -138,10 +144,12 @@ public abstract class Dinosaur extends Actor {
 		hungryLevel = hungry;
 	}
 
-	protected void initHealthLevel(int current, int max, int healthy) {
-		healthLevel = current;
-		maxHealthLevel = max;
-		healthyLevel = healthy;
+	/**
+	 * Override this to set dinosaur as a baby (not breedable)
+	 * @return
+	 */
+	protected boolean isAdult() {
+		return true;
 	}
 
 }

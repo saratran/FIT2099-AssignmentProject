@@ -5,18 +5,15 @@ import java.util.List;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.Species;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Protoceratops;
 
 public abstract class Egg extends PortableDinoItem {
 	private int age = 0;
 	private int hatch_age = 10;
-	private Species species; // TODO: probably don't need this anymore
 
-	public Egg(String name, char displayChar, Species species) {
+	public Egg(String name, char displayChar) {
 		super(name, displayChar);
-		this.species = species;
 		foodValue = 10;
 		addSkill(FoodSkill.CARNIVORE);
 	}
@@ -30,10 +27,6 @@ public abstract class Egg extends PortableDinoItem {
 			currentLocation.removeItem(this);
 			System.out.println(this.toString() + " hatches");
 		}
-	}
-
-	public Species getSpecies() {
-		return species;
 	}
 
 	@Override

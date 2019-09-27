@@ -71,16 +71,16 @@ public class Application {
 		gameMap.at(0, 0).setGround(new Store('S'));
 
 
-		gameMap.at(9, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
-		gameMap.at(19, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
-		gameMap.at(9, 16).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
+		gameMap.at(9, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'e'));
+		gameMap.at(19, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'e'));
+		gameMap.at(9, 16).addItem(new ProceratopsEgg("Protoceratops egg", 'e'));
+		gameMap.at(9, 15).addActor(new Velociraptor("Velociraptor"));
 
 
 		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(32, 12).addActor(new Velociraptor("Velociraptor"));
-		gameMap.at(31, 12).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
+		gameMap.at(31, 12).addItem(new ProceratopsEgg("Protoceratops egg", 'e'));
 
 //		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
 

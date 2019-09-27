@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import game.Species;
 import game.action.BuyAction;
 import game.action.SellAction;
 import game.actor.Player;
