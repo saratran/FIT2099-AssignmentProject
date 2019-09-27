@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Location;
+import game.FoodSkill;
 import game.Species;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Protoceratops;
@@ -17,6 +18,7 @@ public abstract class Egg extends PortableDinoItem {
 		super(name, displayChar);
 		this.species = species;
 		foodValue = 10;
+		addSkill(FoodSkill.CARNIVORE);
 	}
 
 	@Override
@@ -40,5 +42,7 @@ public abstract class Egg extends PortableDinoItem {
 	}
 
 	protected abstract Dinosaur hatchInto();
+	
+	
 
 }

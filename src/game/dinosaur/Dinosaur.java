@@ -7,53 +7,85 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import game.FoodSkill;
 import game.Species;
 import game.behaviour.Behaviour;
+import game.behaviour.SeekFoodBehaviour;
+import game.behaviour.WanderBehaviour;
 import game.item.Corpse;
 
 public abstract class Dinosaur extends Actor {
 	protected int age = 0;
 	protected Species species;
-	public List<Behaviour> behaviours = new ArrayList<Behaviour>();//TODO: access modifier
-	protected int food_level;
-	protected int MAX_FOOD_LEVEL;
-	protected int HUNGRY_LEVEL;
+	public List<Behaviour> behaviours = new ArrayList<Behaviour>();// TODO: access modifier
 
-	protected List<Item> food_items = new ArrayList<Item>();
-	protected List<Ground> food_grounds = new ArrayList<Ground>();
-	protected List<Actor> food_actors = new ArrayList<Actor>();
+	private int foodLevel = 30;
+	private int maxFoodLevel = 15;
+	private int hungryLevel = 50;
+
+	private int healthLevel = 100;
+	private int maxHealthLevel = 100;
+	private int healthyLevel = 50;
+
+	protected List<Item> foodItems = new ArrayList<Item>();
+	protected List<Ground> foodGrounds = new ArrayList<Ground>();
+	protected List<Actor> foodActors = new ArrayList<Actor>();
+	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the dino can eat
+
 
 	public Dinosaur(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and attack all other dino
+
+		behaviours.add(new SeekFoodBehaviour());
+		behaviours.add(new WanderBehaviour());
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		food_level--;
-		if(this.isHungry()) {
-			// TODO: Good place to print?
-			System.out.println(name + " is hungry!");
+		foodLevel--;
+		if (isDead()) {
+			this.die(map);
+		} else {
+			if (this.isHungry()) {
+				System.out.println(name + " is hungry!");
+			}
+			for (Behaviour behaviour : behaviours) {
+				Action action = behaviour.getAction(this, map);
+				if (action != null)
+					return action;
+			}
 		}
-		return null;
+		return new DoNothingAction();
 	}
 
-	public boolean die(GameMap map) {
-		if (food_level <= 0) {
-			// TODO generalise corpse created
-			map.locationOf(this).addItem(new Corpse("protoceratops corpse", 'c', Species.PROTOCERATOPS));
-			map.removeActor(this);
-			return true;
+	public void die(GameMap map) {
+		for(Item item : itemsDroppedWhenDead()) {
+			map.locationOf(this).addItem(item);
 		}
-		return false;
+		map.removeActor(this);
+	}
+
+	protected abstract List<Item> itemsDroppedWhenDead(); // Support adding multiple items to ground when dino dies
+
+	public boolean isDead() {
+		return (foodLevel <= 0) ? true : false;
 	}
 
 	public boolean isFood(Item item) {
-		for (Item food_item : food_items) {
+		for (Item food_item : foodItems) {
 			// This means the dino can either eat or not eat a class
 			if (item.getClass().equals(food_item.getClass())) {
+				return true;
+			}
+		}
+		
+		for (FoodSkill skill : edibleFoodSkills) {
+			if (item.hasSkill(skill)) {
 				return true;
 			}
 		}
@@ -61,9 +93,14 @@ public abstract class Dinosaur extends Actor {
 	}
 
 	public boolean isFood(Ground ground) {
-		for (Ground food_ground : food_grounds) {
+		for (Ground food_ground : foodGrounds) {
 			// This means the dino can either eat or not eat a class
 			if (ground.getClass().equals(food_ground.getClass())) {
+				return true;
+			}
+		}
+		for (FoodSkill skill : edibleFoodSkills) {
+			if (ground.hasSkill(skill)) {
 				return true;
 			}
 		}
@@ -71,9 +108,15 @@ public abstract class Dinosaur extends Actor {
 	}
 
 	public boolean isFood(Actor actor) {
-		for (Actor food_actor : food_actors) {
+		for (Actor food_actor : foodActors) {
 			// This means the dino can either eat or not eat a class
 			if (actor.getClass().equals(food_actor.getClass())) {
+				return true;
+			}
+		}
+		
+		for (FoodSkill skill : edibleFoodSkills) {
+			if (actor.hasSkill(skill)) {
 				return true;
 			}
 		}
@@ -81,12 +124,24 @@ public abstract class Dinosaur extends Actor {
 	}
 
 	public boolean isHungry() {
-		return (food_level <= HUNGRY_LEVEL) ? true : false;
+		return (foodLevel <= hungryLevel) ? true : false;
 	}
-	
+
 	public void addFoodValue(int food_value) {
-		food_level += food_value;
-		food_level = Math.min(food_level,MAX_FOOD_LEVEL); // capped at max
+		foodLevel += food_value;
+		foodLevel = Math.min(foodLevel, maxFoodLevel); // capped at max
+	}
+
+	protected void initFoodLevel(int current, int max, int hungry) {
+		foodLevel = current;
+		maxFoodLevel = max;
+		hungryLevel = hungry;
+	}
+
+	protected void initHealthLevel(int current, int max, int healthy) {
+		healthLevel = current;
+		maxHealthLevel = max;
+		healthyLevel = healthy;
 	}
 
 }
