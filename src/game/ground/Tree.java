@@ -13,11 +13,6 @@ public class Tree extends Vegetation {
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
-
-		// Seemingly never used? Is it necessary at the moment
-		int x = location.x();
-		int y = location.y();
-		GameMap map = location.map();
 		
 		
 		grow(location, new Tree());
