@@ -15,6 +15,7 @@ import game.ground.Floor;
 import game.ground.Store;
 import game.ground.Tree;
 import game.ground.Wall;
+import game.item.Corpse;
 import game.item.Egg;
 import game.item.FoodItem;
 import game.item.HerbivoreFoodItem;
@@ -77,8 +78,10 @@ public class Application {
 		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(32, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
+		gameMap.at(31, 12).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
+
+//		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
+
 
 		world.run();
 	}

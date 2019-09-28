@@ -65,9 +65,7 @@ public class SeekFoodBehaviour implements Behaviour {
 			checkedLocations.put(locationToKey(destination), destination);
 			locationsToGetExits.add(destination);
 
-			if (dinosaur.isFood(destination.getActor())) {
-				return new AttackAction(destination.getActor());
-			}
+
 
 			if (dinosaur.isFood(destination.getGround())) {
 				return new EatGroundAction(destination.getGround(), destination);
@@ -76,6 +74,10 @@ public class SeekFoodBehaviour implements Behaviour {
 				if (dinosaur.isFood(item)) {
 					return new EatItemAction(item, destination);
 				}
+			}
+			
+			if (destination.containsAnActor() && dinosaur.isFood(destination.getActor())) {
+				return new AttackAction(destination.getActor());
 			}
 		}
 
@@ -95,9 +97,6 @@ public class SeekFoodBehaviour implements Behaviour {
 					checkedLocations.put(locationToKey(destination), destination);
 					locationsToGetExits.add(destination);
 
-					if (dinosaur.isFood(destination.getActor())) {
-						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
-					}
 					if (dinosaur.isFood(destination.getGround())) {
 						return new ToLocationBehaviour(destination).getAction(actor, map);
 					}
@@ -105,6 +104,10 @@ public class SeekFoodBehaviour implements Behaviour {
 						if (dinosaur.isFood(item)) {
 							return new ToLocationBehaviour(destination).getAction(actor, map);
 						}
+					}
+					
+					if (destination.containsAnActor() && dinosaur.isFood(destination.getActor())) {
+						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
 					}
 				}
 			}
