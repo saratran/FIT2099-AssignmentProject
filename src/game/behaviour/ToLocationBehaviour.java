@@ -24,9 +24,6 @@ public class ToLocationBehaviour implements Behaviour {
 		this.target_location = target;
 	}
 
-	protected ToLocationBehaviour() {
-		
-	}
 	
 	/**
 	 * return a MoveActorAction to move the actor nearer to the target location
