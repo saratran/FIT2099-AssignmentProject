@@ -6,18 +6,18 @@ package edu.monash.fit2099.interfaces;
  */
 public interface ItemInterface {
 
-	default int getBuyValue() {
-		return 0;
-	}
-
-	default int getSellValue() {
-		return 0;
-	}
-	
-	default boolean isSellable() {
-		return false;
-	}
-	
+//	default int getBuyValue() {
+//		return 0;
+//	}
+//
+//	default int getSellValue() {
+//		return 0;
+//	}
+//	
+//	default boolean isSellable() {
+//		return false;
+//	}
+//	
 	default boolean isFeedable() {
 		return false;
 	}
