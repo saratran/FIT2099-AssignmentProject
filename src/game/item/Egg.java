@@ -1,15 +1,10 @@
 package game.item;
 
-import java.util.List;
-
-import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.SpeciesInterface;
 import game.FoodSkill;
 import game.Species;
-import game.dinosaur.DinoFactory;
 import game.dinosaur.Dinosaur;
-import game.dinosaur.Protoceratops;
 
 public class Egg extends PortableDinoItem implements SpeciesInterface {
 	private int age = 0;

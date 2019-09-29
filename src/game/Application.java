@@ -3,7 +3,6 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
@@ -15,9 +14,7 @@ import game.ground.Floor;
 import game.ground.Store;
 import game.ground.Tree;
 import game.ground.Wall;
-import game.item.Corpse;
 import game.item.Egg;
-import game.item.FoodItem;
 import game.item.HerbivoreFoodItem;
 
 /**

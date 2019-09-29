@@ -14,7 +14,6 @@ import game.action.SellAction;
 import game.actor.Player;
 import game.item.DinosaurTag;
 import game.item.Egg;
-import game.item.ProtoceratopsEgg;
 
 /**
  * This class can interact with the Player by buying from and selling items to them.

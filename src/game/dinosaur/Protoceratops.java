@@ -3,24 +3,11 @@ package game.dinosaur;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DoNothingAction;
-import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.FoodSkill;
 import game.Species;
-import game.action.AttackAction;
-import game.action.FeedAction;
-import game.actor.Player;
-import game.behaviour.Behaviour;
-import game.behaviour.SeekFoodBehaviour;
-import game.behaviour.WanderBehaviour;
 import game.ground.Tree;
 import game.item.Corpse;
-import game.item.FoodItem;
 import game.item.HerbivoreFoodItem;
 
 /**

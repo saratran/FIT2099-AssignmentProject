@@ -17,8 +17,6 @@ import game.Species;
 import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
-import game.item.Corpse;
-import game.item.Egg;
 
 public abstract class Dinosaur extends Actor implements SpeciesInterface {
 	protected int age = 0;
@@ -30,10 +28,6 @@ public abstract class Dinosaur extends Actor implements SpeciesInterface {
 	private int foodLevel = 30;
 	private int maxFoodLevel = 15;
 	private int hungryLevel = 50;
-
-	private int healthLevel = 100;
-	private int maxHealthLevel = 100;
-	private int healthyLevel = 50;
 
 	protected List<Item> foodItems = new ArrayList<Item>();
 	protected List<Ground> foodGrounds = new ArrayList<Ground>();
