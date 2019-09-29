@@ -35,7 +35,6 @@ public class Player extends Actor {
 	}
 	
 	private class SleepAction extends Action {
-		// TODO: Copied from conwayslife (is this ok?)
 		private int sleepTime = 100;
 
 		@Override

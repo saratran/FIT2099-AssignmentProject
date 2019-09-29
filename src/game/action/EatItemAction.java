@@ -5,31 +5,21 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.interfaces.EdibleInterface;
 import game.dinosaur.Dinosaur;
 
-public class EatItemAction extends Action {
-	private Item target;
+public class EatItemAction extends EatAction {
 	private Location location;
 
 	public EatItemAction(Item target, Location location) {
-		this.target = target;
+		super((EdibleInterface) target); // TODO: check before casting?
 		this.location = location;
 	}
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		// Any checking before casting?
-		((Dinosaur) actor).addFoodValue(target.getFoodValue());
-		
-		// Any checking before removing? (here or in constructor)
-		location.removeItem(target);
-		return actor + " ate " + target.getClass().getSimpleName() + " and gained " + target.getFoodValue() + " food points";
+		// TODO: any check?
+		location.removeItem((Item)food);
+		return super.execute(actor, map);
 	}
-
-	@Override
-	public String menuDescription(Actor actor) {
-		// TODO: target name
-		return actor + " eats " + target.getClass().getSimpleName();
-	}
-
 }

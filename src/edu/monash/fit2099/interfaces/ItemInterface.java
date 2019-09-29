@@ -6,10 +6,6 @@ package edu.monash.fit2099.interfaces;
  */
 public interface ItemInterface {
 
-	default int getFoodValue() {
-		return 0;
-	}
-
 	default int getBuyValue() {
 		return 0;
 	}

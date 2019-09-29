@@ -1,6 +1,7 @@
 package game.item;
 
 import game.FoodSkill;
+
 import game.Species;
 // TODO: for different species
 public class Corpse extends PortableDinoItem {
