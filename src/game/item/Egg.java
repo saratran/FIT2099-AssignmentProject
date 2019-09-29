@@ -59,11 +59,6 @@ public class Egg extends PortableDinoItem implements SpeciesInterface, EdibleInt
 		return species;
 	}
 
-//	@Override
-//	public boolean isSellable() {
-//		return true;
-//	}
-
 	private Dinosaur hatchInto() {
 		return dinoFactory.newDinosaur(species);
 	}
