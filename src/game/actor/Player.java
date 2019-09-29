@@ -63,18 +63,10 @@ public class Player extends Actor {
 	
 	public void addMoney(int value) {
 		//TODO: needs exception?
-//		if(value < 0) {
-//			throw new Exception("Cannot add negative value");
-//		}
-		
 		money += value;
 	}
 	
 	public void deductMoney(int value) {
-//		if(value < 0) {
-//			throw new Exception("Cannot remove negative value");
-//		}
-		
 		money -= value;
 	}
 	

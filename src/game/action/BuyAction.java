@@ -4,13 +4,14 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.interfaces.BuyableInterface;
 import game.actor.Player;
 
 
 public class BuyAction extends Action {
-	private Item item;
+	private BuyableInterface item;
 
-	public BuyAction(Item item) {
+	public BuyAction(BuyableInterface item) {
 		this.item = item;
 	}
 
@@ -22,7 +23,7 @@ public class BuyAction extends Action {
 				return "Player does not have enough money to buy " + item.toString() + "\nCurrent balance is $"
 						+ player.getMoney();
 			}
-			player.addItemToInventory(item);
+			player.addItemToInventory((Item)item);
 			player.deductMoney(item.getBuyValue());
 		}
 		return actor + " bought " + item.toString();

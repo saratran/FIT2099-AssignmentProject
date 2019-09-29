@@ -71,7 +71,7 @@ public abstract class Dinosaur extends Actor implements SpeciesInterface {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		if(otherActor instanceof Player) {
-			otherActor.getInventory().stream().filter(Item::isFeedable).forEach((item) ->{
+			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item)).forEach((item) ->{
 				actions.add(new FeedAction(item, this));
 			});;
 		}
