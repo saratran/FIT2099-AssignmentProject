@@ -14,6 +14,7 @@ import game.Species;
 import game.action.BuyAction;
 import game.action.SellAction;
 import game.actor.Player;
+import game.dinosaur.Protoceratops;
 import game.item.CarnivoreFoodItem;
 import game.item.DinosaurTag;
 import game.item.Egg;
@@ -63,8 +64,8 @@ public class Store extends Ground {
 	 */
 	private List<BuyableInterface> createItemList() {
 		List<BuyableInterface> items = new ArrayList<BuyableInterface>();
-		items.add(new Egg(Species.PROTOCERATOPS));
-		items.add(new Egg(Species.VELOCIRAPTOR)); // TODO: implement Velociraptor
+		items.add(new Egg(new Protoceratops()));
+//		items.add(new Egg(new Velociraptor())); // TODO: implement Velociraptor
 		items.add(new HerbivoreFoodItem());
 		items.add(new CarnivoreFoodItem());
 		items.add(new DinosaurTag("Dinosaur tag",'-'));

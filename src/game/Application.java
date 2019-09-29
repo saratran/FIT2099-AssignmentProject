@@ -69,15 +69,15 @@ public class Application {
 		gameMap.at(0, 0).setGround(new Store('S'));
 
 
-		gameMap.at(9, 6).addItem(new Egg(Species.PROTOCERATOPS));
-		gameMap.at(19, 6).addItem(new Egg(Species.PROTOCERATOPS));
-		gameMap.at(9, 16).addItem(new Egg(Species.PROTOCERATOPS));
+		gameMap.at(9, 6).addItem(new Egg(new Protoceratops()));
+		gameMap.at(19, 6).addItem(new Egg(new Protoceratops()));
+		gameMap.at(9, 16).addItem(new Egg(new Protoceratops()));
 
 
 		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(31, 12).addItem(new Egg(Species.PROTOCERATOPS));
+		gameMap.at(31, 12).addItem(new Egg(new Protoceratops()));
 
 //		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
 
