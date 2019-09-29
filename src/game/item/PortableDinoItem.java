@@ -5,32 +5,9 @@ import edu.monash.fit2099.engine.Item;
 /**
  * Base class for any item that can be picked up and dropped.
  */
-public class PortableDinoItem extends Item implements Cloneable{
-	protected int buyValue = 0;
-	protected int sellValue = 0;
-	protected int foodValue = 0;
-
+public class PortableDinoItem extends Item {
 	public PortableDinoItem(String name, char displayChar) {
 		super(name, displayChar, true);
 	}
-	
-	@Override
-	public int getFoodValue() {
-		return foodValue;
-	}
 
-	@Override
-	public int getBuyValue() {
-		return buyValue;
-	}
-
-	@Override
-	public int getSellValue() {
-		return sellValue;
-	}
-	 
-    public Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
-    }
 }

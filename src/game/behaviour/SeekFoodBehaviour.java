@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.Location;
 import game.action.AttackAction;
 import game.action.EatGroundAction;
 import game.action.EatItemAction;
+import game.actor.Player;
 import game.dinosaur.Dinosaur;
 
 /**
@@ -76,7 +77,8 @@ public class SeekFoodBehaviour implements Behaviour {
 				}
 			}
 			
-			if (destination.containsAnActor() && dinosaur.isFood(destination.getActor())) {
+			if (destination.containsAnActor() && !(destination.getActor() instanceof Player) && dinosaur.isFood(destination.getActor())) {
+				// Game rule: dinosaurs don't attack Player even if Player is holding food item
 				return new AttackAction(destination.getActor());
 			}
 		}

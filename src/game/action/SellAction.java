@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.interfaces.SellableInterface;
 import game.actor.Player;
 
 /**
@@ -12,13 +13,13 @@ import game.actor.Player;
  *
  */
 public class SellAction extends Action {
-	private Item item;
+	private SellableInterface item;
 
 	/**
 	 * Constructor
 	 * @param item item that is being sold
 	 */
-	public SellAction(Item item) {
+	public SellAction(SellableInterface item) {
 		this.item = item;
 	}
 
@@ -30,8 +31,7 @@ public class SellAction extends Action {
 		if(actor instanceof Player) {
 			Player player = (Player) actor;
 			player.addMoney(item.getSellValue());
-			// TODO: error handling, what if actor doesn't have the item in their inventory?
-			player.removeItemFromInventory(item);
+			player.removeItemFromInventory((Item) item);
 		}
 		return actor + " sold " + item.toString() + " and gained $" + item.getSellValue();
 	}

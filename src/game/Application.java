@@ -61,6 +61,8 @@ public class Application {
 		player.addMoney(100);
 		player.addItemToInventory(new HerbivoreFoodItem("Herbivore food item", 'f'));
 		world.addPlayer(player, gameMap.at(9, 4));
+		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
+
 
 		gameMap.at(9, 3).setGround(new Store('S'));
 		gameMap.at(0, 0).setGround(new Store('S'));
