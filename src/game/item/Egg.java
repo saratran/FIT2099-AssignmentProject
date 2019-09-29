@@ -11,17 +11,36 @@ import game.dinosaur.DinoFactory;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Protoceratops;
 
-public abstract class Egg extends PortableDinoItem implements SpeciesInterface {
+public class Egg extends PortableDinoItem implements SpeciesInterface {
 	private int age = 0;
 	private int hatch_age = 10;
-	protected Species species; // TODO: probably don't need this anymore
-//	protected DinoFactory dinoFactory = new DinoFactory();
+	protected Species species;
 
 	public Egg(String name, char displayChar, Species species) {
 		super(name, displayChar);
 		this.species = species;
 		foodValue = 10;
 		addSkill(FoodSkill.CARNIVORE);
+		initValues();
+
+	}
+
+	private void initValues() {
+		// TODO: can factor this out as a separate class to take in enum Species and return a suitable value
+		switch (this.species) {
+		case PROTOCERATOPS:
+			buyValue = 50;
+			sellValue = 10;
+		case VELOCIRAPTOR:
+			buyValue = 1000;
+			sellValue = 100;
+		default:
+			break;
+		}		
+	}
+
+	public Egg(Species species) {
+		this(species.name().toLowerCase() + " egg", 'e', species);
 	}
 
 	@Override

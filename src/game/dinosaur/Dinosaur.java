@@ -18,6 +18,7 @@ import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.item.Corpse;
+import game.item.Egg;
 
 public abstract class Dinosaur extends Actor implements SpeciesInterface {
 	protected int age = 0;

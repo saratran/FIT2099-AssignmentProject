@@ -60,7 +60,7 @@ public class Store extends Ground {
 	 */
 	private List<Item> createItemList() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new ProtoceratopsEgg("Protoceratops egg", 'p'));
+		items.add(new Egg(Species.PROTOCERATOPS));
 		items.add(new DinosaurTag("Dinosaur tag",'-'));
 		return items;
 	}
