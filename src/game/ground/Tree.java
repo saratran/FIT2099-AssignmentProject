@@ -1,6 +1,7 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.EdibleGroundInterface;
 import edu.monash.fit2099.interfaces.EdibleInterface;
@@ -9,7 +10,7 @@ public class Tree extends Vegetation implements EdibleGroundInterface {
 	private int age = 0;
 
 	public Tree() {
-		super('+', 0.005);
+		super('+', 0.002);
 	}
 
 	@Override
@@ -26,12 +27,10 @@ public class Tree extends Vegetation implements EdibleGroundInterface {
 			displayChar = 'T';
 	}
 
-	@Override
 	public int getFoodValue() {
 		return 10;
 	}
 
-	@Override
 	public Ground eatenGround() {
 		return new Dirt();
 	}

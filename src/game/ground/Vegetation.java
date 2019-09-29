@@ -3,6 +3,7 @@ package game.ground;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.FoodSkill;
 
 public abstract class Vegetation extends Ground{
 	
@@ -11,6 +12,7 @@ protected final double GROWTH_RATE;
 	public Vegetation(char displayChar, double growthRate) {
 		super(displayChar);
 		this.GROWTH_RATE = growthRate;
+		addSkill(FoodSkill.HERBIVORE);
 		
 	}
 

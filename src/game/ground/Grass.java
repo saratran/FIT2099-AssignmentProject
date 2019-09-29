@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.*;
 public class Grass extends Vegetation {
 
 	public Grass() {
-		super('~', 0.008);
+		super('~', 0.003);
 	}
 
 	/**
@@ -20,7 +20,6 @@ public class Grass extends Vegetation {
 
 	}
 
-	@Override
 	public int getFoodValue() {
 		return 5;
 	}

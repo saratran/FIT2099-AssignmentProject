@@ -11,6 +11,7 @@ import game.actor.Player;
 import game.dinosaur.Protoceratops;
 import game.ground.Dirt;
 import game.ground.Floor;
+import game.ground.Grass;
 import game.ground.Store;
 import game.ground.Tree;
 import game.ground.Wall;
@@ -26,7 +27,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Tree());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Grass(), new Dirt(), new Wall(), new Floor(), new Tree());
 
 		List<String> map = Arrays.asList(
 				"................................................................................",
