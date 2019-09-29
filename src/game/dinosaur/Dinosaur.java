@@ -11,25 +11,23 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.interfaces.SpeciesInterface;
 import game.FoodSkill;
 import game.Species;
 import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
-import game.item.Corpse;
 
-public abstract class Dinosaur extends Actor {
+public abstract class Dinosaur extends Actor implements SpeciesInterface {
 	protected int age = 0;
 	protected Species species;
+
+
 	public List<Behaviour> behaviours = new ArrayList<Behaviour>();// TODO: access modifier
 
 	private int foodLevel = 30;
 	private int maxFoodLevel = 15;
 	private int hungryLevel = 50;
-
-	private int healthLevel = 100;
-	private int maxHealthLevel = 100;
-	private int healthyLevel = 50;
 
 	protected List<Item> foodItems = new ArrayList<Item>();
 	protected List<Ground> foodGrounds = new ArrayList<Ground>();
@@ -44,6 +42,7 @@ public abstract class Dinosaur extends Actor {
 		behaviours.add(new SeekFoodBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}
+	
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -138,5 +137,8 @@ public abstract class Dinosaur extends Actor {
 		hungryLevel = hungry;
 	}
 
+	public Species getSpecies() {
+		return species;
+	}
 
 }

@@ -3,7 +3,6 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
@@ -15,11 +14,8 @@ import game.ground.Floor;
 import game.ground.Store;
 import game.ground.Tree;
 import game.ground.Wall;
-import game.item.Corpse;
 import game.item.Egg;
-import game.item.FoodItem;
 import game.item.HerbivoreFoodItem;
-import game.item.ProceratopsEgg;
 
 /**
  * The main class for the dinosaur park game.
@@ -70,15 +66,15 @@ public class Application {
 		gameMap.at(0, 0).setGround(new Store('S'));
 
 
-		gameMap.at(9, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
-		gameMap.at(19, 6).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
-		gameMap.at(9, 16).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
+		gameMap.at(9, 6).addItem(new Egg(Species.PROTOCERATOPS));
+		gameMap.at(19, 6).addItem(new Egg(Species.PROTOCERATOPS));
+		gameMap.at(9, 16).addItem(new Egg(Species.PROTOCERATOPS));
 
 
 		
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-		gameMap.at(31, 12).addItem(new ProceratopsEgg("Protoceratops egg", 'p'));
+		gameMap.at(31, 12).addItem(new Egg(Species.PROTOCERATOPS));
 
 //		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
 
