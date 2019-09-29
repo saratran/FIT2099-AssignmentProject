@@ -30,7 +30,6 @@ public class SellAction extends Action {
 		if(actor instanceof Player) {
 			Player player = (Player) actor;
 			player.addMoney(item.getSellValue());
-			// TODO: error handling, what if actor doesn't have the item in their inventory?
 			player.removeItemFromInventory(item);
 		}
 		return actor + " sold " + item.toString() + " and gained $" + item.getSellValue();

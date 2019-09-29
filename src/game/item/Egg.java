@@ -1,12 +1,13 @@
 package game.item;
 
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.interfaces.EdibleInterface;
 import edu.monash.fit2099.interfaces.SpeciesInterface;
 import game.FoodSkill;
 import game.Species;
 import game.dinosaur.Dinosaur;
 
-public class Egg extends PortableDinoItem implements SpeciesInterface {
+public class Egg extends PortableDinoItem implements SpeciesInterface, EdibleInterface {
 	private int age = 0;
 	private int hatch_age = 10;
 	protected Species species;
@@ -14,7 +15,7 @@ public class Egg extends PortableDinoItem implements SpeciesInterface {
 	public Egg(String name, char displayChar, Species species) {
 		super(name, displayChar);
 		this.species = species;
-		foodValue = 10;
+//		foodValue = 10;
 		addSkill(FoodSkill.CARNIVORE);
 		initValues();
 
@@ -60,6 +61,12 @@ public class Egg extends PortableDinoItem implements SpeciesInterface {
 
 	private Dinosaur hatchInto() {
 		return dinoFactory.newDinosaur(species);
+	}
+
+	@Override
+	public int getFoodValue() {
+		// TODO Auto-generated method stub
+		return 10;
 	}
 
 }

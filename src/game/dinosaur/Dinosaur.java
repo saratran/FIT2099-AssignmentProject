@@ -2,6 +2,7 @@ package game.dinosaur;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
@@ -14,6 +15,8 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.interfaces.SpeciesInterface;
 import game.FoodSkill;
 import game.Species;
+import game.action.FeedAction;
+import game.actor.Player;
 import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
@@ -23,7 +26,7 @@ public abstract class Dinosaur extends Actor implements SpeciesInterface {
 	protected Species species;
 
 
-	public List<Behaviour> behaviours = new ArrayList<Behaviour>();// TODO: access modifier
+	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
 
 	private int foodLevel = 30;
 	private int maxFoodLevel = 15;
@@ -61,6 +64,20 @@ public abstract class Dinosaur extends Actor implements SpeciesInterface {
 		}
 		return new DoNothingAction();
 	}
+	
+	
+
+	@Override
+	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+		Actions actions = new Actions();
+		if(otherActor instanceof Player) {
+			otherActor.getInventory().stream().filter(Item::isFeedable).forEach((item) ->{
+				actions.add(new FeedAction(item, this));
+			});;
+		}
+		return actions;
+	}
+
 
 	public void die(GameMap map) {
 		for(Item item : itemsDroppedWhenDead()) {
@@ -139,6 +156,10 @@ public abstract class Dinosaur extends Actor implements SpeciesInterface {
 
 	public Species getSpecies() {
 		return species;
+	}
+	
+	public void addBehaviour(Behaviour behaviour) {
+		behaviours.add(behaviour);
 	}
 
 }

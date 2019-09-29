@@ -4,8 +4,10 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.interfaces.EdibleGroundInterface;
+import edu.monash.fit2099.interfaces.EdibleInterface;
 
-public class Tree extends Ground {
+public class Tree extends Ground implements EdibleGroundInterface {
 	private int age = 0;
 	private double GROW_NEW_TREE = 0.005;
 
@@ -41,6 +43,11 @@ public class Tree extends Ground {
 	@Override
 	public int getFoodValue() {
 		return 10;
+	}
+
+	@Override
+	public Ground eatenGround() {
+		return new Dirt();
 	}
 	
 	
