@@ -4,15 +4,18 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.interfaces.SpeciesInterface;
 import game.FoodSkill;
 import game.Species;
+import game.dinosaur.DinoFactory;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Protoceratops;
 
-public abstract class Egg extends PortableDinoItem {
+public abstract class Egg extends PortableDinoItem implements SpeciesInterface {
 	private int age = 0;
 	private int hatch_age = 10;
-	private Species species; // TODO: probably don't need this anymore
+	protected Species species; // TODO: probably don't need this anymore
+//	protected DinoFactory dinoFactory = new DinoFactory();
 
 	public Egg(String name, char displayChar, Species species) {
 		super(name, displayChar);
@@ -41,8 +44,8 @@ public abstract class Egg extends PortableDinoItem {
 		return true;
 	}
 
-	protected abstract Dinosaur hatchInto();
-	
-	
+	private Dinosaur hatchInto() {
+		return dinoFactory.newDinosaur(species);
+	}
 
 }

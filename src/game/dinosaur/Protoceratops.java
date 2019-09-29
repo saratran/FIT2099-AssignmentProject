@@ -55,6 +55,10 @@ public class Protoceratops extends Dinosaur {
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		
 	}
+	
+	public Protoceratops() {
+		this("Protoceratops");
+	}
 
 
 	@Override
