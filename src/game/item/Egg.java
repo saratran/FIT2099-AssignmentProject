@@ -7,6 +7,7 @@ import edu.monash.fit2099.interfaces.SellableInterface;
 import game.FoodSkill;
 import game.Species;
 import game.dinosaur.Dinosaur;
+import game.dinosaur.Maturity;
 
 public class Egg extends PortableDinoItem implements EdibleInterface, BuyableInterface, SellableInterface {
 	private int age = 0;
@@ -19,6 +20,7 @@ public class Egg extends PortableDinoItem implements EdibleInterface, BuyableInt
 	
 	public Egg(String name, char displayChar, Dinosaur dinosaur) {
 		super(name, displayChar);
+		assert dinosaur.getMaturity() == Maturity.BABY;
 		this.species = dinosaur.getSpecies();
 		addSkill(FoodSkill.CARNIVORE);
 		initValues();

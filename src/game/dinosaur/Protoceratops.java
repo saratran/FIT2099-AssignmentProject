@@ -21,12 +21,10 @@ public class Protoceratops extends Dinosaur {
 	 * 
 	 * @param name the name of this Protoceratops
 	 */
-	public Protoceratops(String name) {
-		super(name, 'P', 100);		
+	public Protoceratops(String name, Maturity maturity) {
+		super(name, 'P', 100, maturity);		
 		species = Species.PROTOCERATOPS;
 
-		// TODO: good way to initialise values?
-		initFoodLevel(30, 50, 15);
 		
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
@@ -41,6 +39,14 @@ public class Protoceratops extends Dinosaur {
 		foodItems.add(new HerbivoreFoodItem("food",'f'));
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		
+	}
+	
+	public Protoceratops(String name) {
+		this(name, Maturity.ADULT);	
+	}
+	
+	public Protoceratops(Maturity maturity) {
+		this("Protoceratops", maturity);
 	}
 	
 	public Protoceratops() {
