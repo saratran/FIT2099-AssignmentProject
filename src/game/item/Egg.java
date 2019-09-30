@@ -34,7 +34,7 @@ public class Egg extends PortableDinoItem implements EdibleInterface, BuyableInt
 			sellValue = 10;
 			break;
 		case VELOCIRAPTOR:
-			buyValue = 1000;
+			buyValue = 500;
 			sellValue = 100;
 			break;
 		}		
