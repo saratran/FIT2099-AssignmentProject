@@ -7,14 +7,14 @@ import edu.monash.fit2099.engine.*;
  */
 public class Dirt extends Ground {
 
-	private final double Grass_Growth_Chance = 1;
+	private final double Grass_Growth_Chance = 0.0001;
 	
 	public Dirt() {
 		super('.');
 	}
 	
-	public void Tick(Location location) {
-		System.out.println("Welcome to the *********** Information System. \n");
+	@Override
+	public void tick(Location location) {
 		GrowGrass(location);
 	}
 	

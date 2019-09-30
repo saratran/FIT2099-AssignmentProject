@@ -6,7 +6,7 @@ import edu.monash.fit2099.interfaces.EdibleGroundInterface;
 public class Grass extends Vegetation{
 
 	public Grass() {
-		super('~', 0.008);
+		super('~', 0.0025);
 	}
 
 	/**
