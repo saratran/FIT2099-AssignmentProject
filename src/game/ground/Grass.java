@@ -1,11 +1,12 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import edu.monash.fit2099.interfaces.EdibleGroundInterface;
 
-public class Grass extends Vegetation {
+public class Grass extends Vegetation{
 
 	public Grass() {
-		super('~', 0.003);
+		super('~', 0.008);
 	}
 
 	/**
@@ -22,5 +23,10 @@ public class Grass extends Vegetation {
 
 	public int getFoodValue() {
 		return 5;
+	}
+
+	@Override
+	public Ground eatenGround() {
+		return new Dirt();
 	}
 }

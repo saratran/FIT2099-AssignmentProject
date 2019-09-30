@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.EdibleGroundInterface;
 import edu.monash.fit2099.interfaces.EdibleInterface;
 
-public class Tree extends Vegetation implements EdibleGroundInterface {
+public class Tree extends Vegetation {
 	private int age = 0;
 
 	public Tree() {
