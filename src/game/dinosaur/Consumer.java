@@ -20,6 +20,9 @@ import game.behaviour.Behaviour;
  * 
  * Using an abstract class here isn't too bad (tho not as flexible) but since only Actor is likely to
  * have anything related to consuming food
+ * 
+ * One more less flexible thing: Java doesn't allow multiple inheritance of abstract classes (ie cant be Consumer and 
+ * Buyer at the same time), which is why interface segregation is usually preferred
  * @author saratran
  *
  */

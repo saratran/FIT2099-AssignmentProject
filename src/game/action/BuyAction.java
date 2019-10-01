@@ -4,30 +4,30 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.interfaces.BuyableInterface;
+import game.actor.Buyer;
 import game.actor.Player;
 
 
 public class BuyAction extends Action {
-	private BuyableInterface item;
+	private Item item;
 
-	public BuyAction(BuyableInterface item) {
+	public BuyAction(Item item) {
 		this.item = item;
 	}
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		// TODO: asBuyer in ActorInterface?
-		if (actor instanceof Player) {
-			Player player = (Player) actor;
-			if (player.getMoney() < item.getBuyValue()) {
+		if (actor instanceof Buyer) {
+			Buyer buyer = (Buyer) actor;
+			if (buyer.getMoney() < item.getBuyValue()) {
 				return "Player does not have enough money to buy " + item.toString() + "\nCurrent balance is $"
-						+ player.getMoney();
+						+ buyer.getMoney();
 			}
 			
 			// TODO: asItem() in BuyableInterface?
-			player.addItemToInventory((Item)item);
-			player.deductMoney(item.getBuyValue());
+			buyer.addItemToInventory(item);
+			buyer.deductMoney(item.getBuyValue());
 		}
 		return actor + " bought " + item.toString();
 	}

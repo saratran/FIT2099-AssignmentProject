@@ -12,7 +12,7 @@ import game.Skill;
 /**
  * Class representing the Player.
  */
-public class Player extends Actor {
+public class Player extends Buyer {
 	private int money = 0;
 	private Menu menu = new Menu();
 
@@ -25,7 +25,6 @@ public class Player extends Actor {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		addSkill(Skill.BUYER);
 		addSkill(FoodSkill.NOT_FOOD);
 	}
 
@@ -65,18 +64,6 @@ public class Player extends Actor {
 		}
 	}
 	
-	public void addMoney(int value) {
-		//TODO: needs exception?
-		money += value;
-	}
-	
-	public void deductMoney(int value) {
-		money -= value;
-	}
-	
-	public int getMoney() {
-		return money;
-	}
-	
+
 
 }

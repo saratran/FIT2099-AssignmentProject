@@ -1,8 +1,7 @@
 package game.item;
 
-import edu.monash.fit2099.interfaces.BuyableInterface;
 
-public abstract class FoodItem extends PortableDinoItem implements BuyableInterface {
+public abstract class FoodItem extends PortableDinoItem {
 	protected int buyValue = 0;
 	
 	public FoodItem(String name, char displayChar) {
@@ -24,6 +23,12 @@ public abstract class FoodItem extends PortableDinoItem implements BuyableInterf
 	public int getBuyValue() {
 		return buyValue;
 	}
+
+	@Override
+	public boolean isBuyable() {
+		return true;
+	}
+	
 	
 	
 	
