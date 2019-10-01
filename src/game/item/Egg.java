@@ -2,13 +2,12 @@ package game.item;
 
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.BuyableInterface;
-import edu.monash.fit2099.interfaces.EdibleInterface;
 import edu.monash.fit2099.interfaces.SellableInterface;
 import game.FoodSkill;
 import game.Species;
 import game.dinosaur.Dinosaur;
 
-public class Egg extends PortableDinoItem implements EdibleInterface, BuyableInterface, SellableInterface {
+public class Egg extends PortableDinoItem implements BuyableInterface, SellableInterface {
 	private int age = 0;
 	private int hatch_age = 10;
 	protected Species species;

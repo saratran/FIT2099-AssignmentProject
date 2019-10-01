@@ -51,6 +51,8 @@ public class SeekFoodBehaviour implements Behaviour {
 		if (!(actor instanceof Dinosaur)) {
 			return null;
 		}
+		
+		// TODO: something else than casting dinosaur
 		Dinosaur dinosaur = (Dinosaur) actor;
 
 		if (!((Dinosaur) actor).isHungry()) {
@@ -77,6 +79,7 @@ public class SeekFoodBehaviour implements Behaviour {
 				}
 			}
 			
+			// TODO: use Skill.NOT_FOOD instead of instanceof Player
 			if (destination.containsAnActor() && !(destination.getActor() instanceof Player) && dinosaur.isFood(destination.getActor())) {
 				// Game rule: dinosaurs don't attack Player even if Player is holding food item
 				return new AttackAction(destination.getActor());
