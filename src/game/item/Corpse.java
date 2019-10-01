@@ -1,11 +1,10 @@
 package game.item;
 
-import edu.monash.fit2099.interfaces.SellableInterface;
 import game.FoodSkill;
 
 import game.Species;
 // TODO: for different species
-public class Corpse extends PortableDinoItem implements SellableInterface {
+public class Corpse extends PortableDinoItem {
 	private Species species;
 	private int sellValue = 0;
 	public Corpse(String name, char displayChar, Species species) {
@@ -25,5 +24,9 @@ public class Corpse extends PortableDinoItem implements SellableInterface {
 		return sellValue;
 	}
 
+	@Override
+	public boolean isSellable() {
+		return true;
+	}
 	
 }

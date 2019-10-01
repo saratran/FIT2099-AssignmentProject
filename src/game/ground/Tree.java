@@ -3,8 +3,6 @@ package game.ground;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.interfaces.EdibleGroundInterface;
-import edu.monash.fit2099.interfaces.EdibleInterface;
 
 public class Tree extends Vegetation {
 	private int age = 0;
@@ -16,10 +14,9 @@ public class Tree extends Vegetation {
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
-		
-		
+
 		grow(location, new Tree());
-		
+
 		age++;
 		if (age == 10)
 			displayChar = 't';
@@ -34,6 +31,5 @@ public class Tree extends Vegetation {
 	public Ground eatenGround() {
 		return new Dirt();
 	}
-	
-	
+
 }

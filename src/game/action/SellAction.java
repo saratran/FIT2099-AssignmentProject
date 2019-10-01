@@ -4,8 +4,8 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.interfaces.SellableInterface;
 import game.actor.Player;
+import game.actor.Trader;
 
 /**
  * Special Action that allows the Player to sell an Item from their inventory
@@ -13,13 +13,13 @@ import game.actor.Player;
  *
  */
 public class SellAction extends Action {
-	private SellableInterface item;
+	private Item item;
 
 	/**
 	 * Constructor
 	 * @param item item that is being sold
 	 */
-	public SellAction(SellableInterface item) {
+	public SellAction(Item item) {
 		this.item = item;
 	}
 
@@ -28,10 +28,10 @@ public class SellAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		if(actor instanceof Player) {
-			Player player = (Player) actor;
-			player.addMoney(item.getSellValue());
-			player.removeItemFromInventory((Item) item);
+		if(actor instanceof Trader) {
+			Trader seller = (Trader) actor;
+			seller.addMoney(item.getSellValue());
+			seller.removeItemFromInventory(item);
 		}
 		return actor + " sold " + item.toString() + " and gained $" + item.getSellValue();
 	}

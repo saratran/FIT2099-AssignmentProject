@@ -22,22 +22,20 @@ import game.behaviour.WanderBehaviour;
 import game.dinosaur.Maturity;
 import game.item.Egg;
 
-public abstract class Dinosaur extends Actor {
+public abstract class Dinosaur extends Consumer {
 	protected int age = 0;
 	protected Species species;
+<<<<<<<
 	protected Maturity maturity;
 	private int foodLevel;
 	private int maxFoodLevel;
 	private int hungryLevel;
 	private char adultDisplayChar;
 	private char babyDisplayChar;
-	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
-	protected List<Item> foodItems = new ArrayList<Item>();
-	protected List<Ground> foodGrounds = new ArrayList<Ground>();
-	protected List<Actor> foodActors = new ArrayList<Actor>();
-	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the dino can
-	// eat
+=======
 
+>>>>>>>
+	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
 		if (maturity == Maturity.BABY) {
@@ -101,86 +99,6 @@ public abstract class Dinosaur extends Actor {
 
 	public boolean isStarved() {
 		return !(this.isConscious());
-	}
-
-	public boolean isFood(Item item) {
-		for (Item food_item : foodItems) {
-			// This means the dino can either eat or not eat a class
-			if (item.getClass().equals(food_item.getClass())) {
-				return true;
-			}
-		}
-
-		for (FoodSkill skill : edibleFoodSkills) {
-			if (item.hasSkill(skill)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean isFood(Ground ground) {
-		for (Ground food_ground : foodGrounds) {
-			// This means the dino can either eat or not eat a class
-			if (ground.getClass().equals(food_ground.getClass())) {
-				return true;
-			}
-		}
-		for (FoodSkill skill : edibleFoodSkills) {
-			if (ground.hasSkill(skill)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean isFood(Actor actor) {
-		for (Actor food_actor : foodActors) {
-			// This means the dino can either eat or not eat a class
-			if (actor.getClass().equals(food_actor.getClass())) {
-				return true;
-			}
-		}
-
-		for (FoodSkill skill : edibleFoodSkills) {
-			if (actor.hasSkill(skill)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean isHungry() {
-		return (foodLevel <= hungryLevel);
-	}
-
-	public boolean isWellFed() {
-		return (foodLevel <= (hungryLevel + 5));
-	}
-
-	public boolean isMatureAge() {
-		return (age >= 30);
-	}
-
-	protected void growOlder() {
-		if (maturity == Maturity.BABY) {
-			this.maturity = Maturity.ADULT;
-			this.displayChar = Character.toUpperCase(displayChar);
-			System.out.println(name + " has grown!");
-		}
-	}
-
-	public void addFoodValue(int food_value) {
-		foodLevel += food_value;
-		foodLevel = Math.min(foodLevel, maxFoodLevel); // capped at max
-	}
-
-	protected abstract void initFoodLevel(); 
-
-	protected void setFoodLevel(int current, int max, int hungry) {
-		foodLevel = current;
-		maxFoodLevel = max;
-		hungryLevel = hungry;
 	}
 
 	public Species getSpecies() {

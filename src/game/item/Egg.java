@@ -1,15 +1,12 @@
 package game.item;
 
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.interfaces.BuyableInterface;
-import edu.monash.fit2099.interfaces.EdibleInterface;
-import edu.monash.fit2099.interfaces.SellableInterface;
 import game.FoodSkill;
 import game.Species;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Maturity;
 
-public class Egg extends PortableDinoItem implements EdibleInterface, BuyableInterface, SellableInterface {
+public class Egg extends PortableDinoItem {
 	private int age = 0;
 	private int hatch_age = 10;
 	protected Species species;
@@ -76,4 +73,15 @@ public class Egg extends PortableDinoItem implements EdibleInterface, BuyableInt
 		return sellValue;
 	}
 
+	@Override
+	public boolean isBuyable() {
+		return true;
+	}
+
+	@Override
+	public boolean isSellable() {
+		return true;
+	}
+
+	
 }
