@@ -55,7 +55,7 @@ public abstract class Dinosaur extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		foodLevel--;
-		if (isDead()) {
+		if (isStarved()) {
 			this.die(map);
 		} else {
 			if (this.isHungry()) {
@@ -99,10 +99,8 @@ public abstract class Dinosaur extends Actor {
 
 	protected abstract List<Item> itemsDroppedWhenDead(); // Support adding multiple items to ground when dino dies
 
-	public boolean isDead() {
-		// TODO: maybe change this to isStarved() and also use isConcious() (in parent
-		// Actor class) to check if dino is dead or not
-		return (foodLevel <= 0);
+	public boolean isStarved() {
+		return !(this.isConscious());
 	}
 
 	public boolean isFood(Item item) {
@@ -161,7 +159,7 @@ public abstract class Dinosaur extends Actor {
 	}
 
 	public boolean isMatureAge() {
-		return (age > 2);
+		return (age >= 30);
 	}
 
 	protected void growOlder() {
