@@ -24,9 +24,6 @@ public class Velociraptor extends Dinosaur {
 	public Velociraptor(String name, Maturity maturity) {
 		super(name, 'V', 175, maturity);		
 		species = Species.VELOCIRAPTOR;
-		if (maturity == Maturity.BABY) {
-			this.displayChar = 'v';
-		}
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
 		 * - Cons: lose ability to set an abstract class as edible (ie like Protoceratops can eat all Vegetation)

@@ -29,17 +29,23 @@ public abstract class Dinosaur extends Actor {
 	private int foodLevel;
 	private int maxFoodLevel;
 	private int hungryLevel;
+	private char adultDisplayChar;
+	private char babyDisplayChar;
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
 	protected List<Item> foodItems = new ArrayList<Item>();
 	protected List<Ground> foodGrounds = new ArrayList<Ground>();
 	protected List<Actor> foodActors = new ArrayList<Actor>();
 	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the dino can
-																				// eat
+	// eat
 
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
+		if (maturity == Maturity.BABY) {
+			this.displayChar = Character.toLowerCase(displayChar);
+		}
+
 		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and
-										// attack all other dino
+		// attack all other dino
 		this.maturity = maturity;
 		initFoodLevel();
 		behaviours.add(new SeekFoodBehaviour());
@@ -58,9 +64,10 @@ public abstract class Dinosaur extends Actor {
 			if (this.isWellFed()) {
 				this.layEggAttempt(map.locationOf(this));
 			}
-			
-			// TODO: if not hungry and not baby --> chance of laying egg
-			// TODO: need to check age if baby can grow into adult
+			if (this.isMatureAge()) {
+				this.growOlder();
+			}
+			age++;
 			for (Behaviour behaviour : behaviours) {
 				Action action = behaviour.getAction(this, map);
 				if (action != null)
@@ -75,9 +82,9 @@ public abstract class Dinosaur extends Actor {
 		Actions actions = new Actions();
 		if (otherActor instanceof Player) {
 			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item))
-					.forEach((item) -> {
-						actions.add(new FeedAction(item, this));
-					});
+			.forEach((item) -> {
+				actions.add(new FeedAction(item, this));
+			});
 			;
 		}
 		return actions;
@@ -148,10 +155,23 @@ public abstract class Dinosaur extends Actor {
 	public boolean isHungry() {
 		return (foodLevel <= hungryLevel);
 	}
-	
+
 	public boolean isWellFed() {
 		return (foodLevel <= (hungryLevel + 5));
 	}
+
+	public boolean isMatureAge() {
+		return (age > 2);
+	}
+
+	protected void growOlder() {
+		if (maturity == Maturity.BABY) {
+			this.maturity = Maturity.ADULT;
+			this.displayChar = Character.toUpperCase(displayChar);
+			System.out.println(name + " has grown!");
+		}
+	}
+
 	public void addFoodValue(int food_value) {
 		foodLevel += food_value;
 		foodLevel = Math.min(foodLevel, maxFoodLevel); // capped at max
@@ -176,13 +196,13 @@ public abstract class Dinosaur extends Actor {
 	public Maturity getMaturity() {
 		return maturity;
 	}
-	
+
 	public void layEggAttempt(Location location) {
 		if (maturity == Maturity.ADULT && Math.random() < 0.02) {
 			this.layEgg(location);
 			System.out.println(name + " laid an egg!");
 		}
 	}
-	
+
 	protected abstract void layEgg(Location location);
 }

@@ -17,6 +17,9 @@ import game.item.HerbivoreFoodItem;
  *
  */
 public class Protoceratops extends Dinosaur {
+	
+	private char adultDisplayChar = 'P';
+	private char babyDisplayChar= 'p';
 	/**
 	 * Constructor. All Protoceratops are represented by a 'd' and have 100 hit
 	 * points.
@@ -26,9 +29,6 @@ public class Protoceratops extends Dinosaur {
 	public Protoceratops(String name, Maturity maturity) {
 		super(name, 'P', 100, maturity);		
 		species = Species.PROTOCERATOPS;
-		if (maturity == Maturity.BABY) {
-			this.displayChar = 'p';
-		}
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
 		 * - Cons: lose ability to set an abstract class as edible (ie like Protoceratops can eat all Vegetation)
