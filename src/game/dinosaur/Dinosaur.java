@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.interfaces.Consumer;
 import game.FoodSkill;
 import game.Species;
 import game.action.FeedAction;
@@ -20,7 +21,7 @@ import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 
-public abstract class Dinosaur extends Actor {
+public abstract class Dinosaur extends Actor implements Consumer {
 	protected int age = 0;
 	protected Species species;
 

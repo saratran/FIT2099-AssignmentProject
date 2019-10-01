@@ -18,10 +18,13 @@ public class EatItemAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		// TODO: use something else instead of casting Dinosaur
-		((Dinosaur) actor).addFoodValue(food.getFoodValue());
-		location.removeItem((Item) food);
-		return actor + " ate " + food + " and gained " + food.getFoodValue() + " food points";
+		if (actor.asConsumer() != null) {
+			// TODO: alternative --> all food methods in ActorInterface
+			actor.asConsumer().addFoodValue(food.getFoodValue());
+			location.removeItem((Item) food);
+			return actor + " ate " + food + " and gained " + food.getFoodValue() + " food points";
+		}
+		return "";
 	}
 
 	@Override

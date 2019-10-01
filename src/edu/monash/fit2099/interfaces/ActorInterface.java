@@ -6,5 +6,8 @@ package edu.monash.fit2099.interfaces;
  */
 
 public interface ActorInterface {
+	default Consumer asConsumer() {
+		return this instanceof Consumer ? (Consumer) this : null;
+	}
 	
 }

@@ -10,7 +10,6 @@ public class FeedAction extends Action {
 	private Actor target;
 	private Item food;
 
-
 	public FeedAction(Item item, Actor target) {
 		this.food = item;
 		this.target = target;
@@ -18,10 +17,13 @@ public class FeedAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		// TODO: use something else instead of casting Dinosaur
-		((Dinosaur) actor).addFoodValue(food.getFoodValue());
-		actor.removeItemFromInventory((Item) food);
-		return actor + " fed " + food.toString();
+		if (actor.asConsumer() != null) {
+			// TODO: alternative --> all food methods in ActorInterface
+			actor.asConsumer().addFoodValue(food.getFoodValue());
+			actor.removeItemFromInventory((Item) food);
+			return actor + " fed " + food.toString();
+		}
+		return "";
 	}
 
 	@Override
