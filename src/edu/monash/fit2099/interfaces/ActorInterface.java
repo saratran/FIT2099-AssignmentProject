@@ -1,5 +1,6 @@
 package edu.monash.fit2099.interfaces;
 
+import game.Skill;
 import game.dinosaur.Consumer;
 
 /**
@@ -10,6 +11,17 @@ import game.dinosaur.Consumer;
 public interface ActorInterface {
 	default Consumer asConsumer() {
 		return this instanceof Consumer ? (Consumer) this : null;
-	}
+	}	
+
+
+//	public default void addMoney(int value) {
+//	}
+//	
+//	public default void deductMoney(int value) {
+//	}
+//	
+//	public default int getMoney() {
+//		return 0;
+//	}
 	
 }

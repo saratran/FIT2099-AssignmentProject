@@ -13,10 +13,10 @@ import game.Skill;
  *
  */
 
-public abstract class Buyer extends Actor {
+public abstract class Trader extends Actor {
 	private int money = 0;
 	
-	public Buyer(String name, char displayChar, int hitPoints) {
+	public Trader(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		addSkill(Skill.BUYER);
 	}

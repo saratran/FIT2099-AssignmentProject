@@ -12,7 +12,7 @@ import game.Skill;
 /**
  * Class representing the Player.
  */
-public class Player extends Buyer {
+public class Player extends Trader {
 	private int money = 0;
 	private Menu menu = new Menu();
 
