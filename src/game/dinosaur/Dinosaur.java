@@ -150,6 +150,7 @@ public abstract class Dinosaur extends Actor {
 	}
 
 	protected void initFoodLevel() {
+		// TODO: May move this concrete subclasses so don't need to check for species (ie make this an abstract method)
 		if (this.maturity == Maturity.ADULT) {
 			switch (this.species) {
 			case PROTOCERATOPS:
