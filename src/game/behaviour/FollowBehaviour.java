@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.*;
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
  */
-public class FollowBehaviour extends ToLocationBehaviour {
+public class FollowBehaviour implements Behaviour {
 
 	private Actor target;
 
@@ -16,7 +16,6 @@ public class FollowBehaviour extends ToLocationBehaviour {
 	 * @param subject the Actor to follow
 	 */
 	public FollowBehaviour(Actor subject) {
-		super();
 		this.target = subject;
 	}
 	
@@ -27,8 +26,8 @@ public class FollowBehaviour extends ToLocationBehaviour {
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))
 			return null;
-		target_location = map.locationOf(target);
-		return super.getAction(actor, map);
+		;
+		return (new ToLocationBehaviour(map.locationOf(target))).getAction(actor, map);
 	}
 
 }

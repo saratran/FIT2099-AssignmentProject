@@ -1,10 +1,11 @@
-package game.behaviour.action;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.actor.Player;
+import game.actor.Trader;
 
 /**
  * Special Action that allows the Player to sell an Item from their inventory
@@ -27,11 +28,10 @@ public class SellAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		if(actor instanceof Player) {
-			Player player = (Player) actor;
-			player.addMoney(item.getSellValue());
-			// TODO: error handling, what if actor doesn't have the item in their inventory?
-			player.removeItemFromInventory(item);
+		if(actor instanceof Trader) {
+			Trader seller = (Trader) actor;
+			seller.addMoney(item.getSellValue());
+			seller.removeItemFromInventory(item);
 		}
 		return actor + " sold " + item.toString() + " and gained $" + item.getSellValue();
 	}

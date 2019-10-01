@@ -1,46 +1,79 @@
 package game.item;
 
-import java.util.List;
-
-import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Location;
+import game.FoodSkill;
 import game.Species;
-import game.actor.dinosaur.Protoceratops;
+import game.dinosaur.Dinosaur;
 
 public class Egg extends PortableDinoItem {
 	private int age = 0;
 	private int hatch_age = 10;
-	private Species species;
+	protected Species species;
+	private int buyValue = 0;
+	private int sellValue = 0;
+	private Dinosaur dinosaur;
 
-	public Egg(String name, char displayChar, Species species) {
+	
+	public Egg(String name, char displayChar, Dinosaur dinosaur) {
 		super(name, displayChar);
-		this.species = species;
-		foodValue = 10;
-		switch (species) {
+		this.species = dinosaur.getSpecies();
+		addSkill(FoodSkill.CARNIVORE);
+		initValues();
+		this.dinosaur = dinosaur;
+	}
+
+	private void initValues() {
+//		 TODO: can factor this out as a separate class to take in enum Species and return a suitable value
+		// Or can make methods in Dino to return eggBuyValue and eggSellValue
+		switch (this.species) {
 		case PROTOCERATOPS:
 			buyValue = 50;
 			sellValue = 10;
-		}
+			break;
+		case VELOCIRAPTOR:
+			buyValue = 1000;
+			sellValue = 100;
+			break;
+		}		
+	}
 
-//		this.allowableActions.add(new EatItemAction(this));
+	public Egg(Dinosaur dinosaur) {
+		this(dinosaur.getSpecies().toString().toLowerCase() + " egg", 'e', dinosaur);
 	}
 
 	@Override
 	public void tick(Location currentLocation) {
 		age++;
-		if (age >= hatch_age) {
-			switch (species) {
-			case PROTOCERATOPS:
-				if (!currentLocation.containsAnActor()) {
-					currentLocation.addActor(new Protoceratops("Protoceratops"));
-				}
-			}
+		// Hatches after certain age and only if there is no Actor standing on top of it
+		if (age >= hatch_age && !currentLocation.containsAnActor()) {
+			currentLocation.addActor(this.hatchInto());
 			currentLocation.removeItem(this);
+			System.out.println(this.toString() + " hatches");
 		}
 	}
 
-	public Species getSpecies() {
-		return species;
+	private Dinosaur hatchInto() {
+		return dinosaur;
+	}
+
+	@Override
+	public int getFoodValue() {
+		return 10;
+	}
+
+	@Override
+	public int getBuyValue() {
+		return buyValue;
+	}
+
+	@Override
+	public int getSellValue() {
+		return sellValue;
+	}
+
+	@Override
+	public boolean isBuyable() {
+		return true;
 	}
 
 	@Override

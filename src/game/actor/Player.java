@@ -6,11 +6,13 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
+import game.FoodSkill;
+import game.Skill;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor {
+public class Player extends Trader {
 	private int money = 0;
 	private Menu menu = new Menu();
 
@@ -23,6 +25,7 @@ public class Player extends Actor {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		addSkill(FoodSkill.NOT_FOOD);
 	}
 
 	@Override
@@ -35,7 +38,6 @@ public class Player extends Actor {
 	}
 	
 	private class SleepAction extends Action {
-		// TODO: Copied from conwayslife (is this ok?)
 		private int sleepTime = 100;
 
 		@Override
@@ -62,26 +64,6 @@ public class Player extends Actor {
 		}
 	}
 	
-	public void addMoney(int value) {
-		//TODO: needs exception?
-//		if(value < 0) {
-//			throw new Exception("Cannot add negative value");
-//		}
-		
-		money += value;
-	}
-	
-	public void deductMoney(int value) {
-//		if(value < 0) {
-//			throw new Exception("Cannot remove negative value");
-//		}
-		
-		money -= value;
-	}
-	
-	public int getMoney() {
-		return money;
-	}
-	
+
 
 }
