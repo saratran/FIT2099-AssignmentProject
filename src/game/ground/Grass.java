@@ -1,7 +1,6 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
-import edu.monash.fit2099.interfaces.EdibleGroundInterface;
 
 public class Grass extends Vegetation{
 

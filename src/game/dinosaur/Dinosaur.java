@@ -25,16 +25,11 @@ import game.item.Egg;
 public abstract class Dinosaur extends Consumer {
 	protected int age = 0;
 	protected Species species;
-<<<<<<<
 	protected Maturity maturity;
-	private int foodLevel;
-	private int maxFoodLevel;
-	private int hungryLevel;
+
 	private char adultDisplayChar;
 	private char babyDisplayChar;
-=======
 
->>>>>>>
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
@@ -53,7 +48,7 @@ public abstract class Dinosaur extends Consumer {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		foodLevel--;
-		if (isStarved()) {
+		if (isDead()) {
 			this.die(map);
 		} else {
 			if (this.isHungry()) {
@@ -97,8 +92,8 @@ public abstract class Dinosaur extends Consumer {
 
 	protected abstract List<Item> itemsDroppedWhenDead(); // Support adding multiple items to ground when dino dies
 
-	public boolean isStarved() {
-		return !(this.isConscious());
+	public boolean isDead() {
+		return (!this.isConscious() || this.foodLevel <= 0);
 	}
 
 	public Species getSpecies() {
@@ -121,4 +116,24 @@ public abstract class Dinosaur extends Consumer {
 	}
 
 	protected abstract void layEgg(Location location);
+	
+	public boolean isMatureAge() {
+		return (age > 2);
+	}
+
+	protected void growOlder() {
+		if (maturity == Maturity.BABY) {
+			this.maturity = Maturity.ADULT;
+			this.displayChar = Character.toUpperCase(displayChar);
+			System.out.println(name + " has grown!");
+		}
+	}
+	
+	public boolean isHungry() {
+		return (foodLevel <= hungryLevel);
+	}
+
+	public boolean isWellFed() {
+		return (foodLevel <= (hungryLevel + 5));
+	}
 }
