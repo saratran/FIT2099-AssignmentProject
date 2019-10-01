@@ -10,11 +10,11 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.interfaces.Consumer;
 import game.action.AttackAction;
 import game.action.EatGroundAction;
 import game.action.EatItemAction;
 import game.actor.Player;
+import game.dinosaur.Consumer;
 import game.dinosaur.Dinosaur;
 
 /**
@@ -66,7 +66,7 @@ public class SeekFoodBehaviour implements Behaviour {
 			return null;
 		}
 
-		Location here = map.locationOf(actor);
+		Location here = map.locationOf(consumer);
 		checkedLocations.put(locationToKey(here), here);
 
 		// Checking locations nearby first (ie 1 space away)
