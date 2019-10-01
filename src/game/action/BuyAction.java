@@ -17,12 +17,15 @@ public class BuyAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		// TODO: asBuyer in ActorInterface?
 		if (actor instanceof Player) {
 			Player player = (Player) actor;
 			if (player.getMoney() < item.getBuyValue()) {
 				return "Player does not have enough money to buy " + item.toString() + "\nCurrent balance is $"
 						+ player.getMoney();
 			}
+			
+			// TODO: asItem() in BuyableInterface?
 			player.addItemToInventory((Item)item);
 			player.deductMoney(item.getBuyValue());
 		}

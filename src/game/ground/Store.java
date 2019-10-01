@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.interfaces.BuyableInterface;
 import edu.monash.fit2099.interfaces.SellableInterface;
+import game.Skill;
 import game.Species;
 import game.action.BuyAction;
 import game.action.SellAction;
@@ -42,13 +43,13 @@ public class Store extends Ground {
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
 		// Don't want a Dinosaur to buy from and sell to the Store ;)
-		if(actor instanceof Player) {
-			// Create new Item objects every time (may be inefficient?)
-			// But this way we can just pass the object to the Player in BuyAction
+		// TODO: may replace with Buyer interface or Skill.BUYER
+		if(actor.hasSkill(Skill.BUYER)) {
 			for (BuyableInterface item : createItemList()) {
 				actions.add(new BuyAction(item));
 			}
 			for (Item item : actor.getInventory()) {
+				// TODO: not sure
 				if (item instanceof SellableInterface) {
 					actions.add(new SellAction((SellableInterface) item));
 				}
