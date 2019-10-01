@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.actor.Player;
+import game.dinosaur.Maturity;
 import game.dinosaur.Protoceratops;
 import game.ground.Dirt;
 import game.ground.Floor;
@@ -69,9 +70,9 @@ public class Application {
 		gameMap.at(0, 0).setGround(new Store('S'));
 
 
-		gameMap.at(9, 6).addItem(new Egg(new Protoceratops()));
-		gameMap.at(19, 6).addItem(new Egg(new Protoceratops()));
-		gameMap.at(9, 16).addItem(new Egg(new Protoceratops()));
+		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY)));
+		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY)));
+		gameMap.at(9, 16).addItem(new Egg(new Protoceratops(Maturity.BABY)));
 
 		
 		// Place a pair of protoceratops in the middle of the map

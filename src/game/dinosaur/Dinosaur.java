@@ -20,6 +20,7 @@ import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.dinosaur.Maturity;
+import game.item.Egg;
 
 public abstract class Dinosaur extends Actor {
 	protected int age = 0;
@@ -40,7 +41,7 @@ public abstract class Dinosaur extends Actor {
 		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and
 										// attack all other dino
 		this.maturity = maturity;
-		this.initFoodLevel();
+		initFoodLevel();
 		behaviours.add(new SeekFoodBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}
@@ -54,6 +55,10 @@ public abstract class Dinosaur extends Actor {
 			if (this.isHungry()) {
 				System.out.println(name + " is hungry!");
 			}
+			if (this.isWellFed()) {
+				this.layEggAttempt(map.locationOf(this));
+			}
+			
 			// TODO: if not hungry and not baby --> chance of laying egg
 			// TODO: need to check age if baby can grow into adult
 			for (Behaviour behaviour : behaviours) {
@@ -143,32 +148,16 @@ public abstract class Dinosaur extends Actor {
 	public boolean isHungry() {
 		return (foodLevel <= hungryLevel);
 	}
-
+	
+	public boolean isWellFed() {
+		return (foodLevel <= (hungryLevel + 5));
+	}
 	public void addFoodValue(int food_value) {
 		foodLevel += food_value;
 		foodLevel = Math.min(foodLevel, maxFoodLevel); // capped at max
 	}
 
-	protected void initFoodLevel() {
-		// TODO: May move this concrete subclasses so don't need to check for species (ie make this an abstract method)
-		if (this.maturity == Maturity.ADULT) {
-			switch (this.species) {
-			case PROTOCERATOPS:
-				setFoodLevel(30, 50, 15);
-			case VELOCIRAPTOR:
-				setFoodLevel(40, 100, 20);
-				break;
-			}
-		} else if (this.maturity == Maturity.BABY) {
-			switch (this.species) {
-			case PROTOCERATOPS:
-				setFoodLevel(10, 25, 15);
-			case VELOCIRAPTOR:
-				setFoodLevel(15, 40, 20);
-				break;
-			}
-		}
-	}
+	protected abstract void initFoodLevel(); 
 
 	protected void setFoodLevel(int current, int max, int hungry) {
 		foodLevel = current;
@@ -187,5 +176,13 @@ public abstract class Dinosaur extends Actor {
 	public Maturity getMaturity() {
 		return maturity;
 	}
-
+	
+	public void layEggAttempt(Location location) {
+		if (maturity == Maturity.ADULT && Math.random() < 0.02) {
+			this.layEgg(location);
+			System.out.println(name + " laid an egg!");
+		}
+	}
+	
+	protected abstract void layEgg(Location location);
 }

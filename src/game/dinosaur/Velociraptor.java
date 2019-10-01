@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.Species;
 import game.item.Corpse;
+import game.item.Egg;
 
 /**
  * A carnivorous dinosaur.
@@ -20,9 +22,11 @@ public class Velociraptor extends Dinosaur {
 	 * @param name the name of this Velociraptor
 	 */
 	public Velociraptor(String name, Maturity maturity) {
-		super(name, 'v', 175, maturity);		
+		super(name, 'V', 175, maturity);		
 		species = Species.VELOCIRAPTOR;
-
+		if (maturity == Maturity.BABY) {
+			this.displayChar = 'v';
+		}
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
 		 * - Cons: lose ability to set an abstract class as edible (ie like Protoceratops can eat all Vegetation)
@@ -50,13 +54,26 @@ public class Velociraptor extends Dinosaur {
 	public Velociraptor() {
 		this("Velociraptor");
 	}
-
-
+	
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
 		items.add(new Corpse("Velociraptor corpse", 'c', Species.VELOCIRAPTOR));
 		return items;
+	}
+	
+	@Override
+	protected void initFoodLevel() {
+		if (this.maturity == Maturity.ADULT) {
+			setFoodLevel(40, 100, 20);
+		} else {
+			setFoodLevel(15, 40, 20);
+		}
+	}
+	
+	@Override
+	protected void layEgg(Location location) {
+		location.addItem(new Egg(new Velociraptor(Maturity.BABY)));
 	}
 
 }
