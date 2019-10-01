@@ -32,17 +32,18 @@ public abstract class Dinosaur extends Actor {
 	protected List<Item> foodItems = new ArrayList<Item>();
 	protected List<Ground> foodGrounds = new ArrayList<Ground>();
 	protected List<Actor> foodActors = new ArrayList<Actor>();
-	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the dino can eat
+	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the dino can
+																				// eat
 
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
-		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and attack all other dino
+		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and
+										// attack all other dino
 		this.maturity = maturity;
 		this.initFoodLevel();
 		behaviours.add(new SeekFoodBehaviour());
 		behaviours.add(new WanderBehaviour());
 	}
-
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
@@ -53,6 +54,8 @@ public abstract class Dinosaur extends Actor {
 			if (this.isHungry()) {
 				System.out.println(name + " is hungry!");
 			}
+			// TODO: if not hungry and not baby --> chance of laying egg
+			// TODO: need to check age if baby can grow into adult
 			for (Behaviour behaviour : behaviours) {
 				Action action = behaviour.getAction(this, map);
 				if (action != null)
@@ -62,22 +65,21 @@ public abstract class Dinosaur extends Actor {
 		return new DoNothingAction();
 	}
 
-
-
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
-		if(otherActor instanceof Player) {
-			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item)).forEach((item) ->{
-				actions.add(new FeedAction(item, this));
-			});;
+		if (otherActor instanceof Player) {
+			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item))
+					.forEach((item) -> {
+						actions.add(new FeedAction(item, this));
+					});
+			;
 		}
 		return actions;
 	}
 
-
 	public void die(GameMap map) {
-		for(Item item : itemsDroppedWhenDead()) {
+		for (Item item : itemsDroppedWhenDead()) {
 			map.locationOf(this).addItem(item);
 		}
 		map.removeActor(this);
@@ -86,6 +88,8 @@ public abstract class Dinosaur extends Actor {
 	protected abstract List<Item> itemsDroppedWhenDead(); // Support adding multiple items to ground when dino dies
 
 	public boolean isDead() {
+		// TODO: maybe change this to isStarved() and also use isConcious() (in parent
+		// Actor class) to check if dino is dead or not
 		return (foodLevel <= 0);
 	}
 
@@ -151,15 +155,15 @@ public abstract class Dinosaur extends Actor {
 			case PROTOCERATOPS:
 				setFoodLevel(30, 50, 15);
 			case VELOCIRAPTOR:
-				setFoodLevel(40, 100, 20);	
+				setFoodLevel(40, 100, 20);
 				break;
 			}
-		} else if (this.maturity == Maturity.BABY) { 
+		} else if (this.maturity == Maturity.BABY) {
 			switch (this.species) {
 			case PROTOCERATOPS:
 				setFoodLevel(10, 25, 15);
 			case VELOCIRAPTOR:
-				setFoodLevel(15, 40, 20);	
+				setFoodLevel(15, 40, 20);
 				break;
 			}
 		}
@@ -182,6 +186,5 @@ public abstract class Dinosaur extends Actor {
 	public Maturity getMaturity() {
 		return maturity;
 	}
-
 
 }
