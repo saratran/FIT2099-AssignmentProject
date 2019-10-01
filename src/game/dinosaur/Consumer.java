@@ -14,6 +14,15 @@ import game.FoodSkill;
 import game.Species;
 import game.behaviour.Behaviour;
 
+/**
+ * TODO: note, this can be an interface but it has the same drawbacks as using EdibleInterface since we can't 
+ * change the method signature
+ * 
+ * Using an abstract class here isn't too bad (tho not as flexible) but since only Actor is likely to
+ * have anything related to consuming food
+ * @author saratran
+ *
+ */
 public abstract class Consumer extends Actor {
 	protected int foodLevel = 30;
 	protected int maxFoodLevel = 15;

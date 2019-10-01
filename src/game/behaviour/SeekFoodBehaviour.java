@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.FoodSkill;
 import game.action.AttackAction;
 import game.action.EatGroundAction;
 import game.action.EatItemAction;
@@ -87,7 +88,7 @@ public class SeekFoodBehaviour implements Behaviour {
 			}
 			
 			// TODO: use Skill.NOT_FOOD instead of instanceof Player
-			if (destination.containsAnActor() && !(destination.getActor() instanceof Player) && consumer.isFood(destination.getActor())) {
+			if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD)) && consumer.isFood(destination.getActor())) {
 				// Game rule: dinosaurs don't attack Player even if Player is holding food item
 				return new AttackAction(destination.getActor());
 			}
@@ -118,7 +119,7 @@ public class SeekFoodBehaviour implements Behaviour {
 						}
 					}
 					
-					if (destination.containsAnActor() && consumer.isFood(destination.getActor())) {
+					if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD)) && consumer.isFood(destination.getActor())) {
 						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
 					}
 				}
