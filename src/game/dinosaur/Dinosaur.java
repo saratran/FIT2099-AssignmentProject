@@ -19,6 +19,7 @@ public abstract class Dinosaur extends Consumer {
 	protected String adultName;
 
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
+	
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
 		adultName = name;
@@ -73,7 +74,7 @@ public abstract class Dinosaur extends Consumer {
 		return actions;
 	}
 
-	public void die(GameMap map) {
+	private void die(GameMap map) {
 		for (Item item : itemsDroppedWhenDead()) {
 			map.locationOf(this).addItem(item);
 		}
@@ -94,7 +95,7 @@ public abstract class Dinosaur extends Consumer {
 		return maturity;
 	}
 
-	public void layEggAttempt(Location location) {
+	private void layEggAttempt(Location location) {
 		if (maturity == Maturity.ADULT && Math.random() < 0.02) {
 			this.layEgg(location);
 			name = adultName;
@@ -104,7 +105,7 @@ public abstract class Dinosaur extends Consumer {
 
 	protected abstract void layEgg(Location location);
 	
-	public boolean isMatureAge() {
+	private boolean isMatureAge() {
 		return (age > 20);
 	}
 
@@ -125,10 +126,7 @@ public abstract class Dinosaur extends Consumer {
 	}
 
 	@Override
-	protected void initFoodLevel() {
-		// TODO Auto-generated method stub
-		
-	}
+	protected abstract void initFoodLevel();
 
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
