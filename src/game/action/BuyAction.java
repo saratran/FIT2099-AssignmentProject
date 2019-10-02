@@ -7,17 +7,27 @@ import edu.monash.fit2099.engine.Item;
 import game.actor.Trader;
 import game.actor.Player;
 
-
+/**
+ * Action to buy an Item
+ * 
+ * @author Sara Tran
+ *
+ */
 public class BuyAction extends Action {
+	/**
+	 * Item that is to be bought
+	 */
 	private Item item;
 
 	public BuyAction(Item item) {
 		this.item = item;
 	}
 
+
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		// TODO: asBuyer in ActorInterface?
+		// Needs actor as a Trader to support money related methods
 		if (actor instanceof Trader) {
 			Trader buyer = (Trader) actor;
 			if (buyer.getMoney() < item.getBuyValue()) {
@@ -25,7 +35,6 @@ public class BuyAction extends Action {
 						+ buyer.getMoney();
 			}
 			
-			// TODO: asItem() in BuyableInterface?
 			buyer.addItemToInventory(item);
 			buyer.deductMoney(item.getBuyValue());
 		}

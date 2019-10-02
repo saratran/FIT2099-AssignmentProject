@@ -7,10 +7,21 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.dinosaur.Dinosaur;
 
+/**
+ * Action for a Consumer to eat an Item
+ * @author Sara Tran
+ *
+ */
 public class EatItemAction extends Action {
 	private Location location;
 	private Item food;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param target the Item to be eaten
+	 * @param location the Location of the Item
+	 */
 	public EatItemAction(Item target, Location location) {
 		this.food = target;
 		this.location = location;

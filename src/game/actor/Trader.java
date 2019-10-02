@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.GameMap;
 import game.Skill;
 
 /**
+ * A type of Actor that has money and can support trading actions
+ * 
  * TODO: similar justification as Consumer abstract class
  * @author saratran
  *

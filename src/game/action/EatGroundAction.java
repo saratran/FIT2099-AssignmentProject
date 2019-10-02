@@ -8,17 +8,30 @@ import edu.monash.fit2099.engine.Location;
 import game.dinosaur.Dinosaur;
 import game.ground.Dirt;
 
+/**
+ * Action for a Consumer to eat a Ground
+ * @author Sara Tran
+ *
+ */
 public class EatGroundAction extends Action {
 	private Location location;
 	private Ground target;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param target The Ground to be eaten
+	 * @param location Location of the Ground to be eaten
+	 */
 	public EatGroundAction(Ground target, Location location) {
 		this.target = target;
 		this.location = location;
 	}
 
+
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		// Need actor to be a Consumer to have food related methods
 		if (actor.asConsumer() != null) {
 			// TODO: alternative --> all food methods in ActorInterface
 			actor.asConsumer().addFoodValue(target.getFoodValue());

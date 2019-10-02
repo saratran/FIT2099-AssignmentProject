@@ -22,8 +22,7 @@ import game.item.Egg;
 import game.item.FoodItem;
 
 /**
- * This class can interact with the Player by buying from and selling items to
- * them.
+ * This class can interact with Actor that has Skill.Buyer to buy from and sell items to them.
  * 
  * @author Sara Tran
  *
@@ -66,14 +65,16 @@ public class Store extends Ground {
 	}
 
 	/**
-	 * Modify this to add more items being sold at the Store
+	 * Modify this to add more items being sold at the Store. These items need to have overridden the method isBuyable() to return true.
 	 * 
 	 * @return list of items that the Store is selling
 	 */
 	private List<Item> createItemList() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
-		items.add(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue())); 
+		items.add(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(),
+				Price.ProtoceratopsEgg.getSellValue()));
+		items.add(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(),
+				Price.VelociraptorEgg.getSellValue()));
 		items.add(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
 		items.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.getBuyValue()));
 		items.add(new DinosaurTag("dinosaur tag", '-'));
