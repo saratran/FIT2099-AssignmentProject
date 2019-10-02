@@ -123,4 +123,17 @@ public abstract class Dinosaur extends Consumer {
 	public boolean isWellFed() {
 		return (foodLevel <= (hungryLevel + 5));
 	}
+
+	@Override
+	protected void initFoodLevel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(10, "bites");
+	}
+	
+	
 }
