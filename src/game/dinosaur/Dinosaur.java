@@ -20,6 +20,7 @@ import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.dinosaur.Maturity;
+import game.item.DinosaurTag;
 import game.item.Egg;
 
 public abstract class Dinosaur extends Consumer {
@@ -27,10 +28,8 @@ public abstract class Dinosaur extends Consumer {
 	protected Species species;
 	protected Maturity maturity;
 
-	private char adultDisplayChar;
-	private char babyDisplayChar;
-
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
+	
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
 		if (maturity == Maturity.BABY) {
@@ -116,7 +115,7 @@ public abstract class Dinosaur extends Consumer {
 	}
 
 	protected abstract void layEgg(Location location);
-	
+
 	public boolean isMatureAge() {
 		return (age > 2);
 	}
@@ -128,7 +127,7 @@ public abstract class Dinosaur extends Consumer {
 			System.out.println(name + " has grown!");
 		}
 	}
-	
+
 	public boolean isHungry() {
 		return (foodLevel <= hungryLevel);
 	}
@@ -136,4 +135,10 @@ public abstract class Dinosaur extends Consumer {
 	public boolean isWellFed() {
 		return (foodLevel <= (hungryLevel + 5));
 	}
+	
+	public void addTag(DinosaurTag tag) {
+		this.addItemToInventory(tag);
+	}
+	
+	public abstract int getSellValue();
 }

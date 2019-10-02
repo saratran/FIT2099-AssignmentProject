@@ -77,4 +77,9 @@ public class Protoceratops extends Dinosaur {
 		location.addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
 	}
 
+	@Override
+	public int getSellValue() {
+		return 100;
+	}
+	
 }
