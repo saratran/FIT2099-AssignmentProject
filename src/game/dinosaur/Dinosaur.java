@@ -13,7 +13,6 @@ import java.util.List;
 //import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.*;
 import game.FoodSkill;
-import game.Species;
 import game.action.FeedAction;
 import game.actor.Player;
 import game.behaviour.Behaviour;
@@ -24,7 +23,6 @@ import game.item.Egg;
 
 public abstract class Dinosaur extends Consumer {
 	protected int age = 0;
-	protected Species species;
 	protected Maturity maturity;
 
 	private char adultDisplayChar;
@@ -94,10 +92,6 @@ public abstract class Dinosaur extends Consumer {
 
 	public boolean isDead() {
 		return (!this.isConscious() || this.foodLevel <= 0);
-	}
-
-	public Species getSpecies() {
-		return species;
 	}
 
 	public void addBehaviour(Behaviour behaviour) {

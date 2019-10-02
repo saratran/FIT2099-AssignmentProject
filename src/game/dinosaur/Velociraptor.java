@@ -6,7 +6,6 @@ import java.util.List;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.Species;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.FoodItem;
@@ -24,7 +23,6 @@ public class Velociraptor extends Dinosaur {
 	 */
 	public Velociraptor(String name, Maturity maturity) {
 		super(name, 'V', 175, maturity);		
-		species = Species.VELOCIRAPTOR;
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
 		 * - Cons: lose ability to set an abstract class as edible (ie like Protoceratops can eat all Vegetation)
@@ -57,7 +55,7 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse(Species.VELOCIRAPTOR, 50));
+		items.add(new Corpse("Velociraptor corpse", 50));
 		return items;
 	}
 	

@@ -64,7 +64,7 @@ public class Application {
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(100);
 		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 20));
-		player.addItemToInventory(new Corpse(Species.PROTOCERATOPS, 15));
+		player.addItemToInventory(new Corpse("protoceratops corpse", 15));
 		world.addPlayer(player, gameMap.at(9, 4));
 		gameMap.at(8, 9).addActor(new Protoceratops());
 		gameMap.at(8, 14).addActor(new Velociraptor());

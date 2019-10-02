@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.Skill;
-import game.Species;
 import game.action.BuyAction;
 import game.action.SellAction;
 import game.actor.Player;
@@ -74,7 +73,7 @@ public class Store extends Ground {
 //		items.add(new Egg(new Velociraptor())); // TODO: implement Velociraptor
 		items.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		items.add(new FoodItem(FoodSkill.CARNIVORE, 100));
-		items.add(new DinosaurTag("Dinosaur tag", '-'));
+		items.add(new DinosaurTag("dinosaur tag", '-'));
 
 		return items;
 	}

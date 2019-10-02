@@ -12,7 +12,7 @@ public class FoodItem extends PortableDinoItem {
 	}
 	
 	public FoodItem(FoodSkill foodSkill, int buyValue) {
-		this(foodSkill.toString() + " food item", 'f', foodSkill, buyValue);
+		this(foodSkill.toString().toLowerCase() + " food item", 'f', foodSkill, buyValue);
 	}
 
 	@Override
