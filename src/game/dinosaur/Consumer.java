@@ -95,6 +95,8 @@ public abstract class Consumer extends Actor {
 		foodLevel += food_value;
 		foodLevel = Math.min(foodLevel, maxFoodLevel); // capped at max
 	}
+	
+	public abstract int getSellValue(); 
 
 	protected abstract void initFoodLevel();
 	
@@ -103,5 +105,6 @@ public abstract class Consumer extends Actor {
 		maxFoodLevel = max;
 		hungryLevel = hungry;
 	}
+
 
 }

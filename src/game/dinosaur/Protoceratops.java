@@ -62,15 +62,24 @@ public class Protoceratops extends Dinosaur {
 	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
-			setFoodLevel(30, 50, 15);
+//			setFoodLevel(30, 50, 15);
+			this.setFoodLevel(2, 50, 15);
 		} else {
 			setFoodLevel(10, 25, 15);
 		}
 	}
 
+	//TODO: how can I avoid making these an abstract in the super class? I.e. how can I have
+	// the super class create the correct subclass of egg depending on which subclass is 
+	// calling this method.
 	@Override
 	protected void layEgg(Location location) {
 		location.addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
+	}
+
+	@Override
+	public int getSellValue() {
+		return 100;
 	}
 
 }

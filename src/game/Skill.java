@@ -1,5 +1,6 @@
 package game;
 
 public enum Skill {
-	BUYER
+	BUYER,
+	TAGGED
 }

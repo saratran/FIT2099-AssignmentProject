@@ -7,11 +7,13 @@ import java.util.List;
 import edu.monash.fit2099.engine.*;
 import game.FoodSkill;
 import game.action.FeedAction;
+import game.action.PlaceTagAction;
 import game.actor.Player;
 import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.dinosaur.Maturity;
+import game.item.DinosaurTag;
 
 public abstract class Dinosaur extends Consumer {
 	protected int age = 0;
@@ -69,6 +71,12 @@ public abstract class Dinosaur extends Consumer {
 				actions.add(new FeedAction(item, this));
 			});
 			;
+			for (Item item : otherActor.getInventory()) {
+				if (item instanceof DinosaurTag) {
+					actions.add(new PlaceTagAction(item, this));
+					break;
+				}
+			}
 		}
 		return actions;
 	}
@@ -103,7 +111,7 @@ public abstract class Dinosaur extends Consumer {
 	}
 
 	protected abstract void layEgg(Location location);
-	
+
 	public boolean isMatureAge() {
 		return (age > 20);
 	}
@@ -115,7 +123,7 @@ public abstract class Dinosaur extends Consumer {
 			System.out.println(name + " has grown!");
 		}
 	}
-	
+
 	public boolean isHungry() {
 		return (foodLevel <= hungryLevel);
 	}

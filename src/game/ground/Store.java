@@ -1,6 +1,7 @@
 package game.ground;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import edu.monash.fit2099.engine.Actions;
@@ -12,7 +13,9 @@ import game.FoodSkill;
 import game.Skill;
 import game.action.BuyAction;
 import game.action.SellAction;
+import game.action.SellTaggedConsumerAction;
 import game.actor.Player;
+import game.dinosaur.Dinosaur;
 import game.dinosaur.Maturity;
 import game.dinosaur.Protoceratops;
 import game.dinosaur.Velociraptor;
@@ -59,6 +62,20 @@ public class Store extends Ground {
 					actions.add(new SellAction(item));
 				}
 			}
+			if (actor instanceof Player) {
+				Player player = (Player) actor;
+				if (!player.getTaggedDinosaurs().isEmpty()) {
+					Iterator<Dinosaur> iterator = player.getTaggedDinosaurs().iterator();
+					while (iterator.hasNext()) {
+						Dinosaur dino = iterator.next();
+						if (!dino.isDead()) {
+							actions.add(new SellTaggedConsumerAction(dino));
+						} else {
+							iterator.remove();
+						}
+					}
+				}
+			}
 		}
 
 		return actions;
@@ -75,7 +92,7 @@ public class Store extends Ground {
 		items.add(new Egg(new Velociraptor(Maturity.BABY), 1000, 100)); 
 		items.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		items.add(new FoodItem(FoodSkill.CARNIVORE, 100));
-		items.add(new DinosaurTag("dinosaur tag", '-'));
+		items.add(new DinosaurTag());
 
 		return items;
 	}

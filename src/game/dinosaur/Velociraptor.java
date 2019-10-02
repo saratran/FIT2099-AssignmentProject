@@ -72,5 +72,10 @@ public class Velociraptor extends Dinosaur {
 	protected void layEgg(Location location) {
 		location.addItem(new Egg(new Velociraptor(Maturity.BABY), 1000, 100));
 	}
+	
+	@Override
+	public int getSellValue() {
+		return 400;
+	}
 
 }
