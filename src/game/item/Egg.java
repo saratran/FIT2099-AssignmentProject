@@ -20,27 +20,12 @@ public class Egg extends PortableDinoItem {
 		this.buyValue = buyValue;
 		this.sellValue = sellValue;
 		addSkill(FoodSkill.CARNIVORE);
-//		initValues();
 	}
 	
 	public Egg(Dinosaur dinosaur, int buyValue, int sellValue) {
 		this(dinosaur.toString()+ " egg", 'e', dinosaur, buyValue, sellValue);
 	}
 
-//	private void initValues() {
-////		 TODO: can factor this out as a separate class to take in enum Species and return a suitable value
-//		// Or can make methods in Dino to return eggBuyValue and eggSellValue
-//		switch (this.species) {
-//		case PROTOCERATOPS:
-//			buyValue = 50;
-//			sellValue = 10;
-//			break;
-//		case VELOCIRAPTOR:
-//			buyValue = 1000;
-//			sellValue = 100;
-//			break;
-//		}		
-//	}
 
 	@Override
 	public void tick(Location currentLocation) {

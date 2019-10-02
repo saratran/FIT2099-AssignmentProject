@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
+import game.Price;
 import game.Skill;
 import game.action.BuyAction;
 import game.action.SellAction;
@@ -71,10 +72,10 @@ public class Store extends Ground {
 	 */
 	private List<Item> createItemList() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
-		items.add(new Egg(new Velociraptor(Maturity.BABY), 1000, 100)); 
-		items.add(new FoodItem(FoodSkill.HERBIVORE, 20));
-		items.add(new FoodItem(FoodSkill.CARNIVORE, 100));
+		items.add(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
+		items.add(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue())); 
+		items.add(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
+		items.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.getBuyValue()));
 		items.add(new DinosaurTag("dinosaur tag", '-'));
 
 		return items;

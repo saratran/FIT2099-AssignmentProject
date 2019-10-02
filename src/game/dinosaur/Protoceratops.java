@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
+import game.Price;
 import game.ground.Tree;
 import game.item.Corpse;
 import game.item.Egg;
@@ -34,8 +35,8 @@ public class Protoceratops extends Dinosaur {
 		 * 
 		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
 		 */
-		foodGrounds.add(new Tree()); 
-		foodItems.add(new FoodItem(FoodSkill.HERBIVORE, 20));
+//		foodGrounds.add(new Tree()); 
+//		foodItems.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		
 	}
@@ -55,7 +56,7 @@ public class Protoceratops extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("protoceratops corpse", 15));
+		items.add(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 		return items;
 	}
 
@@ -70,7 +71,7 @@ public class Protoceratops extends Dinosaur {
 
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
+		location.addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
 	}
 
 }

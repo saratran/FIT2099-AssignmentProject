@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
+import game.Price;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.FoodItem;
@@ -32,7 +33,7 @@ public class Velociraptor extends Dinosaur {
 		 * 
 		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
 		 */
-		foodItems.add(new FoodItem(FoodSkill.CARNIVORE, 100));
+//		foodItems.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.getBuyValue()));
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 
 	}
@@ -55,7 +56,7 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Velociraptor corpse", 50));
+		items.add(new Corpse("Velociraptor corpse", Price.VelociraptorCorpse.getSellValue()));
 		return items;
 	}
 	
@@ -70,7 +71,7 @@ public class Velociraptor extends Dinosaur {
 	
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Velociraptor(Maturity.BABY), 1000, 100));
+		location.addItem(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue()));
 	}
 
 }

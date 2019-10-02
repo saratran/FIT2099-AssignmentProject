@@ -62,9 +62,10 @@ public class Application {
 		world.addGameMap(gameMap);
 
 		Player player = new Player("Player", '@', 100);
-		player.addMoney(100);
-		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 20));
-		player.addItemToInventory(new Corpse("protoceratops corpse", 15));
+		player.addMoney(1000);
+		
+		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
+		player.addItemToInventory(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 		world.addPlayer(player, gameMap.at(9, 4));
 		gameMap.at(8, 9).addActor(new Protoceratops());
 		gameMap.at(8, 14).addActor(new Velociraptor());
@@ -73,14 +74,14 @@ public class Application {
 		gameMap.at(0, 0).setGround(new Store('S'));
 
 
-		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
-		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
-		gameMap.at(9, 16).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
+		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
+		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
+		gameMap.at(9, 16).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
 
 		
 		// Place a pair of protoceratops in the middle of the map
-//		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
-//		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
+		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
+		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
 
 
 		world.run();
