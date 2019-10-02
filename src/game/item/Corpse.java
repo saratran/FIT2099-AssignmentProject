@@ -1,40 +1,36 @@
 package game.item;
 
+<<<<<<<
 import edu.monash.fit2099.interfaces.BuyableInterface;
 import edu.monash.fit2099.interfaces.EdibleInterface;
 import edu.monash.fit2099.interfaces.SellableInterface;
+=======
+
+>>>>>>>
 import game.FoodSkill;
 
 import game.Species;
 // TODO: for different species
-public class Corpse extends PortableDinoItem implements BuyableInterface, SellableInterface, EdibleInterface {
+public class Corpse extends PortableDinoItem {
 	private Species species;
 	private int sellValue = 0;
-	private int buyValue = 0;
+	
+	public Corpse(String name, char displayChar, Species species, int sellValue) {
 	private int foodValue = 0;
-
-	public Corpse(String name, char displayChar, Species species) {
 		super(name, displayChar);
 		this.species = species;
-		initValues();
+		this.sellValue = sellValue;
 		addSkill(FoodSkill.CARNIVORE);
 	}
 
-	private void initValues() {
-		//		 TODO: can factor this out as a separate class to take in enum Species and return a suitable value
-		switch (this.species) {
-		case PROTOCERATOPS:
-			buyValue = 75;
-			sellValue = 15;
-			foodValue = 50;
-			break;
-		case VELOCIRAPTOR:
-			buyValue = 250;
-			sellValue = 50;
-			foodValue = 50;
-			break;
-		}		
+	public Corpse(Species species, int sellValue) {
+		this(species.toString() + " corpse", 'c', species, sellValue);
 	}
+//	@Override
+//	public boolean isSellable() {
+//		return true;
+//	}
+
 	@Override
 	public int getSellValue() {
 		return sellValue;
@@ -44,6 +40,11 @@ public class Corpse extends PortableDinoItem implements BuyableInterface, Sellab
 		return buyValue;
 	}
 
+	@Override
+	public boolean isSellable() {
+		return true;
+	}
+	
 	@Override
 	public int getFoodValue() {
 		return foodValue;

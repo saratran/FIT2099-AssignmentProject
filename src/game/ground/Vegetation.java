@@ -3,10 +3,9 @@ package game.ground;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.interfaces.EdibleGroundInterface;
 import game.FoodSkill;
 
-public abstract class Vegetation extends Ground implements EdibleGroundInterface{
+public abstract class Vegetation extends Ground {
 	
 protected final double GROWTH_RATE;
 

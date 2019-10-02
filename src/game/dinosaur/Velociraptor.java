@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.Species;
-import game.ground.Tree;
 import game.item.Corpse;
-import game.item.HerbivoreFoodItem;
+import game.item.Egg;
+import game.item.FoodItem;
 
 /**
  * A carnivorous dinosaur.
@@ -21,13 +22,9 @@ public class Velociraptor extends Dinosaur {
 	 * 
 	 * @param name the name of this Velociraptor
 	 */
-	public Velociraptor(String name) {
-		super(name, 'v', 175);		
+	public Velociraptor(String name, Maturity maturity) {
+		super(name, 'V', 175, maturity);		
 		species = Species.VELOCIRAPTOR;
-
-		// TODO: good way to initialise values?
-		initFoodLevel(40, 100, 30);
-		
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
 		 * - Cons: lose ability to set an abstract class as edible (ie like Protoceratops can eat all Vegetation)
@@ -37,21 +34,45 @@ public class Velociraptor extends Dinosaur {
 		 * 
 		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
 		 */
-		foodItems.add(new HerbivoreFoodItem("food",'f'));
+		foodItems.add(new FoodItem(FoodSkill.CARNIVORE, 100));
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
-		
+
 	}
-	
+
+	/*TODO is this okay? Feels as though you'd need to add this version of the constructor 
+	 * to all kinds of Dinosaurs. Should probably implement this in the parent class somehow?
+	 */
+	public Velociraptor(String name) {
+		this(name, Maturity.ADULT);	
+	}
+
+	public Velociraptor(Maturity maturity) {
+		this("Velociraptor", maturity);
+	}
+
 	public Velociraptor() {
 		this("Velociraptor");
 	}
-
-
+	
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Velociraptor corpse", 'c', Species.VELOCIRAPTOR));
+		items.add(new Corpse(Species.VELOCIRAPTOR, 50));
 		return items;
+	}
+	
+	@Override
+	protected void initFoodLevel() {
+		if (this.maturity == Maturity.ADULT) {
+			setFoodLevel(40, 100, 20);
+		} else {
+			setFoodLevel(15, 40, 20);
+		}
+	}
+	
+	@Override
+	protected void layEgg(Location location) {
+		location.addItem(new Egg(new Velociraptor(Maturity.BABY), 1000, 100));
 	}
 
 }
