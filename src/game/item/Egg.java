@@ -15,33 +15,35 @@ public class Egg extends PortableDinoItem {
 	private Dinosaur dinosaur;
 
 	
-	public Egg(String name, char displayChar, Dinosaur dinosaur) {
+	public Egg(String name, char displayChar, Dinosaur dinosaur, int buyValue, int sellValue) {
 		super(name, displayChar);
 		assert dinosaur.getMaturity() == Maturity.BABY;
 		this.species = dinosaur.getSpecies();
-		addSkill(FoodSkill.CARNIVORE);
-		initValues();
 		this.dinosaur = dinosaur;
+		this.buyValue = buyValue;
+		this.sellValue = sellValue;
+		addSkill(FoodSkill.CARNIVORE);
+//		initValues();
 	}
 	
-	public Egg(Dinosaur dinosaur) {
-		this(dinosaur.getSpecies().toString().toLowerCase() + " egg", 'e', dinosaur);
+	public Egg(Dinosaur dinosaur, int buyValue, int sellValue) {
+		this(dinosaur.getSpecies().toString().toLowerCase() + " egg", 'e', dinosaur, buyValue, sellValue);
 	}
 
-	private void initValues() {
-//		 TODO: can factor this out as a separate class to take in enum Species and return a suitable value
-		// Or can make methods in Dino to return eggBuyValue and eggSellValue
-		switch (this.species) {
-		case PROTOCERATOPS:
-			buyValue = 50;
-			sellValue = 10;
-			break;
-		case VELOCIRAPTOR:
-			buyValue = 1000;
-			sellValue = 100;
-			break;
-		}		
-	}
+//	private void initValues() {
+////		 TODO: can factor this out as a separate class to take in enum Species and return a suitable value
+//		// Or can make methods in Dino to return eggBuyValue and eggSellValue
+//		switch (this.species) {
+//		case PROTOCERATOPS:
+//			buyValue = 50;
+//			sellValue = 10;
+//			break;
+//		case VELOCIRAPTOR:
+//			buyValue = 1000;
+//			sellValue = 100;
+//			break;
+//		}		
+//	}
 
 	@Override
 	public void tick(Location currentLocation) {

@@ -70,7 +70,7 @@ public class Store extends Ground {
 	 */
 	private List<Item> createItemList() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Egg(new Protoceratops()));
+		items.add(new Egg(new Protoceratops(), 50, 10));
 //		items.add(new Egg(new Velociraptor())); // TODO: implement Velociraptor
 		items.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		items.add(new FoodItem(FoodSkill.CARNIVORE, 100));

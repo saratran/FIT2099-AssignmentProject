@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.World;
 import game.actor.Player;
 import game.dinosaur.Maturity;
 import game.dinosaur.Protoceratops;
+import game.dinosaur.Velociraptor;
 import game.ground.Dirt;
 import game.ground.Floor;
 import game.ground.Grass;
@@ -63,18 +64,18 @@ public class Application {
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(100);
 		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 20));
-		player.addItemToInventory(new Corpse("corpse",'d',Species.PROTOCERATOPS));
+		player.addItemToInventory(new Corpse(Species.PROTOCERATOPS, 15));
 		world.addPlayer(player, gameMap.at(9, 4));
-//		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
-
+		gameMap.at(8, 9).addActor(new Protoceratops());
+		gameMap.at(8, 14).addActor(new Velociraptor());
 
 		gameMap.at(9, 3).setGround(new Store('S'));
 		gameMap.at(0, 0).setGround(new Store('S'));
 
 
-		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY)));
-		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY)));
-		gameMap.at(9, 16).addItem(new Egg(new Protoceratops(Maturity.BABY)));
+		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
+		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
+		gameMap.at(9, 16).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
 
 		
 		// Place a pair of protoceratops in the middle of the map

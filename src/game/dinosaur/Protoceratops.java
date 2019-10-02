@@ -59,7 +59,7 @@ public class Protoceratops extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Proceratops corpse", 'c', Species.PROTOCERATOPS));
+		items.add(new Corpse(Species.PROTOCERATOPS, 15));
 		return items;
 	}
 
@@ -74,7 +74,7 @@ public class Protoceratops extends Dinosaur {
 
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Protoceratops(Maturity.BABY)));
+		location.addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
 	}
 
 }

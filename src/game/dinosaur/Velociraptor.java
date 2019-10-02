@@ -57,7 +57,7 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Velociraptor corpse", 'c', Species.VELOCIRAPTOR));
+		items.add(new Corpse(Species.VELOCIRAPTOR, 50));
 		return items;
 	}
 	
@@ -72,7 +72,7 @@ public class Velociraptor extends Dinosaur {
 	
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Velociraptor(Maturity.BABY)));
+		location.addItem(new Egg(new Velociraptor(Maturity.BABY), 1000, 100));
 	}
 
 }
