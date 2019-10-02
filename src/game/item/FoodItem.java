@@ -1,14 +1,18 @@
 package game.item;
 
-import edu.monash.fit2099.interfaces.BuyableInterface;
-import edu.monash.fit2099.interfaces.EdibleInterface;
+import game.FoodSkill;
 
-public abstract class FoodItem extends PortableDinoItem implements EdibleInterface, BuyableInterface {
+public class FoodItem extends PortableDinoItem {
 	protected int buyValue = 0;
 	
-	public FoodItem(String name, char displayChar) {
+	public FoodItem(String name, char displayChar, FoodSkill foodSkill, int buyValue) {
 		super(name, displayChar);
-//		foodValue = 100000; // TODO: hacky-ish, may result in overflow
+		this.addSkill(foodSkill);
+		this.buyValue = buyValue;
+	}
+	
+	public FoodItem(FoodSkill foodSkill, int buyValue) {
+		this(foodSkill.toString().toLowerCase() + " food item", 'f', foodSkill, buyValue);
 	}
 
 	@Override
@@ -25,6 +29,12 @@ public abstract class FoodItem extends PortableDinoItem implements EdibleInterfa
 	public int getBuyValue() {
 		return buyValue;
 	}
+
+	@Override
+	public boolean isBuyable() {
+		return true;
+	}
+	
 	
 	
 	

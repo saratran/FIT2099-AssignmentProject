@@ -7,25 +7,23 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.Price;
-import game.ground.Tree;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.FoodItem;
 
 /**
- * A herbivorous dinosaur.
+ * A carnivorous dinosaur.
  *
  */
-public class Protoceratops extends Dinosaur {
-
+public class Velociraptor extends Dinosaur {
 	/**
-	 * Constructor. All Protoceratops are represented by a 'd' and have 100 hit
+	 * Constructor. All Velociraptors are represented by a 'v' and have 175 hit
 	 * points.
 	 * 
-	 * @param name the name of this Protoceratops
+	 * @param name the name of this Velociraptor
 	 */
-	public Protoceratops(String name, Maturity maturity) {
-		super(name, 'P', 100, maturity);		
+	public Velociraptor(String name, Maturity maturity) {
+		super(name, 'V', 175, maturity);		
 		/*TODO: is this a good way to keep track of edible food?
 		 * - Pros: have fine-grain control of which object is edible
 		 * - Cons: lose ability to set an abstract class as edible (ie like Protoceratops can eat all Vegetation)
@@ -35,43 +33,45 @@ public class Protoceratops extends Dinosaur {
 		 * 
 		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
 		 */
-//		foodGrounds.add(new Tree()); 
-//		foodItems.add(new FoodItem(FoodSkill.HERBIVORE, 20));
-		edibleFoodSkills.add(FoodSkill.HERBIVORE);
-		
+//		foodItems.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.getBuyValue()));
+		edibleFoodSkills.add(FoodSkill.CARNIVORE);
+
 	}
-	
-	public Protoceratops(String name) {
+
+	/*TODO is this okay? Feels as though you'd need to add this version of the constructor 
+	 * to all kinds of Dinosaurs. Should probably implement this in the parent class somehow?
+	 */
+	public Velociraptor(String name) {
 		this(name, Maturity.ADULT);	
 	}
-	
-	public Protoceratops(Maturity maturity) {
-		this("Protoceratops", maturity);
+
+	public Velociraptor(Maturity maturity) {
+		this("Velociraptor", maturity);
+	}
+
+	public Velociraptor() {
+		this("Velociraptor");
 	}
 	
-	public Protoceratops() {
-		this("Protoceratops");
-	}
-		
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
+		items.add(new Corpse("Velociraptor corpse", Price.VelociraptorCorpse.getSellValue()));
 		return items;
 	}
-
+	
 	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
-			setFoodLevel(30, 50, 15);
+			setFoodLevel(40, 100, 20);
 		} else {
-			setFoodLevel(10, 25, 15);
+			setFoodLevel(15, 40, 20);
 		}
 	}
-
+	
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
+		location.addItem(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue()));
 	}
 
 }

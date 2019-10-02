@@ -8,4 +8,25 @@ public interface ItemInterface {
 	default boolean isFeedable() {
 		return false;
 	}
+	
+	default int getFoodValue() {
+		return 0;
+	};
+
+	default int getBuyValue() {
+		return 0;
+	};
+	
+	default boolean isBuyable() {
+		return false;
+	}
+	
+	default int getSellValue() {
+		return 0;
+	};
+	
+	default boolean isSellable() {
+		return false;
+	}
+
 }

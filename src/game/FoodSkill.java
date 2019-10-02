@@ -2,5 +2,5 @@ package game;
 
 
 public enum FoodSkill {
-	HERBIVORE, CARNIVORE
+	HERBIVORE, CARNIVORE, NOT_FOOD
 }
