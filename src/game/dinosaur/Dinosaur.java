@@ -3,14 +3,7 @@ package game.dinosaur;
 import java.util.ArrayList;
 import java.util.List;
 
-//import edu.monash.fit2099.engine.Action;
-//import edu.monash.fit2099.engine.Actions;
-//import edu.monash.fit2099.engine.Actor;
-//import edu.monash.fit2099.engine.Display;
-//import edu.monash.fit2099.engine.DoNothingAction;
-//import edu.monash.fit2099.engine.GameMap;
-//import edu.monash.fit2099.engine.Ground;
-//import edu.monash.fit2099.engine.Item;
+
 import edu.monash.fit2099.engine.*;
 import game.FoodSkill;
 import game.action.FeedAction;
@@ -19,20 +12,19 @@ import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.dinosaur.Maturity;
-import game.item.Egg;
 
 public abstract class Dinosaur extends Consumer {
 	protected int age = 0;
 	protected Maturity maturity;
-
-	private char adultDisplayChar;
-	private char babyDisplayChar;
+	protected String adultName;
 
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
+		adultName = name;
 		if (maturity == Maturity.BABY) {
 			this.displayChar = Character.toLowerCase(displayChar);
+			this.name = "Baby " + adultName;
 		}
 
 		addSkill(FoodSkill.CARNIVORE); // All dinosaurs are meat --> Velociraptor (and any carnivore dino) can eat and
@@ -105,6 +97,7 @@ public abstract class Dinosaur extends Consumer {
 	public void layEggAttempt(Location location) {
 		if (maturity == Maturity.ADULT && Math.random() < 0.02) {
 			this.layEgg(location);
+			name = adultName;
 			System.out.println(name + " laid an egg!");
 		}
 	}
@@ -112,7 +105,7 @@ public abstract class Dinosaur extends Consumer {
 	protected abstract void layEgg(Location location);
 	
 	public boolean isMatureAge() {
-		return (age > 2);
+		return (age > 20);
 	}
 
 	protected void growOlder() {

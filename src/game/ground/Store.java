@@ -13,7 +13,9 @@ import game.Skill;
 import game.action.BuyAction;
 import game.action.SellAction;
 import game.actor.Player;
+import game.dinosaur.Maturity;
 import game.dinosaur.Protoceratops;
+import game.dinosaur.Velociraptor;
 import game.item.DinosaurTag;
 import game.item.Egg;
 import game.item.FoodItem;
@@ -69,8 +71,8 @@ public class Store extends Ground {
 	 */
 	private List<Item> createItemList() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Egg(new Protoceratops(), 50, 10));
-//		items.add(new Egg(new Velociraptor())); // TODO: implement Velociraptor
+		items.add(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
+		items.add(new Egg(new Velociraptor(Maturity.BABY), 1000, 100)); 
 		items.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		items.add(new FoodItem(FoodSkill.CARNIVORE, 100));
 		items.add(new DinosaurTag("dinosaur tag", '-'));
