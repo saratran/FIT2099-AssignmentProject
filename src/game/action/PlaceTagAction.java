@@ -8,16 +8,28 @@ import game.Skill;
 import game.actor.Player;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Maturity;
-
+/**
+ * Action to place a tag item on a dinosaur.
+ * 
+ * @author Harun Ergi
+ *
+ */
 public class PlaceTagAction extends Action {
 
 	private Item tag;
 	private Dinosaur target;
-
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param tag	The tag that is to be placed.
+	 * @param target	The dinosaur that the tag is being placed on.
+	 */
 	public PlaceTagAction(Item tag, Dinosaur target) {
 		this.tag = tag;
 		this.target = target;
 	}
+	
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		String fail = actor + " could not place tag on " + target.toString();

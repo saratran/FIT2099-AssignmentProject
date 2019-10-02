@@ -6,11 +6,19 @@ import edu.monash.fit2099.engine.GameMap;
 import game.actor.Player;
 import game.actor.Trader;
 import game.dinosaur.Consumer;
-
+/**
+ * Action used to sell tagged consumers at the store.
+ * @author Harun Ergi
+ *
+ */
 public class SellTaggedConsumerAction extends Action {
 	
 	private Consumer target;
-	
+	/**
+	 * Constructor.
+	 * 
+	 * @param consumer	The tagged consumer that is to be sold.
+	 */
 	public SellTaggedConsumerAction(Consumer consumer) {
 		this.target = consumer;
 	}

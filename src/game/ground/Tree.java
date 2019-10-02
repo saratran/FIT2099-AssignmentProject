@@ -3,10 +3,19 @@ package game.ground;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-
+/**
+ * A class that represents trees.
+ * 
+ * @author Harun Ergi
+ *
+ */
 public class Tree extends Vegetation {
 	private int age = 0;
-
+	/**
+	 * Constructor. Ttrees are represented by the char '+' until they age
+	 * 10 turns at which they are represented by 't' and finally after 20
+	 * turns: 'T'.
+	 */
 	public Tree() {
 		super('+', 0.002);
 	}

@@ -13,7 +13,6 @@ import game.item.FoodItem;
 
 /**
  * A herbivorous dinosaur.
- *
  */
 public class Protoceratops extends Dinosaur {
 
