@@ -1,12 +1,18 @@
 package game.item;
 
+import game.FoodSkill;
 
-public abstract class FoodItem extends PortableDinoItem {
+public class FoodItem extends PortableDinoItem {
 	protected int buyValue = 0;
 	
-	public FoodItem(String name, char displayChar) {
+	public FoodItem(String name, char displayChar, FoodSkill foodSkill, int buyValue) {
 		super(name, displayChar);
-//		foodValue = 100000; // TODO: hacky-ish, may result in overflow
+		this.addSkill(foodSkill);
+		this.buyValue = buyValue;
+	}
+	
+	public FoodItem(FoodSkill foodSkill, int buyValue) {
+		this(foodSkill.toString() + " food item", 'f', foodSkill, buyValue);
 	}
 
 	@Override

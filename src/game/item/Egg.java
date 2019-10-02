@@ -23,6 +23,10 @@ public class Egg extends PortableDinoItem {
 		initValues();
 		this.dinosaur = dinosaur;
 	}
+	
+	public Egg(Dinosaur dinosaur) {
+		this(dinosaur.getSpecies().toString().toLowerCase() + " egg", 'e', dinosaur);
+	}
 
 	private void initValues() {
 //		 TODO: can factor this out as a separate class to take in enum Species and return a suitable value
@@ -37,10 +41,6 @@ public class Egg extends PortableDinoItem {
 			sellValue = 100;
 			break;
 		}		
-	}
-
-	public Egg(Dinosaur dinosaur) {
-		this(dinosaur.getSpecies().toString().toLowerCase() + " egg", 'e', dinosaur);
 	}
 
 	@Override

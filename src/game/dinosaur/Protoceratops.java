@@ -10,7 +10,7 @@ import game.Species;
 import game.ground.Tree;
 import game.item.Corpse;
 import game.item.Egg;
-import game.item.HerbivoreFoodItem;
+import game.item.FoodItem;
 
 /**
  * A herbivorous dinosaur.
@@ -39,7 +39,7 @@ public class Protoceratops extends Dinosaur {
 		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
 		 */
 		foodGrounds.add(new Tree()); 
-		foodItems.add(new HerbivoreFoodItem("food",'f'));
+		foodItems.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		
 	}

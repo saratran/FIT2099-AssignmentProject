@@ -8,16 +8,16 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.FoodSkill;
 import game.Skill;
 import game.Species;
 import game.action.BuyAction;
 import game.action.SellAction;
 import game.actor.Player;
 import game.dinosaur.Protoceratops;
-import game.item.CarnivoreFoodItem;
 import game.item.DinosaurTag;
 import game.item.Egg;
-import game.item.HerbivoreFoodItem;
+import game.item.FoodItem;
 
 /**
  * This class can interact with the Player by buying from and selling items to
@@ -72,8 +72,8 @@ public class Store extends Ground {
 		List<Item> items = new ArrayList<Item>();
 		items.add(new Egg(new Protoceratops()));
 //		items.add(new Egg(new Velociraptor())); // TODO: implement Velociraptor
-		items.add(new HerbivoreFoodItem());
-		items.add(new CarnivoreFoodItem());
+		items.add(new FoodItem(FoodSkill.HERBIVORE, 20));
+		items.add(new FoodItem(FoodSkill.CARNIVORE, 100));
 		items.add(new DinosaurTag("Dinosaur tag", '-'));
 
 		return items;

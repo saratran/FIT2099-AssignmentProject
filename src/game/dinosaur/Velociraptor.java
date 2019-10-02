@@ -9,6 +9,7 @@ import game.FoodSkill;
 import game.Species;
 import game.item.Corpse;
 import game.item.Egg;
+import game.item.FoodItem;
 
 /**
  * A carnivorous dinosaur.
@@ -33,6 +34,7 @@ public class Velociraptor extends Dinosaur {
 		 * 
 		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
 		 */
+		foodItems.add(new FoodItem(FoodSkill.CARNIVORE, 100));
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 
 	}
