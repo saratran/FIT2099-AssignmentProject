@@ -10,10 +10,9 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.Price;
-import game.Skill;
 import game.action.BuyAction;
 import game.action.SellAction;
-import game.actor.Player;
+import game.actor.Trader;
 import game.dinosaur.Maturity;
 import game.dinosaur.Protoceratops;
 import game.dinosaur.Velociraptor;
@@ -44,9 +43,7 @@ public class Store extends Ground {
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
-		// Don't want a Dinosaur to buy from and sell to the Store ;)
-		// TODO: may replace with Buyer interface or Skill.BUYER
-		if (actor.hasSkill(Skill.BUYER)) {
+		if (actor instanceof Trader) {
 			for (Item item : createItemList()) {
 				// TODO: simplify this
 				if (item.isBuyable()) {
@@ -55,6 +52,8 @@ public class Store extends Ground {
 			}
 			for (Item item : actor.getInventory()) {
 				// TODO: not sure
+				// I would like to do the actual checking inside BuyAction and SellAction but that would be a bit "too late"
+				// Can do nothing and return empty string but that would take up a slot in the menu
 				if (item.isSellable()) {
 					actions.add(new SellAction(item));
 				}

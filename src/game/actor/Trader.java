@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
-import game.Skill;
 
 /**
  * A type of Actor that has money and can support trading actions
@@ -20,7 +19,6 @@ public abstract class Trader extends Actor {
 	
 	public Trader(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		addSkill(Skill.BUYER);
 	}
 
 	public void addMoney(int value) {
