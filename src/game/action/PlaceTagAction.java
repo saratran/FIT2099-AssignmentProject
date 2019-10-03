@@ -8,6 +8,7 @@ import game.Skill;
 import game.actor.Player;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Maturity;
+
 /**
  * Action to place a tag item on a dinosaur.
  * 
@@ -18,7 +19,7 @@ public class PlaceTagAction extends Action {
 
 	private Item tag;
 	private Dinosaur target;
-	
+
 	/**
 	 * Constructor.
 	 * 
@@ -29,11 +30,44 @@ public class PlaceTagAction extends Action {
 		this.tag = tag;
 		this.target = target;
 	}
-	
+
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		String fail = actor + " could not place tag on " + target.toString();
-		if(actor instanceof Player && target.getMaturity() == Maturity.ADULT) {
+		/*
+		 * TODO: instead of checking Maturity (and also hungry level) inside this
+		 * Action, Check it before creating this Action (ie in the Dinosaur class) This
+		 * way the PlaceTagAction can be applied to other Actor other than Dinosaur -->
+		 * better expandability
+		 */
+
+		/*
+		 * TODO: About casting to Player: 
+		 * - The current method (ie keeping reference to tagged Actors) would require specific Player method to be called
+		 * PROS:
+		 * 		- Doesn't need to check the whole map for tagged Actors before selling
+		 * CONS:
+		 * 		- Require casting and maybe harder to expand in the future (since it's specific to Player class only)
+		 * 		- May arise problem when the Player is in a different map than the tagged Actor and tries to sell them 
+		 * (see comment in SellTaggedConsumerAction)
+		 * 		- Not as important: SellTaggedConsumerAction is currently for 1 Actor only --> may clutter UI if tagged too many dinos
+		 * 
+		 * ALTERNATIVES:
+		 * 		- Put the addTaggedDino() in ActorInterface so doesn't need casting (same drawback as before, may violate ISP)
+		 * 		- The Skill method:
+		 * 			+ Instead of keeping track of tagged Actors, just add Skill.TAGGED to them
+		 * 			+ Then make SellTaggedConsumerAction to do the checking through the map for tagged Actors and sell them all at once
+		 * 			+ This wouldn't require any Player, Consumer or Dinosaur casting (only cast Trader because need money methods)
+		 * 			+ At the cost of making it slightly more inefficient (but shouldn't matter too much
+		 */
+
+		/*
+		 * TODO: side thought - not too important - World in engine knows about which Actor is a player -->
+		 * would be better if it some how has method to check for that, instead of
+		 * checking for Player class (which is not part of the engine, it's only the
+		 * player because world.addPlayer(actor) in Application
+		 */
+		if (actor instanceof Player && target.getMaturity() == Maturity.ADULT) {
 			Player player = (Player) actor;
 			if (!target.hasSkill(Skill.TAGGED)) {
 				player.removeItemFromInventory(tag);
@@ -42,7 +76,7 @@ public class PlaceTagAction extends Action {
 				target.addSkill(Skill.TAGGED);
 				return actor + " placed tag on " + target.toString();
 			}
-		} 
+		}
 		return fail;
 	}
 

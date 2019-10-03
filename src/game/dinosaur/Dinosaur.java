@@ -3,7 +3,6 @@ package game.dinosaur;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import edu.monash.fit2099.engine.*;
 import game.FoodSkill;
 import game.action.FeedAction;
@@ -14,6 +13,7 @@ import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.dinosaur.Maturity;
 import game.item.DinosaurTag;
+
 /**
  * An abstraction for dinosaurs. Defines behaviours of dinosaurs
  * and how their turns take place. 	Also generalises breeding
@@ -82,11 +82,13 @@ public abstract class Dinosaur extends Consumer {
 		Actions actions = new Actions();
 		if (otherActor instanceof Player) {
 			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item))
-			.forEach((item) -> {
-				actions.add(new FeedAction(item, this));
-			});
+					.forEach((item) -> {
+						actions.add(new FeedAction(item, this));
+					});
 			;
 			for (Item item : otherActor.getInventory()) {
+				// TODO: should be more general --> avoid treating DinosaurTag as something
+				// special (ie what if what to tag a different item in the future)
 				if (item instanceof DinosaurTag) {
 					actions.add(new PlaceTagAction(item, this));
 					break;

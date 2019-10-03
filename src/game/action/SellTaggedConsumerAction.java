@@ -19,7 +19,9 @@ public class SellTaggedConsumerAction extends Action {
 	 * 
 	 * @param consumer	The tagged consumer that is to be sold.
 	 */
+	
 	public SellTaggedConsumerAction(Consumer consumer) {
+		// TODO: doesn't need to be Consumer, can be Actor only
 		this.target = consumer;
 	}
 	
@@ -29,7 +31,7 @@ public class SellTaggedConsumerAction extends Action {
 		if(actor instanceof Trader) {
 			Trader seller = (Trader) actor;
 			seller.addMoney(target.getSellValue());
-			map.removeActor(target);
+			map.removeActor(target); // TODO: potential problem if the player is not on the same Map as the target
 		}
 		if (actor instanceof Player) {
 			Player player = (Player) actor;
