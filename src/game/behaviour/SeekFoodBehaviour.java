@@ -52,15 +52,10 @@ public class SeekFoodBehaviour implements Behaviour {
 		HashMap<String, Location> checkedLocations = new HashMap<String, Location>(); // To store locations that have been checked for food
 		List<Location> locationsToGetExits = new ArrayList<Location>(); // To store locations that need to get Exits next
 
-//		if (!(actor instanceof Consumer)) {
-//			return null;
-//		}
 		
 		if (actor.asConsumer() == null) {
 			return null;
 		}
-		
-		// TODO: something else than casting dinosaur
 		Consumer consumer = actor.asConsumer();
 
 		if (!consumer.isHungry()) {
@@ -76,20 +71,21 @@ public class SeekFoodBehaviour implements Behaviour {
 			checkedLocations.put(locationToKey(destination), destination);
 			locationsToGetExits.add(destination);
 
-
-
+			// If ground is food
 			if (consumer.isFood(destination.getGround())) {
 				return new EatGroundAction(destination.getGround(), destination);
 			}
+			
+			// If item is food
 			for (Item item : destination.getItems()) {
 				if (consumer.isFood(item)) {
 					return new EatItemAction(item, destination);
 				}
 			}
 			
-			// TODO: use Skill.NOT_FOOD instead of instanceof Player
+			// If actor is food
+			// FoodSkill.NOT_FOOD is used to prevent attack on Actor that carries food items (ie the Player)
 			if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD)) && consumer.isFood(destination.getActor())) {
-				// Game rule: dinosaurs don't attack Player even if Player is holding food item
 				return new AttackAction(destination.getActor());
 			}
 		}
@@ -113,6 +109,7 @@ public class SeekFoodBehaviour implements Behaviour {
 					if (consumer.isFood(destination.getGround())) {
 						return new ToLocationBehaviour(destination).getAction(actor, map);
 					}
+					
 					for (Item item : destination.getItems()) {
 						if (consumer.isFood(item)) {
 							return new ToLocationBehaviour(destination).getAction(actor, map);
