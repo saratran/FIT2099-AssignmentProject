@@ -1,6 +1,5 @@
 package edu.monash.fit2099.interfaces;
 
-import game.Skill;
 import game.dinosaur.Consumer;
 
 /**

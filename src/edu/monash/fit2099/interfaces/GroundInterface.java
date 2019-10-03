@@ -10,10 +10,18 @@ import game.ground.Dirt;
 
 public interface GroundInterface {
 
+	/**
+	 * Override this to change Ground food value
+	 * @return
+	 */
 	default int getFoodValue() {
 		return 0;
 	};
 	
+	/**
+	 * Override this to change the Ground returned when the current Ground is eaten
+	 * @return
+	 */
 	default Ground eatenGround() {
 		return new Dirt();
 	}
