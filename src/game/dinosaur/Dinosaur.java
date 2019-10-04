@@ -157,7 +157,6 @@ public abstract class Dinosaur extends Consumer {
 	 * @param location	the location that the egg will be laid.
 	 */
 	private void layEggAttempt(Location location) {
-		if (maturity == Maturity.ADULT && Math.random() < this.layEggChance) {
 			this.layEgg(location);
 			name = adultName;
 			System.out.println(name + " laid an egg!");
