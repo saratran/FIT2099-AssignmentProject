@@ -15,7 +15,7 @@ import game.Skill;
 import game.action.BuyAction;
 import game.action.ExecuteMultipleActions;
 import game.action.SellAction;
-import game.action.SellTaggedActorAction;
+import game.action.SellTaggedActorsAction;
 import game.actor.Player;
 import game.dinosaur.Dinosaur;
 import game.dinosaur.Maturity;
@@ -64,33 +64,8 @@ public class Store extends Ground {
 					actions.add(new SellAction(item));
 				}
 			}
-			//			if (!actor.getTaggedActors().isEmpty()) {
-			//				Iterator<Actor> iterator = actor.getTaggedActors().iterator();
-			//				while (iterator.hasNext()) {
-			//					Actor dino = iterator.next();
-			//					if (!dino.isDead()) {
-			//						actions.add(new SellTaggedConsumerAction(dino));
-			//					} else {
-			//						iterator.remove();
-			//					}
-			//				}
-			//			}
 			if (!actor.getTaggedActors().isEmpty()) {
-				Iterator<Actor> iterator = actor.getTaggedActors().iterator();
-				List<Action> dinosToSell = new ArrayList<Action>();
-				int totalDinoValue = 0;
-				while (iterator.hasNext()) {
-					Actor dino = iterator.next();
-					if (!dino.isDead()) {
-						dinosToSell.add(new SellTaggedActorAction(dino));
-						totalDinoValue += dino.getSellValue();
-					} else {
-						iterator.remove();
-					}
-				}
-				String menuDesc = actor + " sold tagged dinosaurs and gained $" + totalDinoValue;
-				String execDesc =  "Sells tagged dinosaurs for" + " ($" + totalDinoValue +")";
-				actions.add(new ExecuteMultipleActions(dinosToSell, menuDesc,  execDesc));
+				actions.add(new SellTaggedActorsAction(actor.getTaggedActors()));
 			}
 		}
 
