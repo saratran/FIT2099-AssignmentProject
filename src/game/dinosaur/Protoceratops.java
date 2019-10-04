@@ -18,7 +18,7 @@ import game.item.FoodItem;
 public class Protoceratops extends Dinosaur {
 
 	/**
-	 * Constructor. All Protoceratops are represented by a 'd' and have 100 hit
+	 * Constructor. All Protoceratops are represented by a 'P' and have 100 hit
 	 * points.
 	 * 
 	 * @param name the name of this Protoceratops
