@@ -12,6 +12,7 @@ import game.item.PortableDinoItem;
 
 /**
  * Special Action for attacking other Actors.
+ * 
  */
 public class AttackAction extends Action {
 

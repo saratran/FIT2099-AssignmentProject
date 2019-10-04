@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 
 /**
  * A class that represents bare dirt.
+ * 
  */
 public class Dirt extends Ground {
 

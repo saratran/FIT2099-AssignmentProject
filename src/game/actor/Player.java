@@ -15,6 +15,7 @@ import game.dinosaur.Dinosaur;
 
 /**
  * Class representing the Player.
+ * 
  */
 public class Player extends Trader {
 	private int money = 0;

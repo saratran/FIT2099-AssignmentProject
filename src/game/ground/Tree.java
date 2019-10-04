@@ -5,8 +5,6 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 /**
  * A class that represents trees.
- * 
- * @author Harun Ergi
  *
  */
 public class Tree extends Vegetation {
@@ -32,11 +30,13 @@ public class Tree extends Vegetation {
 		if (age == 20)
 			displayChar = 'T';
 	}
-
+	
+	@Override
 	public int getFoodValue() {
 		return 10;
 	}
 
+	@Override
 	public Ground eatenGround() {
 		return new Dirt();
 	}

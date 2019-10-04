@@ -21,8 +21,6 @@ import game.dinosaur.Dinosaur;
 /**
  * A class that is used to determine the appropriate action for a Dinosaur to
  * seek and eat nearby food
- * 
- * @author Sara Tran
  *
  */
 public class SeekFoodBehaviour implements Behaviour {

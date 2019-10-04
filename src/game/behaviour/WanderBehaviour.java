@@ -8,7 +8,10 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-
+/**
+ * Causes actors to move around the map randomly.
+ *
+ */
 public class WanderBehaviour implements Behaviour {
 	
 	private Random random = new Random();

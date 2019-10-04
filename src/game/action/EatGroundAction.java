@@ -10,7 +10,6 @@ import game.ground.Dirt;
 
 /**
  * Action for a Consumer to eat a Ground
- * @author Sara Tran
  *
  */
 public class EatGroundAction extends Action {

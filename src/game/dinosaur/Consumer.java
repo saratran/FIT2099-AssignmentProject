@@ -27,8 +27,6 @@ import game.behaviour.Behaviour;
 
 /**
  * An Actor that has food levels and food related methods.
- * 
- * @author Sara Tran
  *
  */
 public abstract class Consumer extends Actor {
@@ -135,8 +133,20 @@ public abstract class Consumer extends Actor {
 		foodLevel = Math.min(foodLevel, maxFoodLevel); // capped at max
 	}
 
+	/**
+	 * Used to set the initial food levels of the consumer;
+	 * structures that specific food levels depending on
+	 * the status of the actor are found here.
+	 */
 	protected abstract void initFoodLevel();
 	
+	/**
+	 * Sets the food levels of the consumer.
+	 * 
+	 * @param current the current food level
+	 * @param max	the maximum food level
+	 * @param hungry	the food level at which the consumer is considered hungry
+	 */
 	protected void setFoodLevel(int current, int max, int hungry) {
 		foodLevel = current;
 		maxFoodLevel = max;

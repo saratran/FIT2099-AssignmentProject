@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.*;
 /**
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
+ * 
  */
 public class FollowBehaviour implements Behaviour {
 

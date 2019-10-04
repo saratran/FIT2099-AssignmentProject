@@ -11,8 +11,7 @@ import game.actor.Player;
 import game.actor.Trader;
 import game.dinosaur.Consumer;
 /**
- * Action used to sell tagged consumers at the store.
- * @author Harun Ergi
+ * Action used to sell tagged actors.
  *
  */
 public class SellTaggedActorsAction extends Action {
@@ -24,7 +23,7 @@ public class SellTaggedActorsAction extends Action {
 	/**
 	 * Constructor.
 	 * 
-	 * @param consumer	The tagged consumers that are to be sold.
+	 * @param consumer	The tagged actors that are to be sold.
 	 */
 	public SellTaggedActorsAction(List<Actor> actor) {
 		this.targets = actor;
@@ -32,7 +31,12 @@ public class SellTaggedActorsAction extends Action {
 		
 	}
 	
-	
+	/**
+	 * Sells the tagged actors. Only sells the actors if they are on
+	 * the same map as the actor selling them and they are alive. Removes
+	 * the tagged actor from the list of tagged actors that the "seller" 
+	 * possesses if they are sold successfully of if they are dead.
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		if(actor instanceof Trader) {

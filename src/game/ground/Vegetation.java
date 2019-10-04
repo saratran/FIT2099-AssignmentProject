@@ -5,10 +5,21 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 
+/**
+ * Abstraction for a category of ground classes that can be eaten
+ * by consumers. 
+ *
+ */
 public abstract class Vegetation extends Ground {
 	
 protected final double GROWTH_RATE;
-
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param displayChar	the character that will represent the vegetation
+	 * @param growthRate	the rate at which the vegetation grows
+	 */
 	public Vegetation(char displayChar, double growthRate) {
 		super(displayChar);
 		this.GROWTH_RATE = growthRate;
@@ -16,6 +27,14 @@ protected final double GROWTH_RATE;
 		
 	}
 
+	/**
+	 * Method that grows the vegetation to nearby locations. Checks
+	 * the nearby locations and determines if they are suitable to grow
+	 * on. Multiple neighbouring locations can observe growth in one turn.
+	 * 
+	 * @param location	the current location of the vegetation.
+	 * @param vegetation	the vegetation that will be spread.
+	 */
 	public void grow(Location location, Vegetation vegetation) {
 		for(Exit exit : location.getExits()) {
 			Location location1 = exit.getDestination();

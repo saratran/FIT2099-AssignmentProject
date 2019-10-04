@@ -9,7 +9,6 @@ import game.actor.Trader;
 
 /**
  * Special Action that allows the Player to sell an Item from their inventory
- * @author Sara Tran
  *
  */
 public class SellAction extends Action {

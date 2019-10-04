@@ -9,8 +9,6 @@ import game.dinosaur.Dinosaur;
 
 /**
  * Action for an Actor to feed an Item to another Consumer
- * 
- * @author Sara Tran
  *
  */
 public class FeedAction extends Action {

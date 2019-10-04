@@ -28,8 +28,6 @@ import game.item.FoodItem;
 
 /**
  * This class can interact with Actor that has Skill.Buyer to buy from and sell items to them.
- * 
- * @author Sara Tran
  *
  */
 public class Store extends Ground {
