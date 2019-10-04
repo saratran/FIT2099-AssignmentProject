@@ -45,20 +45,15 @@ public class Store extends Ground {
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
 		if (actor instanceof Trader) {
-			for (Item item : createItemList()) {
-				// TODO: simplify this
-				if (item.isBuyable()) {
-					actions.add(new BuyAction(item));
-				}
-			}
-			for (Item item : actor.getInventory()) {
-				// TODO: not sure
-				// I would like to do the actual checking inside BuyAction and SellAction but that would be a bit "too late"
-				// Can do nothing and return empty string but that would take up a slot in the menu
-				if (item.isSellable()) {
-					actions.add(new SellAction(item));
-				}
-			}
+			createItemList().stream().filter(item -> item.isBuyable())
+					.forEach(item -> actions.add(new BuyAction(item)));
+			
+			// TODO: I would like to do the actual checking inside BuyAction and SellAction but
+			// that would be a bit "too late"
+			// Can do nothing and return empty string but that would take up a slot in the
+			// menu
+			createItemList().stream().filter(item -> item.isSellable())
+					.forEach(item -> actions.add(new SellAction(item)));
 		}
 
 		return actions;

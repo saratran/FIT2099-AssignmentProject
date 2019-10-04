@@ -3,7 +3,6 @@ package game.item;
 
 import game.FoodSkill;
 
-// TODO: for different species
 public class Corpse extends PortableDinoItem {
 	private int sellValue = 0;
 	private int foodValue = 40;

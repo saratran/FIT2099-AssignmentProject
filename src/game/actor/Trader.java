@@ -22,7 +22,6 @@ public abstract class Trader extends Actor {
 	}
 
 	public void addMoney(int value) {
-		//TODO: needs exception?
 		money += value;
 	}
 	

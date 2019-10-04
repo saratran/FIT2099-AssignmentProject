@@ -38,7 +38,7 @@ public class Protoceratops extends Dinosaur {
 //		foodGrounds.add(new Tree()); 
 //		foodItems.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
-		lay_egg_chance=0.06;
+		layEggChance=0.06;
 		
 	}
 	

@@ -32,8 +32,10 @@ public class SellAction extends Action {
 			Trader seller = (Trader) actor;
 			seller.addMoney(item.getSellValue());
 			seller.removeItemFromInventory(item);
+			return actor + " sold " + item.toString() + " and gained $" + item.getSellValue();
+
 		}
-		return actor + " sold " + item.toString() + " and gained $" + item.getSellValue();
+		return "";
 	}
 
 	@Override

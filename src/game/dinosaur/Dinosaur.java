@@ -3,9 +3,9 @@ package game.dinosaur;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import edu.monash.fit2099.engine.*;
 import game.FoodSkill;
+import game.action.AttackAction;
 import game.action.FeedAction;
 import game.actor.Player;
 import game.behaviour.Behaviour;
@@ -19,8 +19,8 @@ public abstract class Dinosaur extends Consumer {
 	protected String adultName;
 
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
-	protected double lay_egg_chance=0.02;
-	
+	protected double layEggChance = 0.02;
+
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
 		adultName = name;
@@ -67,10 +67,10 @@ public abstract class Dinosaur extends Consumer {
 		Actions actions = new Actions();
 		if (otherActor instanceof Player) {
 			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item))
-			.forEach((item) -> {
-				actions.add(new FeedAction(item, this.asConsumer()));
-			});
-			;
+					.forEach((item) -> {
+						actions.add(new FeedAction(item, this.asConsumer()));
+					});
+			actions.add(new AttackAction(this));
 		}
 		return actions;
 	}
@@ -98,7 +98,7 @@ public abstract class Dinosaur extends Consumer {
 	}
 
 	private void layEggAttempt(Location location) {
-		if (maturity == Maturity.ADULT && Math.random() < this.lay_egg_chance) {
+		if (maturity == Maturity.ADULT && Math.random() < this.layEggChance) {
 			this.layEgg(location);
 			name = adultName;
 			System.out.println(name + " laid an egg!");
@@ -106,7 +106,7 @@ public abstract class Dinosaur extends Consumer {
 	}
 
 	protected abstract void layEgg(Location location);
-	
+
 	private boolean isMatureAge() {
 		return (age > 20);
 	}
@@ -118,7 +118,7 @@ public abstract class Dinosaur extends Consumer {
 			System.out.println(name + " has grown!");
 		}
 	}
-	
+
 	public boolean isHungry() {
 		return (foodLevel <= hungryLevel);
 	}
@@ -134,6 +134,5 @@ public abstract class Dinosaur extends Consumer {
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "bites");
 	}
-	
-	
+
 }

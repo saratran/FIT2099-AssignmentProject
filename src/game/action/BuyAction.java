@@ -37,8 +37,9 @@ public class BuyAction extends Action {
 			
 			buyer.addItemToInventory(item);
 			buyer.deductMoney(item.getBuyValue());
+			return actor + " bought " + item.toString();
 		}
-		return actor + " bought " + item.toString();
+		return "";
 	}
 
 	@Override
