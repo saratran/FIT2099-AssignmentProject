@@ -82,16 +82,16 @@ public abstract class Dinosaur extends Consumer {
 		Actions actions = new Actions();
 		if (otherActor instanceof Player) {
 			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item))
-					.forEach((item) -> {
-						actions.add(new FeedAction(item, this));
-					});
+			.forEach((item) -> {
+				actions.add(new FeedAction(item, this));
+			});
 			;
-			for (Item item : otherActor.getInventory()) {
-				// TODO: should be more general --> avoid treating DinosaurTag as something
-				// special (ie what if what to tag a different item in the future)
-				if (item instanceof DinosaurTag) {
-					actions.add(new PlaceTagAction(item, this));
-					break;
+			if (this.maturity == Maturity.ADULT) {
+				for (Item item : otherActor.getInventory()) {
+					if (item instanceof DinosaurTag) {
+						actions.add(new PlaceTagAction(item, this));
+						break;
+					}
 				}
 			}
 		}

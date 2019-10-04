@@ -61,8 +61,7 @@ public class Protoceratops extends Dinosaur {
 	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
-//			setFoodLevel(30, 50, 15);
-			this.setFoodLevel(2, 50, 15);
+			setFoodLevel(30, 50, 15);
 		} else {
 			setFoodLevel(10, 25, 15);
 		}

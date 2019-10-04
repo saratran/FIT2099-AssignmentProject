@@ -19,7 +19,7 @@ import game.dinosaur.Dinosaur;
 public class Player extends Trader {
 	private int money = 0;
 	private Menu menu = new Menu();
-	private List<Dinosaur> taggedDinosaurs = new ArrayList<Dinosaur>();
+	private List<Actor> taggedActors = new ArrayList<Actor>();
 	/**
 	 * Constructor.
 	 *
@@ -68,12 +68,12 @@ public class Player extends Trader {
 		}
 	}
 
-	public void addTaggedDino(Dinosaur target) {
-		this.taggedDinosaurs.add(target);
+	public void addTaggedActor(Actor target) {
+		this.taggedActors.add(target);
 	}
 
-	public List<Dinosaur> getTaggedDinosaurs() {
-		return this.taggedDinosaurs;
+	public List<Actor> getTaggedActors() {
+		return this.taggedActors;
 	}
 	
 }

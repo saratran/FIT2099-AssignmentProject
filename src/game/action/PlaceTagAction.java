@@ -18,7 +18,7 @@ import game.dinosaur.Maturity;
 public class PlaceTagAction extends Action {
 
 	private Item tag;
-	private Dinosaur target;
+	private Actor target;
 
 	/**
 	 * Constructor.
@@ -26,7 +26,7 @@ public class PlaceTagAction extends Action {
 	 * @param tag	The tag that is to be placed.
 	 * @param target	The dinosaur that the tag is being placed on.
 	 */
-	public PlaceTagAction(Item tag, Dinosaur target) {
+	public PlaceTagAction(Item tag, Actor target) {
 		this.tag = tag;
 		this.target = target;
 	}
@@ -34,12 +34,6 @@ public class PlaceTagAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		String fail = actor + " could not place tag on " + target.toString();
-		/*
-		 * TODO: instead of checking Maturity (and also hungry level) inside this
-		 * Action, Check it before creating this Action (ie in the Dinosaur class) This
-		 * way the PlaceTagAction can be applied to other Actor other than Dinosaur -->
-		 * better expandability
-		 */
 
 		/*
 		 * TODO: About casting to Player: 
@@ -67,15 +61,13 @@ public class PlaceTagAction extends Action {
 		 * checking for Player class (which is not part of the engine, it's only the
 		 * player because world.addPlayer(actor) in Application
 		 */
-		if (actor instanceof Player && target.getMaturity() == Maturity.ADULT) {
-			Player player = (Player) actor;
-			if (!target.hasSkill(Skill.TAGGED)) {
-				player.removeItemFromInventory(tag);
-				player.addTaggedDino(target);
-				target.addItemToInventory(tag);
-				target.addSkill(Skill.TAGGED);
-				return actor + " placed tag on " + target.toString();
-			}
+		Player player = (Player) actor;
+		if (!target.hasSkill(Skill.TAGGED)) {
+			player.removeItemFromInventory(tag);
+			player.addTaggedActor(target);
+			target.addItemToInventory(tag);
+			target.addSkill(Skill.TAGGED);
+			return actor + " placed tag on " + target.toString();
 		}
 		return fail;
 	}

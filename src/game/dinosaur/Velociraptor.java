@@ -12,7 +12,6 @@ import game.item.FoodItem;
 
 /**
  * A carnivorous dinosaur.
- *
  */
 public class Velociraptor extends Dinosaur {
 	/**

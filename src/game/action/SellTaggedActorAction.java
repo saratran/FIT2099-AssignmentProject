@@ -11,17 +11,16 @@ import game.dinosaur.Consumer;
  * @author Harun Ergi
  *
  */
-public class SellTaggedConsumerAction extends Action {
+public class SellTaggedActorAction extends Action {
 	
-	private Consumer target;
+	private Actor target;
 	/**
 	 * Constructor.
 	 * 
 	 * @param consumer	The tagged consumer that is to be sold.
 	 */
 	
-	public SellTaggedConsumerAction(Consumer consumer) {
-		// TODO: doesn't need to be Consumer, can be Actor only
+	public SellTaggedActorAction(Actor consumer) {
 		this.target = consumer;
 	}
 	
@@ -33,10 +32,7 @@ public class SellTaggedConsumerAction extends Action {
 			seller.addMoney(target.getSellValue());
 			map.removeActor(target); // TODO: potential problem if the player is not on the same Map as the target
 		}
-		if (actor instanceof Player) {
-			Player player = (Player) actor;
-			player.getTaggedDinosaurs().remove(target);
-		}
+		actor.getTaggedActors().remove(target);
 		return actor + " sold " + target.toString() + " and gained $" + target.getSellValue();
 	}
 

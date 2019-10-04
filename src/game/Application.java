@@ -70,15 +70,15 @@ public class Application {
 		player.addItemToInventory(new DinosaurTag());
 		world.addPlayer(player, gameMap.at(9, 4));
 		gameMap.at(9, 5).addActor(new Protoceratops());
-//		gameMap.at(8, 14).addActor(new Velociraptor());
+		gameMap.at(8, 14).addActor(new Velociraptor());
 
 		gameMap.at(9, 3).setGround(new Store('S'));
 //		gameMap.at(0, 0).setGround(new Store('S'));
 //
 //
-//		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
-//		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
-//		gameMap.at(9, 16).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
+		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50, 10));
+		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
+		gameMap.at(9, 16).addItem(new Egg(new Protoceratops(Maturity.BABY), 50 ,10));
 
 		
 
