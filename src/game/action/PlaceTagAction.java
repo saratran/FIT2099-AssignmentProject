@@ -11,8 +11,6 @@ import game.dinosaur.Maturity;
 
 /**
  * Action to place a tag item on a dinosaur.
- * 
- * @author Harun Ergi
  *
  */
 public class PlaceTagAction extends Action {

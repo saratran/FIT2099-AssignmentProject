@@ -1,5 +1,8 @@
 package game;
-
+/**
+ * Used as a database for prices of item.
+ * 
+ */
 public enum Price {
 	ProtoceratopsEgg(50, 10),
 	ProtoceratopsCorpse(0, 15),
@@ -17,10 +20,20 @@ public enum Price {
 		this.sellValue = sellValue;
 	}
 
+	/**
+	 * The cost of purchasing the item
+	 *
+	 * @return The cost of purchasing the item
+	 */
 	public int getBuyValue() {
 		return buyValue;
 	}
 
+	/**
+	 * The amount of money received when selling the item
+	 * 
+	 * @return The amount of money received when selling the item
+	 */
 	public int getSellValue() {
 		return sellValue;
 	}

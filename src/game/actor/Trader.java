@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.GameMap;
 
 /**
  * A type of Actor that has money and can support trading actions
- * @author saratran
  *
  */
 

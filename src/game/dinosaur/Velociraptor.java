@@ -13,11 +13,12 @@ import game.item.FoodItem;
 
 /**
  * A carnivorous dinosaur.
+ * 
  */
 public class Velociraptor extends Dinosaur {
 	/**
-	 * Constructor. All Velociraptors are represented by a 'v' and have 175 hit
-	 * points.
+	 * Constructor. Adult Velociraptors are represented by a 'V' and have 175 hit
+	 * points. Baby Velociraptors are represented by a 'v'.
 	 * 
 	 * @param name the name of this Velociraptor
 	 */

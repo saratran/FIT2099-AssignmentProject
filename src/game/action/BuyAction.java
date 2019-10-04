@@ -10,8 +10,6 @@ import game.actor.Player;
 /**
  * Action to buy an Item
  * 
- * @author Sara Tran
- *
  */
 public class BuyAction extends Action {
 	/**

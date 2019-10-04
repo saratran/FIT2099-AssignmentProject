@@ -20,8 +20,6 @@ import game.item.DinosaurTag;
  * An abstraction for dinosaurs. Defines behaviours of dinosaurs
  * and how their turns take place. 	Also generalises breeding
  * behaviours as well as feeding.
- * 
- * @author Harun Ergi
  *
  */
 public abstract class Dinosaur extends Consumer {
@@ -217,9 +215,6 @@ public abstract class Dinosaur extends Consumer {
 	public boolean isWellFed() {
 		return (foodLevel >= (hungryLevel + 5));
 	}
-
-	@Override
-	protected abstract void initFoodLevel();
 
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {

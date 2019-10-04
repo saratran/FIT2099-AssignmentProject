@@ -9,7 +9,6 @@ import game.dinosaur.Dinosaur;
 
 /**
  * Action for a Consumer to eat an Item
- * @author Sara Tran
  *
  */
 public class EatItemAction extends Action {

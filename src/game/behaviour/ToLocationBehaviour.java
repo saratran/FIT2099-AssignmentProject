@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.MoveActorAction;
 /**
  * A class that is used to determine a MoveAction that will move the actor one step 
  * closer to a target Location.
- * @author Sara Tran
  *
  */
 public class ToLocationBehaviour implements Behaviour {
