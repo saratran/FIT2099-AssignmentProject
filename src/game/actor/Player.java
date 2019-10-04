@@ -1,5 +1,8 @@
 package game.actor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -7,6 +10,8 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import game.FoodSkill;
+import game.Skill;
+import game.dinosaur.Dinosaur;
 
 /**
  * Class representing the Player.
@@ -14,7 +19,7 @@ import game.FoodSkill;
 public class Player extends Trader {
 	private int money = 0;
 	private Menu menu = new Menu();
-
+	private List<Actor> taggedActors = new ArrayList<Actor>();
 	/**
 	 * Constructor.
 	 *
@@ -62,7 +67,13 @@ public class Player extends Trader {
 			return null;
 		}
 	}
+
+	public void addTaggedActor(Actor actor) {
+		this.taggedActors.add(actor);
+	}
+
+	public List<Actor> getTaggedActors() {
+		return this.taggedActors;
+	}
 	
-
-
 }

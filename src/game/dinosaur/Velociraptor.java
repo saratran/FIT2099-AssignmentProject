@@ -13,7 +13,6 @@ import game.item.FoodItem;
 
 /**
  * A carnivorous dinosaur.
- *
  */
 public class Velociraptor extends Dinosaur {
 	/**
@@ -72,6 +71,11 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	protected void layEgg(Location location) {
 		location.addItem(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue()));
+	}
+	
+	@Override
+	public int getSellValue() {
+		return 400;
 	}
 
 }

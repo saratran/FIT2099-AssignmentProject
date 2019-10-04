@@ -1,5 +1,9 @@
 package edu.monash.fit2099.interfaces;
 
+import java.util.List;
+
+import edu.monash.fit2099.engine.Actor;
+import game.Skill;
 import game.dinosaur.Consumer;
 
 /**
@@ -11,16 +15,19 @@ public interface ActorInterface {
 	default Consumer asConsumer() {
 		return this instanceof Consumer ? (Consumer) this : null;
 	}	
-
-
-//	public default void addMoney(int value) {
-//	}
-//	
-//	public default void deductMoney(int value) {
-//	}
-//	
-//	public default int getMoney() {
-//		return 0;
-//	}
 	
+	default int getSellValue() {
+		return 0;
+	}
+	
+	default void addTaggedActor(Actor actor) {
+	}
+	
+	default List<Actor> getTaggedActors() {
+		return null;
+	}
+	
+	default boolean isDead() {
+		return false;
+	}
 }
