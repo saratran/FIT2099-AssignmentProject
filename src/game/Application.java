@@ -67,7 +67,6 @@ public class Application {
 		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 20));
 		player.addItemToInventory(new Corpse("protoceratops corpse", 15));
 		player.addItemToInventory(new DinosaurTag());
-		player.addItemToInventory(new DinosaurTag());
 		world.addPlayer(player, gameMap.at(9, 4));
 		gameMap.at(9, 5).addActor(new Protoceratops());
 

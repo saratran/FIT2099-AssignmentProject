@@ -76,7 +76,7 @@ public class Store extends Ground {
 				Price.VelociraptorEgg.getSellValue()));
 		items.add(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
 		items.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.getBuyValue()));
-		items.add(new DinosaurTag("dinosaur tag", '-'));
+		items.add(new DinosaurTag());
 
 		return items;
 	}

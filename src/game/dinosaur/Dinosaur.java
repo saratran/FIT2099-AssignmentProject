@@ -185,7 +185,7 @@ public abstract class Dinosaur extends Consumer {
 	 * @return	Returns true if and only if the dinosaur's age is greater than 20.
 	 */
 	private boolean isMatureAge() {
-		return (age > 20);
+		return (age > 30);
 	}
 
 	/**
@@ -212,10 +212,10 @@ public abstract class Dinosaur extends Consumer {
 	/**
 	 * 
 	 * @return returns true if the current food level of the dinosaur is
-	 * less than or equal to 5 greater than its hunger level.
+	 * greater than or equal to 5 greater than its hunger level.
 	 */
 	public boolean isWellFed() {
-		return (foodLevel <= (hungryLevel + 5));
+		return (foodLevel >= (hungryLevel + 5));
 	}
 
 	@Override
