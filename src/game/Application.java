@@ -64,8 +64,8 @@ public class Application {
 
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(1000);
-		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 20));
-		player.addItemToInventory(new Corpse("protoceratops corpse", 15));
+		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
+		player.addItemToInventory(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 		player.addItemToInventory(new DinosaurTag());
 		world.addPlayer(player, gameMap.at(9, 4));
 		gameMap.at(9, 5).addActor(new Protoceratops());
@@ -75,8 +75,6 @@ public class Application {
 		gameMap.at(20, 14).addActor(new Velociraptor());
 
 		gameMap.at(9, 3).setGround(new Store('S'));
-		gameMap.at(0, 0).setGround(new Store('S'));
-
 
 		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
 		gameMap.at(19, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
