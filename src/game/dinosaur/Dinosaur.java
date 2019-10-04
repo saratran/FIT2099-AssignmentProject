@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.*;
 import game.FoodSkill;
+import game.Skill;
 import game.action.AttackAction;
 import game.action.FeedAction;
 import game.action.PlaceTagAction;
@@ -82,20 +83,26 @@ public abstract class Dinosaur extends Consumer {
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
+		// Would be better if can get player actor from World
 		if (otherActor instanceof Player) {
+			// Add FeedAction for relevant items
 			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item))
 			.forEach((item) -> {
 				actions.add(new FeedAction(item, this));
 			});
-			;
-			if (this.maturity == Maturity.ADULT) {
+			
+			// Add PlaceTagAction for relevant items
+			if (this.maturity == Maturity.ADULT && this.isWellFed() && !hasSkill(Skill.TAGGED)) {
 				for (Item item : otherActor.getInventory()) {
+					// PENDING: may refactor this if more other Items can be placed on Actor
 					if (item instanceof DinosaurTag) {
 						actions.add(new PlaceTagAction(item, this));
 						break;
 					}
 				}
 			}
+			
+			// Player can attack dinosaurs any time
 			actions.add(new AttackAction(this));
 		}
 		return actions;
@@ -157,6 +164,7 @@ public abstract class Dinosaur extends Consumer {
 	 * @param location	the location that the egg will be laid.
 	 */
 	private void layEggAttempt(Location location) {
+		if (maturity == Maturity.ADULT && Math.random() < this.layEggChance) {
 			this.layEgg(location);
 			name = adultName;
 			System.out.println(name + " laid an egg!");
