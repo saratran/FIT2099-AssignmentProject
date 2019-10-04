@@ -1,8 +1,10 @@
 package game.ground;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
@@ -11,7 +13,11 @@ import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.Price;
 import game.action.BuyAction;
+import game.action.ExecuteMultipleActions;
 import game.action.SellAction;
+import game.action.SellTaggedActorsAction;
+import game.actor.Player;
+import game.dinosaur.Dinosaur;
 import game.actor.Trader;
 import game.dinosaur.Maturity;
 import game.dinosaur.Protoceratops;
@@ -54,6 +60,9 @@ public class Store extends Ground {
 			// menu
 			createItemList().stream().filter(item -> item.isSellable())
 					.forEach(item -> actions.add(new SellAction(item)));
+			if (!actor.getTaggedActors().isEmpty()) {
+				actions.add(new SellTaggedActorsAction(actor.getTaggedActors()));
+			}
 		}
 
 		return actions;

@@ -14,7 +14,6 @@ import game.item.FoodItem;
 
 /**
  * A herbivorous dinosaur.
- *
  */
 public class Protoceratops extends Dinosaur {
 
@@ -70,9 +69,17 @@ public class Protoceratops extends Dinosaur {
 		}
 	}
 
+	//TODO: how can I avoid making these an abstract in the super class? I.e. how can I have
+	// the super class create the correct subclass of egg depending on which subclass is 
+	// calling this method.
 	@Override
 	protected void layEgg(Location location) {
 		location.addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
+	}
+
+	@Override
+	public int getSellValue() {
+		return 100;
 	}
 
 }

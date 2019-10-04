@@ -18,6 +18,7 @@ import game.ground.Store;
 import game.ground.Tree;
 import game.ground.Wall;
 import game.item.Corpse;
+import game.item.DinosaurTag;
 import game.item.Egg;
 import game.item.FoodItem;
 
@@ -63,9 +64,10 @@ public class Application {
 
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(1000);
-		
-		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
-		player.addItemToInventory(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
+		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 20));
+		player.addItemToInventory(new Corpse("protoceratops corpse", 15));
+		player.addItemToInventory(new DinosaurTag());
+		player.addItemToInventory(new DinosaurTag());
 		world.addPlayer(player, gameMap.at(9, 4));
 		gameMap.at(9, 5).addActor(new Protoceratops());
 
@@ -96,7 +98,6 @@ public class Application {
 		// Place a pair of protoceratops in the middle of the map
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
 		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
-
 
 		world.run();
 	}

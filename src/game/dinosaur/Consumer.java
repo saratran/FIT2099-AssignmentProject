@@ -143,4 +143,5 @@ public abstract class Consumer extends Actor {
 		hungryLevel = hungry;
 	}
 
+
 }
