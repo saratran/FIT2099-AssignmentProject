@@ -7,6 +7,7 @@ public class Wall extends Ground {
 
 	public Wall() {
 		super('#');
+		addSkill(GroundSkill.CANNOT_GROW_ON);
 	}
 	
 	@Override

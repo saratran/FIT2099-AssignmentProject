@@ -9,6 +9,7 @@ public class Tree extends Vegetation {
 
 	public Tree() {
 		super('+', 0.002);
+		addSkill(GroundSkill.CANNOT_GROW_ON);
 	}
 
 	@Override
@@ -16,7 +17,6 @@ public class Tree extends Vegetation {
 		super.tick(location);
 
 		grow(location, new Tree());
-
 		age++;
 		if (age == 10)
 			displayChar = 't';

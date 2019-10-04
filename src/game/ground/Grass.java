@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.*;
 public class Grass extends Vegetation{
 
 	public Grass() {
-		super('~', 0.0025);
+		super('~', 0.001);
 	}
 
 	/**
@@ -16,7 +16,7 @@ public class Grass extends Vegetation{
 	public void tick(Location location) {
 		super.tick(location);
 
-		grow(location, new Grass());
+		grow(location, new Tree());
 
 	}
 

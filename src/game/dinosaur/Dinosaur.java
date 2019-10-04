@@ -19,6 +19,7 @@ public abstract class Dinosaur extends Consumer {
 	protected String adultName;
 
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
+	protected double lay_egg_chance=0.02;
 	
 	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
 		super(name, displayChar, hitPoints);
@@ -79,6 +80,7 @@ public abstract class Dinosaur extends Consumer {
 			map.locationOf(this).addItem(item);
 		}
 		map.removeActor(this);
+		System.out.println(this + " dies");
 	}
 
 	protected abstract List<Item> itemsDroppedWhenDead(); // Support adding multiple items to ground when dino dies
@@ -96,7 +98,7 @@ public abstract class Dinosaur extends Consumer {
 	}
 
 	private void layEggAttempt(Location location) {
-		if (maturity == Maturity.ADULT && Math.random() < 0.02) {
+		if (maturity == Maturity.ADULT && Math.random() < this.lay_egg_chance) {
 			this.layEgg(location);
 			name = adultName;
 			System.out.println(name + " laid an egg!");

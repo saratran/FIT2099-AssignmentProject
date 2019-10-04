@@ -9,6 +9,7 @@ public class Floor extends Ground {
 
 	public Floor() {
 		super('_');
+		addSkill(GroundSkill.CANNOT_GROW_ON);
 	}
 
 }

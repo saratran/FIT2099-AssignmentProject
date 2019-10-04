@@ -19,7 +19,7 @@ protected final double GROWTH_RATE;
 	public void grow(Location location, Vegetation vegetation) {
 		for(Exit exit : location.getExits()) {
 			Location location1 = exit.getDestination();
-			if(location1.getGround().getClass().equals(Dirt.class)){
+			if(!location1.getGround().hasSkill(GroundSkill.CANNOT_GROW_ON)){
 				if (Math.random() <= this.GROWTH_RATE) {
 					location1.setGround(vegetation);
 				}
