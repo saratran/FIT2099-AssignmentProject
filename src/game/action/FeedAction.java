@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import game.dinosaur.Consumer;
 import game.dinosaur.Dinosaur;
 
 /**
@@ -13,7 +14,7 @@ import game.dinosaur.Dinosaur;
  *
  */
 public class FeedAction extends Action {
-	private Actor target;
+	private Consumer target;
 	private Item food;
 
 	/**
@@ -22,7 +23,7 @@ public class FeedAction extends Action {
 	 * @param item the item to feed
 	 * @param target the actor to be fed to
 	 */
-	public FeedAction(Item item, Actor target) {
+	public FeedAction(Item item, Consumer target) {
 		this.food = item;
 		this.target = target;
 	}
@@ -30,13 +31,10 @@ public class FeedAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		// Actor needs to a Consumer to support food related methods
-		if (actor.asConsumer() != null) {
-			// TODO: alternative --> all food methods in ActorInterface
-			actor.asConsumer().addFoodValue(food.getFoodValue());
-			actor.removeItemFromInventory((Item) food);
-			return actor + " fed " + food.toString();
-		}
-		return "";
+		// TODO: alternative --> all food methods in ActorInterface
+		target.addFoodValue(food.getFoodValue());
+		actor.removeItemFromInventory((Item) food);
+		return actor + " fed " + food.toString() + " to " + target.toString();
 	}
 
 	@Override

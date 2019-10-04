@@ -67,7 +67,7 @@ public abstract class Dinosaur extends Consumer {
 		if (otherActor instanceof Player) {
 			otherActor.getInventory().stream().filter(item -> item.isFeedable() && this.isFood(item))
 			.forEach((item) -> {
-				actions.add(new FeedAction(item, this));
+				actions.add(new FeedAction(item, this.asConsumer()));
 			});
 			;
 		}
