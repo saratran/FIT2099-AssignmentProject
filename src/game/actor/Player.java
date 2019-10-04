@@ -68,8 +68,8 @@ public class Player extends Trader {
 		}
 	}
 
-	public void addTaggedActor(Actor target) {
-		this.taggedActors.add(target);
+	public void addTaggedActor(Actor actor) {
+		this.taggedActors.add(actor);
 	}
 
 	public List<Actor> getTaggedActors() {

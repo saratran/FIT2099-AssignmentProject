@@ -20,7 +20,7 @@ public interface ActorInterface {
 		return 0;
 	}
 	
-	default void addTaggedActor() {
+	default void addTaggedActor(Actor actor) {
 	}
 	
 	default List<Actor> getTaggedActors() {

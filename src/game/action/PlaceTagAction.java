@@ -61,10 +61,10 @@ public class PlaceTagAction extends Action {
 		 * checking for Player class (which is not part of the engine, it's only the
 		 * player because world.addPlayer(actor) in Application
 		 */
-		Player player = (Player) actor;
+		
 		if (!target.hasSkill(Skill.TAGGED)) {
-			player.removeItemFromInventory(tag);
-			player.addTaggedActor(target);
+			actor.removeItemFromInventory(tag);
+			actor.addTaggedActor(target);
 			target.addItemToInventory(tag);
 			target.addSkill(Skill.TAGGED);
 			return actor + " placed tag on " + target.toString();
