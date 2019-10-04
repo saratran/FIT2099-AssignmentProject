@@ -30,7 +30,7 @@ public class Corpse extends PortableDinoItem {
 	@Override
 	public int getFoodValue() {
 		return foodValue;
-	//		TODO: Should we allow species to each their own type of species? i.e. carnivorous velociraptors eating velociraptors?
+	// PENDING: Should we allow species to each their own type of species? i.e. carnivorous velociraptors eating velociraptors?
 	}
 
 

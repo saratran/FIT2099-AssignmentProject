@@ -30,8 +30,6 @@ public class FeedAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		// Actor needs to a Consumer to support food related methods
-		// TODO: alternative --> all food methods in ActorInterface
 		target.addFoodValue(food.getFoodValue());
 		actor.removeItemFromInventory((Item) food);
 		return actor + " fed " + food.toString() + " to " + target.toString();

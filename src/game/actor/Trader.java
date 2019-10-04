@@ -8,12 +8,11 @@ import edu.monash.fit2099.engine.GameMap;
 
 /**
  * A type of Actor that has money and can support trading actions
- * 
- * TODO: similar justification as Consumer abstract class
  * @author saratran
  *
  */
 
+// Note: similar justification as Consumer abstract class
 public abstract class Trader extends Actor {
 	private int money = 0;
 	

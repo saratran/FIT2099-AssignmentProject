@@ -25,17 +25,6 @@ public class Protoceratops extends Dinosaur {
 	 */
 	public Protoceratops(String name, Maturity maturity) {
 		super(name, 'P', 100, maturity);		
-		/*TODO: is this a good way to keep track of edible food?
-		 * - Pros: have fine-grain control of which object is edible
-		 * - Cons: lose ability to set an abstract class as edible (ie like Protoceratops can eat all Vegetation)
-		 * - Alternatives:
-		 * 		+ Let food objects have skills like "Skill.herbivoreFood" or "Skill.carnivoreFood"
-		 * 		+ Database?
-		 * 
-		 * - Current solution: combining both the usage of Skill (for broader control) and lists of edible food (for finer control)
-		 */
-//		foodGrounds.add(new Tree()); 
-//		foodItems.add(new FoodItem(FoodSkill.HERBIVORE, 20));
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		layEggChance=0.06;
 		
@@ -69,9 +58,6 @@ public class Protoceratops extends Dinosaur {
 		}
 	}
 
-	//TODO: how can I avoid making these an abstract in the super class? I.e. how can I have
-	// the super class create the correct subclass of egg depending on which subclass is 
-	// calling this method.
 	@Override
 	protected void layEgg(Location location) {
 		location.addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));

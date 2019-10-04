@@ -33,7 +33,6 @@ public class EatGroundAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 		// Need actor to be a Consumer to have food related methods
 		if (actor.asConsumer() != null) {
-			// TODO: alternative --> all food methods in ActorInterface
 			actor.asConsumer().addFoodValue(target.getFoodValue());
 			location.setGround(target.eatenGround());
 			return actor + " ate " + target.getClass().getSimpleName() + " and gained " + target.getFoodValue()

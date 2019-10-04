@@ -29,9 +29,8 @@ public class EatItemAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		// TODO: note, can't change method signature to Consumer consumer so have to do casting
+		// note: can't change method signature to Consumer consumer so have to do casting
 		if (actor.asConsumer() != null) {
-			// TODO: alternative --> all food methods in ActorInterface
 			actor.asConsumer().addFoodValue(food.getFoodValue());
 			location.removeItem((Item) food);
 			return actor + " ate " + food + " and gained " + food.getFoodValue() + " food points";

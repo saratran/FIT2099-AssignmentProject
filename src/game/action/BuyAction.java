@@ -26,7 +26,6 @@ public class BuyAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		// TODO: asBuyer in ActorInterface?
 		// Needs actor as a Trader to support money related methods
 		if (actor instanceof Trader) {
 			Trader buyer = (Trader) actor;

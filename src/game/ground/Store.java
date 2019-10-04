@@ -53,11 +53,6 @@ public class Store extends Ground {
 		if (actor instanceof Trader) {
 			createItemList().stream().filter(item -> item.isBuyable())
 					.forEach(item -> actions.add(new BuyAction(item)));
-			
-			// TODO: I would like to do the actual checking inside BuyAction and SellAction but
-			// that would be a bit "too late"
-			// Can do nothing and return empty string but that would take up a slot in the
-			// menu
 			createItemList().stream().filter(item -> item.isSellable())
 					.forEach(item -> actions.add(new SellAction(item)));
 			if (!actor.getTaggedActors().isEmpty()) {
