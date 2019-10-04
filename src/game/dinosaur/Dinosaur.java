@@ -223,7 +223,7 @@ public abstract class Dinosaur extends Consumer {
 
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(10, "bites");
+		return new IntrinsicWeapon(30, "bites");
 	}
 
 }

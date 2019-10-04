@@ -49,9 +49,9 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
-			setFoodLevel(40, 100, 20);
+			setFoodLevel(40, 100, 30);
 		} else {
-			setFoodLevel(15, 40, 20);
+			setFoodLevel(15, 40, 30);
 		}
 	}
 	
