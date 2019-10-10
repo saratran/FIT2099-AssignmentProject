@@ -1,6 +1,7 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.dinosaur.DinoSkill;
 
 /**
  * A class that represents grass.
@@ -31,5 +32,10 @@ public class Grass extends Vegetation{
 	@Override
 	public Ground eatenGround() {
 		return new Dirt();
+	}
+	
+	@Override
+	public boolean canActorEnter(Actor actor) {
+		return actor.hasSkill(DinoSkill.LAND);
 	}
 }

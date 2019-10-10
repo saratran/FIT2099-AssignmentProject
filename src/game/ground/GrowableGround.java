@@ -1,5 +1,6 @@
 package game.ground;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,6 +9,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
 public abstract class GrowableGround extends Ground {
+	protected List<Ground> grounds = new ArrayList<Ground>();
 
 	public GrowableGround(char displayChar) {
 		super(displayChar);
@@ -28,9 +30,15 @@ public abstract class GrowableGround extends Ground {
 	protected void growNearbyLocations(Location location, double chance, Ground ground) {
 		for (Exit exit : location.getExits()) {
 			Location nearbyLocation = exit.getDestination();
-			// TODO: currently Tree can grow on and override Water 
-			// probably need to have a better way to control this, like keeping a list of what can grow on / canGrowOn() method
-			if(!nearbyLocation.getGround().hasSkill(GroundSkill.CANNOT_GROW_ON)) {
+			// TODO: currently Tree can grow on and override Water
+			// probably need to have a better way to control this, like keeping a list of
+			// what can grow on / canGrowOn() method
+//			if(!nearbyLocation.getGround().hasSkill(GroundSkill.CANNOT_GROW_ON)) {
+//				growCurrentLocation(nearbyLocation, chance, ground);
+//			}
+			
+			// TODO: maybe flip the skill around; instead of spawner knowing, let the spawnee know?
+			if (this.canGrowOn(nearbyLocation.getGround())) {
 				growCurrentLocation(nearbyLocation, chance, ground);
 			}
 		}
@@ -47,15 +55,15 @@ public abstract class GrowableGround extends Ground {
 //				neighbourCount++;
 //			}
 //		}
-		
-		for(Ground ground : getNeighbourGrounds(location)) {
-			if(ground.getClass().equals(groundClass)) {
+
+		for (Ground ground : getNeighbourGrounds(location)) {
+			if (ground.getClass().equals(groundClass)) {
 				neighbourCount++;
 			}
 		}
 		return neighbourCount;
 	}
-	
+
 	/*
 	 * count neighbour if they have a skill
 	 */
@@ -67,17 +75,26 @@ public abstract class GrowableGround extends Ground {
 //				neighbourCount++;
 //			}
 //		}
-		for(Ground ground : getNeighbourGrounds(location)) {
-			if(ground.hasSkill(skill)) {
+		for (Ground ground : getNeighbourGrounds(location)) {
+			if (ground.hasSkill(skill)) {
 				neighbourCount++;
 			}
 		}
 		return neighbourCount;
 	}
-	
+
 	// TODO: check if correct
-	private List<Ground> getNeighbourGrounds(Location location){
+	private List<Ground> getNeighbourGrounds(Location location) {
 		return location.getExits().stream().map(exit -> exit.getDestination().getGround()).collect(Collectors.toList());
+	}
+
+	private boolean canGrowOn(Ground ground) {
+		for (Ground canGrowOnGround : grounds) {
+			if (ground.getClass().equals(canGrowOnGround.getClass())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

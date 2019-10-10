@@ -1,6 +1,7 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.dinosaur.DinoSkill;
 
 /**
  * A class that represents bare dirt.
@@ -20,5 +21,10 @@ public class Dirt extends GrowableGround {
 	@Override
 	public void tick(Location location) {
 		growCurrentLocation(location, grass_growth_chance, new Grass() );
+	}
+	
+	@Override
+	public boolean canActorEnter(Actor actor) {
+		return actor.hasSkill(DinoSkill.LAND);
 	}
 }

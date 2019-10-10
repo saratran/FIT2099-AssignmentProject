@@ -1,8 +1,10 @@
 package game.ground;
 
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
+import game.dinosaur.DinoSkill;
 /**
  * A class that represents trees.
  *
@@ -20,6 +22,8 @@ public class Tree extends Vegetation {
 		super('+');
 		addSkill(GroundSkill.CANNOT_GROW_ON);
 		addSkill(GroundSkill.LAND);
+		grounds.add(new Dirt());
+		grounds.add(new Grass());
 	}
 
 	@Override
@@ -43,6 +47,11 @@ public class Tree extends Vegetation {
 	@Override
 	public Ground eatenGround() {
 		return new Dirt();
+	}
+	
+	@Override
+	public boolean canActorEnter(Actor actor) {
+		return actor.hasSkill(DinoSkill.LAND);
 	}
 
 }

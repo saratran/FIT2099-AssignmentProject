@@ -28,7 +28,6 @@ public class WanderBehaviour implements Behaviour {
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		ArrayList<Action> actions = new ArrayList<Action>();
-		
 		for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {
