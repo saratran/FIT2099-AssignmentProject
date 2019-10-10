@@ -9,13 +9,15 @@ import edu.monash.fit2099.engine.Location;
  */
 public class Tree extends Vegetation {
 	private int age = 0;
+	private double newTreeChance = 0.005;
+	
 	/**
-	 * Constructor. Ttrees are represented by the char '+' until they age
+	 * Constructor. Trees are represented by the char '+' until they age
 	 * 10 turns at which they are represented by 't' and finally after 20
 	 * turns: 'T'.
 	 */
 	public Tree() {
-		super('+', 0.002);
+		super('+');
 		addSkill(GroundSkill.CANNOT_GROW_ON);
 	}
 
@@ -23,7 +25,8 @@ public class Tree extends Vegetation {
 	public void tick(Location location) {
 		super.tick(location);
 
-		grow(location, new Tree());
+		growNearbyLocations(location, newTreeChance, new Tree());
+		
 		age++;
 		if (age == 10)
 			displayChar = 't';

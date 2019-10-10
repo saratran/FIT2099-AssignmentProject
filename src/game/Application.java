@@ -17,6 +17,7 @@ import game.ground.Grass;
 import game.ground.Store;
 import game.ground.Tree;
 import game.ground.Wall;
+import game.ground.Water;
 import game.item.Corpse;
 import game.item.DinosaurTag;
 import game.item.Egg;
@@ -31,7 +32,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Grass(), new Dirt(), new Wall(), new Floor(), new Tree());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Grass(), new Dirt(), new Wall(), new Floor(), new Tree(), new Water());
 
 		List<String> map = Arrays.asList(
 				"................................................................................",
@@ -51,7 +52,7 @@ public class Application {
 				"............+++.................................................................",
 				".............+++++..............................................................",
 				"...............++........................................+++++..................",
-				"........~....+++....................................++++++++....................",
+				"........,....+++....................................++++++++....................",
 				"............+++.......................................+++.......................",
 				"................................................................................",
 				".........................................................................++.....",
