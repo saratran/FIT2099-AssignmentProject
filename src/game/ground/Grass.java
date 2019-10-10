@@ -13,6 +13,7 @@ public class Grass extends Vegetation{
 	 */
 	public Grass() {
 		super(',');
+		addSkill(GroundSkill.LAND);
 	}
 
 	@Override

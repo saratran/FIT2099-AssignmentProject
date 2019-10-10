@@ -14,6 +14,7 @@ public class Dirt extends GrowableGround {
 	 */
 	public Dirt() {
 		super('.');
+		addSkill(GroundSkill.LAND);
 	}
 	
 	@Override

@@ -28,6 +28,8 @@ public abstract class GrowableGround extends Ground {
 	protected void growNearbyLocations(Location location, double chance, Ground ground) {
 		for (Exit exit : location.getExits()) {
 			Location nearbyLocation = exit.getDestination();
+			// TODO: currently Tree can grow on and override Water 
+			// probably need to have a better way to control this, like keeping a list of what can grow on / canGrowOn() method
 			if(!nearbyLocation.getGround().hasSkill(GroundSkill.CANNOT_GROW_ON)) {
 				growCurrentLocation(nearbyLocation, chance, ground);
 			}

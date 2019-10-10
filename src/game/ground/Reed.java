@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
 public class Reed extends Vegetation {
-
+	
 	public Reed() {
 		super('|');
 	}

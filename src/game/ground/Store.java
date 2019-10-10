@@ -40,6 +40,7 @@ public class Store extends Ground {
 	public Store(char displayChar) {
 		super(displayChar);
 		addSkill(GroundSkill.CANNOT_GROW_ON);
+		addSkill(GroundSkill.LAND);
 	}
 
 	/**

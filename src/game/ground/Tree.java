@@ -19,6 +19,7 @@ public class Tree extends Vegetation {
 	public Tree() {
 		super('+');
 		addSkill(GroundSkill.CANNOT_GROW_ON);
+		addSkill(GroundSkill.LAND);
 	}
 
 	@Override
