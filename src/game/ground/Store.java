@@ -51,8 +51,10 @@ public class Store extends Ground {
 		if (actor instanceof Trader) {
 			createItemList().stream().filter(item -> item.isBuyable())
 					.forEach(item -> actions.add(new BuyAction(item)));
-			createItemList().stream().filter(item -> item.isSellable())
+			
+			actor.getInventory().stream().filter(item -> item.isSellable())
 					.forEach(item -> actions.add(new SellAction(item)));
+			
 			if (!actor.getTaggedActors().isEmpty()) {
 				actions.add(new SellTaggedActorsAction(actor.getTaggedActors()));
 			}
