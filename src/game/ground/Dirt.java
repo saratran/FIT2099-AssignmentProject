@@ -1,35 +1,30 @@
 package game.ground;
 
 import edu.monash.fit2099.engine.*;
+import game.dinosaur.DinoSkill;
 
 /**
  * A class that represents bare dirt.
  * 
  */
-public class Dirt extends Ground {
-
-	private final double Grass_Growth_Chance = 0.0001;
+public class Dirt extends GrowableGround {
+	private double grass_growth_chance = 0.003;
+	
 	/**
 	 * Constructor. All dirt is represented by the char '.'
 	 */
 	public Dirt() {
 		super('.');
+		addSkill(GroundSkill.LAND);
 	}
 	
 	@Override
 	public void tick(Location location) {
-		growGrass(location);
+		growCurrentLocation(location, grass_growth_chance, new Grass() );
 	}
 	
-	/**
-	 * Grows grass at the dirts location if the grass growth chance
-	 * is met.
-	 * 
-	 * @param location the location at which the grass will grow.
-	 */
-	public void growGrass(Location location) {
-		if (Math.random() < Grass_Growth_Chance){
-			location.setGround(new Grass());
-		}
+	@Override
+	public boolean canActorEnter(Actor actor) {
+		return actor.hasSkill(DinoSkill.LAND);
 	}
 }

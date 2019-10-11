@@ -25,7 +25,7 @@ public class Velociraptor extends Dinosaur {
 	public Velociraptor(String name, Maturity maturity) {
 		super(name, 'V', 175, maturity);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
-
+		addSkill(DinoSkill.LAND);
 	}
 
 	public Velociraptor(String name) {
