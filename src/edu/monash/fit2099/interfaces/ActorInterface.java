@@ -30,4 +30,8 @@ public interface ActorInterface {
 	default boolean isDead() {
 		return false;
 	}
+	
+	default int getFoodPriority() {
+		return 1;
+	}
 }

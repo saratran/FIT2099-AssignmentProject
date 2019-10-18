@@ -26,4 +26,7 @@ public interface GroundInterface {
 		return new Dirt();
 	}
 
+	default int getFoodPriority() {
+		return 2;
+	}
 }
