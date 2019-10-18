@@ -195,6 +195,7 @@ public abstract class Dinosaur extends Consumer {
 			this.maturity = Maturity.ADULT;
 			this.displayChar = Character.toUpperCase(displayChar);
 			System.out.println(name + " has grown!");
+			name = adultName;
 		}
 	}
 

@@ -53,5 +53,9 @@ public interface ItemInterface {
 	default boolean isSellable() {
 		return false;
 	}
+	
+	default int getFoodPriority() {
+		return 2;
+	}
 
 }

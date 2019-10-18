@@ -52,7 +52,7 @@ public class Velociraptor extends Dinosaur {
 		if (this.maturity == Maturity.ADULT) {
 			setFoodLevel(40, 100, 30);
 		} else {
-			setFoodLevel(15, 40, 30);
+			setFoodLevel(10, 40, 30);
 		}
 	}
 	
