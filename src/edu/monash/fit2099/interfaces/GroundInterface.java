@@ -1,6 +1,7 @@
 package edu.monash.fit2099.interfaces;
 
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Item;
 import game.ground.Dirt;
 
 /**
@@ -28,5 +29,9 @@ public interface GroundInterface {
 
 	default int getFoodPriority() {
 		return 2;
+	}
+	
+	default boolean canItemEnter(Item item) {
+		return false;
 	}
 }
