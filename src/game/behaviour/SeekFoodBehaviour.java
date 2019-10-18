@@ -29,8 +29,6 @@ import game.dinosaur.Dinosaur;
  *
  */
 public class SeekFoodBehaviour implements Behaviour {
-	private List<Pair<Double, Action>> pairs = new ArrayList<Pair<Double, Action>>();
-
 	/**
 	 * <p>
 	 * Return the appropriate action depends on the situation.
@@ -59,6 +57,7 @@ public class SeekFoodBehaviour implements Behaviour {
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
+		List<Pair<Double, Action>> pairs = new ArrayList<Pair<Double, Action>>();
 		HashMap<String, Location> checkedLocations = new HashMap<String, Location>(); // To store locations that have
 																						// been checked for food
 		List<Location> locationsToGetExits = new ArrayList<Location>(); // To store locations that need to get Exits
@@ -144,6 +143,7 @@ public class SeekFoodBehaviour implements Behaviour {
 						action = new FollowBehaviour(destination.getActor()).getAction(actor, map);
 						foodScore = foodPriority(here, destination, destination.getActor());
 					}
+					pairs.add(new Pair<Double, Action>(foodScore, action));
 				}
 			}
 		}
