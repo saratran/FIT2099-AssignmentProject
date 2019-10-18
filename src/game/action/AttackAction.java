@@ -47,19 +47,17 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		target.hurt(damage);
-		if (!target.isConscious()) {
-//			Item corpse = new PortableDinoItem("dead " + target, '%');
-//			map.locationOf(target).addItem(corpse);
-			
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)		
-				drop.execute(target, map);
-			map.removeActor(target);	
-			
-			result += System.lineSeparator() + target + " is killed.";
-		}
+		// TODO: 'dirty fix', the block below prevent dinosaurs from dropping corpses when they die due to an attack
+//		if (!target.isConscious()) {
+//			Actions dropActions = new Actions();
+//			for (Item item : target.getInventory())
+//				dropActions.add(item.getDropAction());
+//			for (Action drop : dropActions)		
+//				drop.execute(target, map);
+//			map.removeActor(target);	
+//			
+//			result += System.lineSeparator() + target + " is killed.";
+//		}
 
 		return result;
 	}

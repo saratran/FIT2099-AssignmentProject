@@ -57,7 +57,10 @@ public class SeekFoodBehaviour implements Behaviour {
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
-		List<Pair<Double, Action>> pairs = new ArrayList<Pair<Double, Action>>();
+		List<Action> eatActions = new ArrayList<Action>();
+		List<Action> attackActions = new ArrayList<Action>();
+		
+		
 		HashMap<String, Location> checkedLocations = new HashMap<String, Location>(); // To store locations that have
 																						// been checked for food
 		List<Location> locationsToGetExits = new ArrayList<Location>(); // To store locations that need to get Exits
@@ -85,15 +88,13 @@ public class SeekFoodBehaviour implements Behaviour {
 			Double foodScore = 0.0;
 			// If ground is food
 			if (consumer.isFood(destination.getGround())) {
-				action = new EatGroundAction(destination.getGround(), destination);
-				foodScore = foodPriority(here, destination, destination.getGround());
+				eatActions.add(new EatGroundAction(destination.getGround(), destination));
 			}
 
 			// If item is food
 			for (Item item : destination.getItems()) {
 				if (consumer.isFood(item)) {
-					action = new EatItemAction(item, destination);
-					foodScore = foodPriority(here, destination, item);
+					eatActions.add(new EatItemAction(item, destination));
 				}
 			}
 
@@ -102,10 +103,13 @@ public class SeekFoodBehaviour implements Behaviour {
 			// (ie the Player)
 			if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
 					&& consumer.isFood(destination.getActor())) {
-				action = new AttackAction(destination.getActor());
-				foodScore = foodPriority(here, destination, destination.getActor());
+				attackActions.add(new AttackAction(destination.getActor()));
 			}
-			pairs.add(new Pair<Double, Action>(foodScore, action));
+		}
+		if(eatActions.size() > 0) {
+			return eatActions.get(0);
+		} else if (attackActions.size() > 0) {
+			return attackActions.get(0);
 		}
 
 		// Check locations further away
@@ -127,37 +131,23 @@ public class SeekFoodBehaviour implements Behaviour {
 					Action action = null;
 					Double foodScore = 0.0;
 					if (consumer.isFood(destination.getGround())) {
-						action = new ToLocationBehaviour(destination).getAction(actor, map);
-						foodScore = foodPriority(here, destination, destination.getGround());
+						return new ToLocationBehaviour(destination).getAction(actor, map);
 					}
 
 					for (Item item : destination.getItems()) {
 						if (consumer.isFood(item)) {
-							action = new ToLocationBehaviour(destination).getAction(actor, map);
-							foodScore = foodPriority(here, destination, item);
+							return new ToLocationBehaviour(destination).getAction(actor, map);
 						}
 					}
 
 					if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
 							&& consumer.isFood(destination.getActor())) {
-						action = new FollowBehaviour(destination.getActor()).getAction(actor, map);
-						foodScore = foodPriority(here, destination, destination.getActor());
+						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
 					}
-					pairs.add(new Pair<Double, Action>(foodScore, action));
 				}
 			}
 		}
-
-		Action bestAction = null;
-		Double bestScore = 0.0;
-		for (Pair<Double, Action> pair : pairs) {
-			if (pair.getL() > bestScore) {
-				bestAction = pair.getR();
-			}
-		}
-
-		// null when there is no available food
-		return bestAction;
+		return null;
 	}
 
 	private String locationToKey(Location location) {
@@ -177,11 +167,11 @@ public class SeekFoodBehaviour implements Behaviour {
 	}
 
 	private double foodPriority(Location here, Location there, Ground ground) {
-		return 1 / distance(here, there) + ground.getFoodPriority();
+		return 1 / distance(here, there) + ground.getFoodPriority()*3;
 	}
 
 	private double foodPriority(Location here, Location there, Item item) {
-		return 1 / distance(here, there) + item.getFoodPriority();
+		return 1 / distance(here, there) + item.getFoodPriority()*3;
 	}
 
 	private double foodPriority(Location here, Location there, Actor actor) {

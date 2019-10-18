@@ -71,9 +71,9 @@ public class Application {
 		player.addItemToInventory(new DinosaurTag());
 		world.addPlayer(player, gameMap.at(9, 4));
 //		gameMap.at(9, 5).addActor(new Protoceratops());
-//
+
 //		gameMap.at(8, 9).addActor(new Protoceratops());
-//		gameMap.at(8, 14).addActor(new Velociraptor());
+		gameMap.at(8, 14).addActor(new Velociraptor());
 		gameMap.at(20, 14).addActor(new Velociraptor(Maturity.BABY));
 
 		gameMap.at(9, 3).setGround(new Store('S'));
@@ -81,7 +81,7 @@ public class Application {
 //		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
 
 		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
-//		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
+		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
