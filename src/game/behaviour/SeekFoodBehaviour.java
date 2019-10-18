@@ -100,7 +100,7 @@ public class SeekFoodBehaviour implements Behaviour {
 			// If actor is food
 			// FoodSkill.NOT_FOOD is used to prevent attack on Actor that carries food items
 			// (ie the Player)
-			// TODO: this means that actors of the same class won't attack each other
+			// TODO: this means that actors of the same class won't attack each other --> Not working ???
 			if (destination.containsAnActor()
 					&& !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD)
 							&& consumer.getClass() != destination.getActor().getClass())

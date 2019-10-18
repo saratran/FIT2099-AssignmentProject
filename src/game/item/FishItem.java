@@ -13,6 +13,7 @@ import game.dinosaur.DinoSkill;
 
 public class FishItem extends Item {
 	private Random random = new Random();
+	private int age = 0;
 
 	public FishItem() {
 		super("fish", 'f', false);
@@ -28,6 +29,12 @@ public class FishItem extends Item {
 	@Override
 	public void tick(Location currentLocation) {
 		super.tick(currentLocation);
+		age++;
+		
+		if(age > 20) {
+			currentLocation.removeItem(this);
+			return;
+		}
 		List<Location> locations = new ArrayList<Location>();
 		// TODO: check nearby location canEnter() and then move
 		for(Exit exit : currentLocation.getExits()) {
@@ -38,7 +45,6 @@ public class FishItem extends Item {
 		}
 		if (!locations.isEmpty()) {
 			Location destination = locations.get(random.nextInt(locations.size()));
-			currentLocation.removeItem(this);
 			destination.addItem(this);
 		}
 	}
