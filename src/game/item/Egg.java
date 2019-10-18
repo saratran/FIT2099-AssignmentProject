@@ -16,7 +16,6 @@ public class Egg extends PortableDinoItem {
 	private int sellValue = 0;
 	private Dinosaur dinosaur;
 
-	
 	public Egg(String name, char displayChar, Dinosaur dinosaur, int buyValue, int sellValue) {
 		super(name, displayChar);
 		assert dinosaur.getMaturity() == Maturity.BABY;
@@ -25,24 +24,26 @@ public class Egg extends PortableDinoItem {
 		this.sellValue = sellValue;
 		addSkill(FoodSkill.CARNIVORE);
 	}
-	
-	public Egg(Dinosaur dinosaur, int buyValue, int sellValue) {
-		this(dinosaur.toString()+ " egg", 'e', dinosaur, buyValue, sellValue);
-	}
 
+	public Egg(Dinosaur dinosaur, int buyValue, int sellValue) {
+		this(dinosaur.toString() + " egg", 'e', dinosaur, buyValue, sellValue);
+	}
 
 	@Override
 	public void tick(Location currentLocation) {
 		age++;
 		// Hatches after certain age and only if there is no Actor standing on top of it
-		// TODO: have to check if can hatch at current or nearby location --> can the actor enter the ground		
-		for(Exit exit: currentLocation.getExits()) {
-			Location destination = exit.getDestination();
-			if (age >= hatch_age && !destination.containsAnActor() && destination.getGround().canActorEnter(hatchInto())) {
-				destination.addActor(this.hatchInto());
-				destination.removeItem(this);
-				System.out.println(this.toString() + " hatches");
-				return;
+		// TODO: have to check if can hatch at current or nearby location --> can the
+		// actor enter the ground
+		if (age >= hatch_age) {
+			for (Exit exit : currentLocation.getExits()) {
+				Location destination = exit.getDestination();
+				if (!destination.containsAnActor() && destination.getGround().canActorEnter(hatchInto())) {
+					destination.addActor(this.hatchInto());
+					currentLocation.removeItem(this);
+					System.out.println(this.toString() + " hatches");
+					return;
+				}
 			}
 		}
 	}
@@ -76,5 +77,4 @@ public class Egg extends PortableDinoItem {
 		return true;
 	}
 
-	
 }

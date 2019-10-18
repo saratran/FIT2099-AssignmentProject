@@ -2,6 +2,7 @@ package game.ground;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.dinosaur.DinoSkill;
 
@@ -26,6 +27,9 @@ public class Water extends GrowableGround {
 		}
 	}
 
-
+	@Override
+	public boolean canItemEnter(Item item) {
+		return item.hasSkill(DinoSkill.MARINE);
+	}
 	
 }
