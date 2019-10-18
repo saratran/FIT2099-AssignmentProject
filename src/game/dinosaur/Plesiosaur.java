@@ -1,0 +1,60 @@
+package game.dinosaur;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
+import game.FoodSkill;
+import game.Price;
+import game.item.Corpse;
+import game.item.Egg;
+
+public class Plesiosaur extends Dinosaur {
+	// TODO: change sell, buy, hp, food level
+		
+	public Plesiosaur(String name, Maturity maturity) {
+		super(name, 'L', 175, maturity);		
+		edibleFoodSkills.add(FoodSkill.CARNIVORE);
+		addSkill(DinoSkill.MARINE);
+	}
+
+	public Plesiosaur(String name) {
+		this(name, Maturity.ADULT);	
+	}
+
+	public Plesiosaur(Maturity maturity) {
+		this("Plesiosaur", maturity);
+	}
+
+	public Plesiosaur() {
+		this("Plesiosaur");
+	}
+	
+	@Override
+	protected List<Item> itemsDroppedWhenDead() {
+		List<Item> items = new ArrayList<Item>();
+		items.add(new Corpse("Plesiosaur corpse", Price.VelociraptorCorpse.getSellValue()));
+		return items;
+	}
+	
+	@Override
+	protected void initFoodLevel() {
+		if (this.maturity == Maturity.ADULT) {
+			setFoodLevel(40, 100, 30);
+		} else {
+			setFoodLevel(10, 40, 30);
+		}
+	}
+	
+	@Override
+	protected void layEgg(Location location) {
+		location.addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue()));
+	}
+	
+	@Override
+	public int getSellValue() {
+		return 400;
+	}
+
+}

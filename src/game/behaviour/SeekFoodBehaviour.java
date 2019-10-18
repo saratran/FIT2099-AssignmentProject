@@ -59,8 +59,7 @@ public class SeekFoodBehaviour implements Behaviour {
 	public Action getAction(Actor actor, GameMap map) {
 		List<Action> eatActions = new ArrayList<Action>();
 		List<Action> attackActions = new ArrayList<Action>();
-		
-		
+
 		HashMap<String, Location> checkedLocations = new HashMap<String, Location>(); // To store locations that have
 																						// been checked for food
 		List<Location> locationsToGetExits = new ArrayList<Location>(); // To store locations that need to get Exits
@@ -101,12 +100,15 @@ public class SeekFoodBehaviour implements Behaviour {
 			// If actor is food
 			// FoodSkill.NOT_FOOD is used to prevent attack on Actor that carries food items
 			// (ie the Player)
-			if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
+			// TODO: this means that actors of the same class won't attack each other
+			if (destination.containsAnActor()
+					&& !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD)
+							&& consumer.getClass() != destination.getActor().getClass())
 					&& consumer.isFood(destination.getActor())) {
 				attackActions.add(new AttackAction(destination.getActor()));
 			}
 		}
-		if(eatActions.size() > 0) {
+		if (eatActions.size() > 0) {
 			return eatActions.get(0);
 		} else if (attackActions.size() > 0) {
 			return attackActions.get(0);
@@ -140,8 +142,10 @@ public class SeekFoodBehaviour implements Behaviour {
 						}
 					}
 
+					// TODO: this means that actors of the same class won't attack each other
 					if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
-							&& consumer.isFood(destination.getActor())) {
+							&& consumer.isFood(destination.getActor())
+							&& consumer.getClass() != destination.getActor().getClass()) {
 						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
 					}
 				}
@@ -167,11 +171,11 @@ public class SeekFoodBehaviour implements Behaviour {
 	}
 
 	private double foodPriority(Location here, Location there, Ground ground) {
-		return 1 / distance(here, there) + ground.getFoodPriority()*3;
+		return 1 / distance(here, there) + ground.getFoodPriority() * 3;
 	}
 
 	private double foodPriority(Location here, Location there, Item item) {
-		return 1 / distance(here, there) + item.getFoodPriority()*3;
+		return 1 / distance(here, there) + item.getFoodPriority() * 3;
 	}
 
 	private double foodPriority(Location here, Location there, Actor actor) {
