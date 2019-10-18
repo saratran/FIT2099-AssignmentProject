@@ -102,8 +102,8 @@ public class SeekFoodBehaviour implements Behaviour {
 			// (ie the Player)
 			// TODO: this means that actors of the same class won't attack each other --> Not working ???
 			if (destination.containsAnActor()
-					&& !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD)
-							&& consumer.getClass() != destination.getActor().getClass())
+					&& !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
+							&& consumer.getClass() != destination.getActor().getClass()
 					&& consumer.isFood(destination.getActor())) {
 				attackActions.add(new AttackAction(destination.getActor()));
 			}
