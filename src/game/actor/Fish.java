@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import game.FoodSkill;
 import game.behaviour.Behaviour;
 import game.behaviour.WanderBehaviour;
 import game.dinosaur.DinoSkill;
@@ -21,6 +22,7 @@ public class Fish extends Actor {
 	public Fish() {
 		super("fish", 'f', 1);
 		addSkill(DinoSkill.MARINE);
+		addSkill(FoodSkill.CARNIVORE);
 		behaviours.add(new WanderBehaviour()); //TODO: fish wandering is going to be printed
 	}
 

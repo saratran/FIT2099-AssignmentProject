@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.actor.Player;
 import game.dinosaur.Maturity;
+import game.dinosaur.Plesiosaur;
 import game.dinosaur.Protoceratops;
 import game.dinosaur.Velociraptor;
 import game.ground.Dirt;
@@ -51,12 +52,12 @@ public class Application {
 				".....................................+++........................................",
 				"................................................................................",
 				"............+++.................................................................",
-				".............+++++..............................................................",
-				"...............++........................................+++++..................",
-				"........,....+++....................................++++++++....................",
-				"............+++.......................................+++.......................",
-				"................................................................................",
-				".........................................................................++.....",
+				".............+++++............~~~~~~~~~~~~~.....................................",
+				"...............++.............~~~~~~~~~~~~~..............+++++..................",
+				"........,....+++..............~~~~~~~~~~~~~.........++++++++....................",
+				"............+++...............~~~~~~~~~~~~~...........+++.......................",
+				"..............................~~~~~~~~~~~~~.....................................",
+				"..............................~~~~~~~~~~~~~..............................++.....",
 				"........................................................................++.++...",
 				".........................................................................++++...",
 				"..........................................................................++....",
@@ -82,6 +83,7 @@ public class Application {
 
 		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
+		gameMap.at(29, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));                          
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));

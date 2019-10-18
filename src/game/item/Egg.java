@@ -1,5 +1,9 @@
 package game.item;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.dinosaur.Dinosaur;
@@ -31,10 +35,15 @@ public class Egg extends PortableDinoItem {
 	public void tick(Location currentLocation) {
 		age++;
 		// Hatches after certain age and only if there is no Actor standing on top of it
-		if (age >= hatch_age && !currentLocation.containsAnActor()) {
-			currentLocation.addActor(this.hatchInto());
-			currentLocation.removeItem(this);
-			System.out.println(this.toString() + " hatches");
+		// TODO: have to check if can hatch at current or nearby location --> can the actor enter the ground		
+		for(Exit exit: currentLocation.getExits()) {
+			Location destination = exit.getDestination();
+			if (age >= hatch_age && !destination.containsAnActor() && destination.getGround().canActorEnter(hatchInto())) {
+				destination.addActor(this.hatchInto());
+				destination.removeItem(this);
+				System.out.println(this.toString() + " hatches");
+				return;
+			}
 		}
 	}
 
