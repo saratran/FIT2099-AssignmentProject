@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import game.FoodSkill;
 import game.Skill;
+import game.dinosaur.DinoSkill;
 import game.dinosaur.Dinosaur;
 
 /**
@@ -31,6 +32,7 @@ public class Player extends Trader {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		addSkill(FoodSkill.NOT_FOOD);
+		addSkill(DinoSkill.LAND);
 	}
 
 	@Override
