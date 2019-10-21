@@ -5,9 +5,13 @@ package game;
  */
 public enum Price {
 	ProtoceratopsEgg(50, 10),
-	ProtoceratopsCorpse(0, 15),
-	VelociraptorEgg(1000, 100),
+	ProtoceratopsCorpse(0, 5),
+	VelociraptorEgg(500, 100),
 	VelociraptorCorpse(0, 50),
+	PlesiosaurEgg(2000, 500),
+	PlesiosaurCorpse(0, 200),
+	TyrannosaurusEgg(20000,2500),
+	TyrannosaurusCorpse(0, 2000),
 	HerbivoreFoodItem(20,0),
 	CarnivoreFoodItem(100,0);
 	
