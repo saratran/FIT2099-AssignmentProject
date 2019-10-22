@@ -30,7 +30,7 @@ public class Player extends Trader {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		addSkill(FoodSkill.NOT_FOOD);
+//		addSkill(FoodSkill.NOT_FOOD);
 		addSkill(DinoSkill.LAND);
 	}
 
@@ -77,5 +77,7 @@ public class Player extends Trader {
 	public List<Actor> getTaggedActors() {
 		return this.taggedActors;
 	}
+	
+	
 	
 }

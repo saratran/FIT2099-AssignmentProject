@@ -48,16 +48,16 @@ public class AttackAction extends Action {
 
 		target.hurt(damage);
 		// TODO: 'dirty fix', the block below prevent dinosaurs from dropping corpses when they die due to an attack
-//		if (!target.isConscious()) {
+		if (!target.isConscious()) {
 //			Actions dropActions = new Actions();
 //			for (Item item : target.getInventory())
 //				dropActions.add(item.getDropAction());
 //			for (Action drop : dropActions)		
 //				drop.execute(target, map);
-//			map.removeActor(target);	
-//			
-//			result += System.lineSeparator() + target + " is killed.";
-//		}
+//			map.removeActor(target);
+			target.die(map);
+			result += System.lineSeparator() + target + " is killed.";
+		}
 
 		return result;
 	}
