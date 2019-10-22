@@ -37,9 +37,13 @@ public class Player extends Trader {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
+		if(!isConscious()) {
+			return new ExitGameAction("Player is dead");
+		}
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		actions.add(new SleepAction());
+		actions.add(new ExitGameAction("Game exited"));
 		return menu.showMenu(this, actions, display);
 	}
 	
@@ -77,6 +81,12 @@ public class Player extends Trader {
 	public List<Actor> getTaggedActors() {
 		return this.taggedActors;
 	}
+
+//	@Override
+//	public boolean isConscious() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 	
 	
 	
