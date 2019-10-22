@@ -19,7 +19,6 @@ import game.dinosaur.Dinosaur;
  * 
  */
 public class Player extends Trader {
-	private int money = 0;
 	private Menu menu = new Menu();
 	private List<Actor> taggedActors = new ArrayList<Actor>();
 	/**

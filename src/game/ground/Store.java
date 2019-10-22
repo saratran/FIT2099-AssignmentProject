@@ -77,6 +77,9 @@ public class Store extends Ground {
 				Price.VelociraptorEgg.getSellValue()));
 		items.add(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
 		items.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.getBuyValue()));
+	
+		// TODO: set correct value, may consider combining FoodSkill and DinoSkill
+		items.add(new FoodItem(FoodSkill.MARINE, Price.CarnivoreFoodItem.getBuyValue()));
 		items.add(new DinosaurTag());
 
 		return items;

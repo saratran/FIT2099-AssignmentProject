@@ -16,6 +16,7 @@ public class Plesiosaur extends Dinosaur {
 	public Plesiosaur(String name, Maturity maturity) {
 		super(name, 'L', 175, maturity);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
+		edibleFoodSkills.add(FoodSkill.MARINE);
 		addSkill(DinoSkill.MARINE);
 	}
 
