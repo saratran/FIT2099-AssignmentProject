@@ -20,6 +20,7 @@ import game.ground.Store;
 import game.ground.Tree;
 import game.ground.Wall;
 import game.ground.Water;
+import game.item.Boat;
 import game.item.Corpse;
 import game.item.DinosaurTag;
 import game.item.Egg;
@@ -70,6 +71,7 @@ public class Application {
 		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
 		player.addItemToInventory(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 		player.addItemToInventory(new DinosaurTag());
+		player.addItemToInventory(new Boat());
 		world.addPlayer(player, gameMap.at(9, 4));
 		gameMap.at(9, 5).addActor(new Protoceratops());
 
