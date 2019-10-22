@@ -8,7 +8,7 @@ import game.dinosaur.DinoSkill;
  * 
  */
 public class Dirt extends GrowableGround {
-	private double grass_growth_chance = 0.003;
+	private double grass_growth_chance = 0.002;
 	
 	/**
 	 * Constructor. All dirt is represented by the char '.'

@@ -11,7 +11,7 @@ import game.dinosaur.DinoSkill;
  */
 public class Tree extends Vegetation {
 	private int age = 0;
-	private double newTreeChance = 0.005;
+	private double newTreeChance = 0.002;
 	
 	/**
 	 * Constructor. Trees are represented by the char '+' until they age
