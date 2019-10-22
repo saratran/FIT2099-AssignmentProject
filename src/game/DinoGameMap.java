@@ -20,6 +20,7 @@ public class DinoGameMap extends GameMap {
 		super(groundFactory, lines);
 	}
 
+	// TODO: other directions, also need to handle case when map sizes are different
 	public void addAdjacentMap(GameMap map, Direction direction) {
 		adjacentMaps.put(direction, map);
 		if(direction == Direction.NORTH) {
