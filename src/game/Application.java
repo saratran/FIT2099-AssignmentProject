@@ -68,8 +68,8 @@ public class Application {
 
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(1000);
-		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.getBuyValue()));
-		player.addItemToInventory(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
+		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.buyValue()));
+		player.addItemToInventory(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
 		player.addItemToInventory(new DinosaurTag());
 		player.addItemToInventory(new Boat());
 		world.addPlayer(player, gameMap.at(9, 4));
@@ -83,9 +83,9 @@ public class Application {
 
 //		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
 
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
-		gameMap.at(29, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));                          
+		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
+		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
+		gameMap.at(29, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
