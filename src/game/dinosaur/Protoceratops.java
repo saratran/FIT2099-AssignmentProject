@@ -47,7 +47,7 @@ public class Protoceratops extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
+		items.add(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
 		return items;
 	}
 
@@ -62,7 +62,7 @@ public class Protoceratops extends Dinosaur {
 
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
+		location.addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));
 	}
 
 	@Override

@@ -7,5 +7,6 @@ package game;
 public enum FoodSkill {
 	HERBIVORE, 
 	CARNIVORE, 
+	MARINE,
 	NOT_FOOD //Override other FoodSkill
 }

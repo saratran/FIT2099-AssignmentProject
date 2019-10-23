@@ -46,12 +46,12 @@ public class SellTaggedActorsAction extends Action {
 			List<Actor> soldActors = new ArrayList<Actor>();
 			while (iterator.hasNext()) {
 				Actor target = iterator.next();
-				if (!target.isDead() && map.contains(target)) {
+				if (target.isConscious() && map.contains(target)) {
 				seller.addMoney(target.getSellValue());
 				map.removeActor(target);
 				totalEarnings += target.getSellValue();
 				soldActors.add(target);
-				} else if (target.isDead()) {
+				} else if (!target.isConscious()) {
 					actor.getTaggedActors().remove(target);
 				}
 			}

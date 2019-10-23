@@ -29,7 +29,7 @@ public enum Price {
 	 *
 	 * @return The cost of purchasing the item
 	 */
-	public int getBuyValue() {
+	public int buyValue() {
 		return buyValue;
 	}
 
@@ -38,7 +38,7 @@ public enum Price {
 	 * 
 	 * @return The amount of money received when selling the item
 	 */
-	public int getSellValue() {
+	public int sellValue() {
 		return sellValue;
 	}
 	

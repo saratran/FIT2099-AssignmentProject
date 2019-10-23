@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import game.FoodSkill;
 import game.Skill;
+import game.dinosaur.DinoSkill;
 import game.dinosaur.Dinosaur;
 
 /**
@@ -18,7 +19,6 @@ import game.dinosaur.Dinosaur;
  * 
  */
 public class Player extends Trader {
-	private int money = 0;
 	private Menu menu = new Menu();
 	private List<Actor> taggedActors = new ArrayList<Actor>();
 	/**
@@ -30,15 +30,20 @@ public class Player extends Trader {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-		addSkill(FoodSkill.NOT_FOOD);
+//		addSkill(FoodSkill.NOT_FOOD);
+		addSkill(DinoSkill.LAND);
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
+		if(!isConscious()) {
+			return new ExitGameAction("Player is dead");
+		}
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		actions.add(new SleepAction());
+		actions.add(new ExitGameAction("Game exited"));
 		return menu.showMenu(this, actions, display);
 	}
 	
@@ -76,5 +81,13 @@ public class Player extends Trader {
 	public List<Actor> getTaggedActors() {
 		return this.taggedActors;
 	}
+
+//	@Override
+//	public boolean isConscious() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+	
+	
 	
 }
