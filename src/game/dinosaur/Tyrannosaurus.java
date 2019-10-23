@@ -35,7 +35,7 @@ public class Tyrannosaurus extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("tyrannosaurus corpse", Price.TyrannosaurusCorpse.getSellValue()));
+		items.add(new Corpse("tyrannosaurus corpse", Price.TyrannosaurusCorpse.sellValue()));
 		return items;
 	}
 
@@ -52,7 +52,7 @@ public class Tyrannosaurus extends Dinosaur {
 	protected void layEgg(Location location) {
 		Tyrannosaurus baby = new Tyrannosaurus(Maturity.BABY);
 		baby.addSkill(DinoSkill.CAPTIVE_BRED);
-		location.addItem(new Egg(baby, Price.TyrannosaurusEgg.getBuyValue(), Price.TyrannosaurusEgg.getSellValue()));
+		location.addItem(new Egg(baby, Price.TyrannosaurusEgg.buyValue(), Price.TyrannosaurusEgg.sellValue()));
 	}
 
 	
