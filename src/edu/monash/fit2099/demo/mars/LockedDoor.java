@@ -2,6 +2,7 @@ package edu.monash.fit2099.demo.mars;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
@@ -18,7 +19,7 @@ public class LockedDoor extends Ground {
 	}
 	
 	@Override
-	public Actions allowableActions(Actor actor, Location location, String direction){
+	public Actions allowableActions(Actor actor, Location location, String direction, Display display){
 		return new Actions(new WindowSmashAction(direction, location));
 	}
 	

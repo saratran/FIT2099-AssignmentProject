@@ -29,9 +29,10 @@ public abstract class Ground implements GroundInterface, Skilled, Printable {
 	 * @param actor the Actor acting
 	 * @param location the current Location
 	 * @param direction the direction of the Ground from the Actor
+	 * @param display TODO
 	 * @return a new, empty collection of Actions
 	 */
-	public Actions allowableActions(Actor actor, Location location, String direction){
+	public Actions allowableActions(Actor actor, Location location, String direction, Display display){
 		return new Actions();
 	}
 

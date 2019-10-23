@@ -7,15 +7,18 @@ import java.util.List;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.Menu;
 import game.FoodSkill;
 import game.Price;
 import game.action.BuyAction;
 import game.action.ExecuteMultipleActions;
 import game.action.SellAction;
 import game.action.SellTaggedActorsAction;
+import game.actor.MenuStore;
 import game.actor.Player;
 import game.dinosaur.Dinosaur;
 import game.actor.Trader;
@@ -32,6 +35,8 @@ import game.item.FoodItem;
  *
  */
 public class Store extends Ground {
+	private Menu menu = new Menu();
+
 
 	/**
 	 * Constructor
@@ -48,7 +53,7 @@ public class Store extends Ground {
 	 * return list of BuyAction and SellAction for different items
 	 */
 	@Override
-	public Actions allowableActions(Actor actor, Location location, String direction) {
+	public Actions allowableActions(Actor actor, Location location, String direction, Display display) {
 		Actions actions = new Actions();
 		if (actor instanceof Trader) {
 			createItemList().stream().filter(item -> item.isBuyable())
@@ -61,8 +66,9 @@ public class Store extends Ground {
 				actions.add(new SellTaggedActorsAction(actor.getTaggedActors()));
 			}
 		}
-
-		return actions;
+		Actions returnActions = new Actions();
+		returnActions.add(new MenuStore(menu, display, actions));
+		return returnActions;
 	}
 
 	/**

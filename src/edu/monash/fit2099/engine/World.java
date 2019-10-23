@@ -122,7 +122,7 @@ public class World {
 			if (actorLocations.isAnActorAt(destination)) {
 				actions.add(actorLocations.getActorAt(destination).getAllowableActions(actor, exit.getName(), map));
 			} else {
-				actions.add(destination.getGround().allowableActions(actor, destination, exit.getName()));
+				actions.add(destination.getGround().allowableActions(actor, destination, exit.getName(), display));
 			}
 			actions.add(destination.getMoveAction(actor, exit.getName(), exit.getHotKey()));
 		}
