@@ -31,9 +31,24 @@ public class DinoGameMap extends GameMap {
 		}
 		if(direction == Direction.SOUTH) {
 			for(int x=0; x<=getXRange().max(); x++) {
-				Location destination = map.at(x, 0);
-				int y = getYRange().max();
-				this.at(x,y).addExit(new Exit("South", destination, "2"));
+				Location destination;
+				if (map.getXRange().contains(x)) {
+					destination = map.at(x, 0);
+					int y = getYRange().max();
+					this.at(x,y).addExit(new Exit("South", destination, "2"));
+				}
+				if (map.getXRange().max() < this.getXRange().max()) {
+					if (x < map.getXRange().min()){
+						destination = map.at(map.getXRange().min(), 0);
+					} else if (x > map.getXRange().max()) {
+						destination = map.at(map.getXRange().max(), 0);
+					} else {
+						destination = map.at(x, 0);
+					}
+					int y = getYRange().max();
+					this.at(x,y).addExit(new Exit("South", destination, "2"));
+				}
+	
 			}
 		}
 	}
