@@ -81,7 +81,6 @@ public class Application {
 		gameMap.at(8, 14).addActor(new Velociraptor());
 		gameMap.at(8, 15).addActor(new Protoceratops("Protoceratops"));
 		Tyrannosaurus t = new Tyrannosaurus();
-		t.addSkill(DinoSkill.CAPTIVE_BRED);
 		gameMap.at(8,16).addActor(t);
 //		gameMap.at(20, 14).addActor(new Velociraptor(Maturity.BABY));
 

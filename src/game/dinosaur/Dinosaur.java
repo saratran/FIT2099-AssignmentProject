@@ -50,7 +50,7 @@ public abstract class Dinosaur extends Consumer {
 		this.maturity = maturity;
 		initFoodLevel();
 		behaviours.add(new SeekFoodBehaviour());
-		behaviours.add(new WanderBehaviour());
+		behaviours.add(new WanderBehaviour(2));
 	}
 
 	@Override
