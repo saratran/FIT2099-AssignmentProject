@@ -30,7 +30,7 @@ public class Fish extends Actor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		age++;
-		if(age>=20) {
+		if(age>=10) {
 			map.removeActor(this);
 		}else {
 			for (Behaviour behaviour : behaviours) {

@@ -189,14 +189,17 @@ public abstract class Dinosaur extends Consumer {
 	/**
 	 * Changes the maturity of the dinosaur to adult if and only if
 	 * the maturity of the dinosaur was baby.
+	 * @return TODO
 	 */
-	protected void growOlder() {
+	protected boolean growOlder() {
 		if (maturity == Maturity.BABY) {
 			this.maturity = Maturity.ADULT;
 			this.displayChar = Character.toUpperCase(displayChar);
 			System.out.println(name + " has grown!");
 			name = adultName;
+			return true;
 		}
+		return false;
 	}
 
 	/**
