@@ -12,6 +12,7 @@ import game.dinosaur.DinoSkill;
 import game.dinosaur.Maturity;
 import game.dinosaur.Plesiosaur;
 import game.dinosaur.Protoceratops;
+import game.dinosaur.Pteranodon;
 import game.dinosaur.Tyrannosaurus;
 import game.dinosaur.Velociraptor;
 import game.ground.Dirt;
@@ -78,10 +79,11 @@ public class Application {
 //		gameMap.at(9, 5).addActor(new Protoceratops());
 
 //		gameMap.at(8, 9).addActor(new Protoceratops());
-		gameMap.at(8, 14).addActor(new Velociraptor());
-		gameMap.at(8, 15).addActor(new Protoceratops("Protoceratops"));
-		Tyrannosaurus t = new Tyrannosaurus();
-		gameMap.at(8,16).addActor(t);
+//		gameMap.at(8, 14).addActor(new Velociraptor());
+//		gameMap.at(8, 15).addActor(new Protoceratops("Protoceratops"));
+//		Tyrannosaurus t = new Tyrannosaurus();
+//		gameMap.at(8,16).addActor(t);
+		gameMap.at(14,12).addActor(new Pteranodon());
 //		gameMap.at(20, 14).addActor(new Velociraptor(Maturity.BABY));
 
 		gameMap.at(9, 3).setGround(new Store('S'));

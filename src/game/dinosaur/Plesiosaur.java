@@ -14,7 +14,7 @@ public class Plesiosaur extends Dinosaur {
 	// TODO: change sell, buy, hp, food level
 		
 	public Plesiosaur(String name, Maturity maturity) {
-		super(name, 'L', 175, maturity);		
+		super(name, 'L', 175, maturity, 1);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 		edibleFoodSkills.add(FoodSkill.MARINE);
 		addSkill(DinoSkill.MARINE);

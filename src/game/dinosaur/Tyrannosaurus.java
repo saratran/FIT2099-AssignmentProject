@@ -18,7 +18,7 @@ import game.item.Egg;
 public class Tyrannosaurus extends Dinosaur {
 
 	public Tyrannosaurus(String name, Maturity maturity) {
-		super(name, 'T', 100, maturity);		
+		super(name, 'T', 100, maturity, 1);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 		layEggChance=0.02;
 		addSkill(DinoSkill.LAND);

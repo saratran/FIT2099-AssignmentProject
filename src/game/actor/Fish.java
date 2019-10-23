@@ -23,7 +23,7 @@ public class Fish extends Actor {
 		super("fish", 'f', 1);
 		addSkill(DinoSkill.MARINE);
 		addSkill(FoodSkill.CARNIVORE);
-		behaviours.add(new WanderBehaviour(1)); //TODO: fish wandering is going to be printed
+		behaviours.add(new WanderBehaviour()); //TODO: fish wandering is going to be printed
 	}
 
 	

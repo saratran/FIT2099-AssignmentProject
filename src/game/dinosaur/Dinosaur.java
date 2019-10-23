@@ -36,8 +36,9 @@ public abstract class Dinosaur extends Consumer {
 	 * @param displayChar	the display character seen on the map.
 	 * @param hitPoints	the starting hitpoints of the Dinosaur.
 	 * @param maturity	the maturity of the Dinosaur: adult or baby.
+	 * @param speed TODO
 	 */
-	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
+	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity, int speed) {
 		super(name, displayChar, hitPoints);
 		adultName = name;
 		if (maturity == Maturity.BABY) {
@@ -50,7 +51,7 @@ public abstract class Dinosaur extends Consumer {
 		this.maturity = maturity;
 		initFoodLevel();
 		behaviours.add(new SeekFoodBehaviour());
-		behaviours.add(new WanderBehaviour(2));
+		behaviours.add(new WanderBehaviour(speed));
 	}
 
 	@Override
