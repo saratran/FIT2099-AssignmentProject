@@ -29,6 +29,13 @@ public class DinoGameMap extends GameMap {
 				this.at(x,0).addExit(new Exit("North", destination, "8"));
 			}
 		}
+		if(direction == Direction.SOUTH) {
+			for(int x=0; x<=getXRange().max(); x++) {
+				Location destination = map.at(x, 0);
+				int y = getYRange().max();
+				this.at(x,y).addExit(new Exit("South", destination, "2"));
+			}
+		}
 	}
 
 
