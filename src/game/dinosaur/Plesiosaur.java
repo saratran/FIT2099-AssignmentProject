@@ -16,6 +16,7 @@ public class Plesiosaur extends Dinosaur {
 	public Plesiosaur(String name, Maturity maturity) {
 		super(name, 'L', 175, maturity);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
+		edibleFoodSkills.add(FoodSkill.MARINE);
 		addSkill(DinoSkill.MARINE);
 	}
 
@@ -34,7 +35,7 @@ public class Plesiosaur extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Plesiosaur corpse", Price.VelociraptorCorpse.getSellValue()));
+		items.add(new Corpse("Plesiosaur corpse", Price.VelociraptorCorpse.sellValue()));
 		return items;
 	}
 	
@@ -49,7 +50,7 @@ public class Plesiosaur extends Dinosaur {
 	
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue()));
+		location.addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.VelociraptorEgg.buyValue(), Price.VelociraptorEgg.sellValue()));
 	}
 	
 	@Override

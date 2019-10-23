@@ -56,7 +56,7 @@ public abstract class Dinosaur extends Consumer {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		foodLevel--;
-		if (isDead()) {
+		if (!isConscious()) {
 			this.die(map);
 		} else {
 			if (this.isHungry()) {
@@ -112,7 +112,7 @@ public abstract class Dinosaur extends Consumer {
 	 * 
 	 * @param map	the map the dinosaur is on.
 	 */
-	private void die(GameMap map) {
+	public void die(GameMap map) {
 		for (Item item : itemsDroppedWhenDead()) {
 			map.locationOf(this).addItem(item);
 		}
@@ -127,14 +127,14 @@ public abstract class Dinosaur extends Consumer {
 	 * @return a List of the items that will be dropped upon death.
 	 */
 	protected abstract List<Item> itemsDroppedWhenDead(); // Support adding multiple items to ground when dino dies
+	
+	@Override
+	protected abstract void initFoodLevel();
+	
 
-	/**
-	 * Returns true if the dinosaur is not conscious or its foodLevel is less than or equal to 0.
-	 * 
-	 * @return True if the dinosaur is not conscious or its foodLevel is less than or equal to 0.
-	 */
-	public boolean isDead() {
-		return (!this.isConscious() || this.foodLevel <= 0);
+	@Override
+	public boolean isConscious() {
+		return (super.isConscious() && this.foodLevel > 0);
 	}
 
 	/**

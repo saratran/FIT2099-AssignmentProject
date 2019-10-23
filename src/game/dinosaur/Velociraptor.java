@@ -43,7 +43,7 @@ public class Velociraptor extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Velociraptor corpse", Price.VelociraptorCorpse.getSellValue()));
+		items.add(new Corpse("Velociraptor corpse", Price.VelociraptorCorpse.sellValue()));
 		return items;
 	}
 	
@@ -58,7 +58,7 @@ public class Velociraptor extends Dinosaur {
 	
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.getBuyValue(), Price.VelociraptorEgg.getSellValue()));
+		location.addItem(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.buyValue(), Price.VelociraptorEgg.sellValue()));
 	}
 	
 	@Override

@@ -35,13 +35,13 @@ public class Pteranodon extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("pteranodons corpse", Price.PlesiosaurCorpse.getSellValue()));
+		items.add(new Corpse("pteranodons corpse", Price.PlesiosaurCorpse.sellValue()));
 		return items;
 	}
 
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Pteranodon(Maturity.BABY), Price.PlesiosaurEgg.getBuyValue(), Price.PlesiosaurEgg.getSellValue()));
+		location.addItem(new Egg(new Pteranodon(Maturity.BABY), Price.PlesiosaurEgg.buyValue(), Price.PlesiosaurEgg.sellValue()));
 	}
 
 	@Override
