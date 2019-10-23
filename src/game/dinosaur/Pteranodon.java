@@ -1,0 +1,56 @@
+package game.dinosaur;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
+import game.FoodSkill;
+import game.Price;
+import game.item.Corpse;
+import game.item.Egg;
+
+public class Pteranodon extends Dinosaur {
+
+	public Pteranodon(String name, Maturity maturity) {
+		super(name, 'F', 100, maturity);		
+		edibleFoodSkills.add(FoodSkill.CARNIVORE);
+		layEggChance=0.02;
+		addSkill(DinoSkill.FLYING);
+		
+	}
+	
+	public Pteranodon(String name) {
+		this(name, Maturity.ADULT);	
+	}
+	
+	public Pteranodon(Maturity maturity) {
+		this("Pteranodons", maturity);
+	}
+	
+	public Pteranodon() {
+		this("Pteranodons");
+	}
+
+	@Override
+	protected List<Item> itemsDroppedWhenDead() {
+		List<Item> items = new ArrayList<Item>();
+		items.add(new Corpse("pteranodons corpse", Price.PlesiosaurCorpse.getSellValue()));
+		return items;
+	}
+
+	@Override
+	protected void layEgg(Location location) {
+		location.addItem(new Egg(new Pteranodon(Maturity.BABY), Price.PlesiosaurEgg.getBuyValue(), Price.PlesiosaurEgg.getSellValue()));
+	}
+
+	@Override
+	protected void initFoodLevel() {
+		if (this.maturity == Maturity.ADULT) {
+			setFoodLevel(40, 100, 30);
+		} else {
+			setFoodLevel(10, 40, 30);
+		}
+	}
+
+}

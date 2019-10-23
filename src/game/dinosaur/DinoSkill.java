@@ -4,6 +4,6 @@ public enum DinoSkill {
 	LAND,
 	MARINE,
 	STORE_BOUGHT,
-	CAPTIVE_BRED
-	// TODO: consider FLYING?
+	CAPTIVE_BRED,
+	FLYING
 }
