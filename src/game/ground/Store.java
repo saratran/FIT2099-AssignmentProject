@@ -44,6 +44,10 @@ public class Store extends Ground {
 		addSkill(GroundSkill.LAND);
 	}
 
+	public Store() {
+		this('S');
+	}
+
 	/**
 	 * return list of BuyAction and SellAction for different items
 	 */
