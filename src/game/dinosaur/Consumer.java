@@ -38,7 +38,7 @@ public abstract class Consumer extends Actor {
 	protected List<Ground> foodGrounds = new ArrayList<Ground>();
 	protected List<Actor> foodActors = new ArrayList<Actor>();
 	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer can eat
-
+	protected List<FoodSkill> nonEdibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer cannot eat
 	
 	public Consumer(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
@@ -63,7 +63,11 @@ public abstract class Consumer extends Actor {
 				return true;
 			}
 		}
-		
+		for (FoodSkill skill : nonEdibleFoodSkills) {
+			if(item.hasSkill(skill)) {
+				return false;
+			}
+		}
 		for (FoodSkill skill : edibleFoodSkills) {
 			if (item.hasSkill(skill)) {
 				return true;
@@ -83,6 +87,11 @@ public abstract class Consumer extends Actor {
 			// This means the dino can either eat or not eat a class
 			if (ground.getClass().equals(food_ground.getClass())) {
 				return true;
+			}
+		}
+		for (FoodSkill skill : nonEdibleFoodSkills) {
+			if(ground.hasSkill(skill)) {
+				return false;
 			}
 		}
 		for (FoodSkill skill : edibleFoodSkills) {
@@ -106,7 +115,11 @@ public abstract class Consumer extends Actor {
 				return true;
 			}
 		}
-		
+		for (FoodSkill skill : nonEdibleFoodSkills) {
+			if(actor.hasSkill(skill)) {
+				return false;
+			}
+		}
 		for (FoodSkill skill : edibleFoodSkills) {
 			if (actor.hasSkill(skill)) {
 				return true;

@@ -8,5 +8,5 @@ public enum FoodSkill {
 	HERBIVORE, 
 	CARNIVORE, 
 	MARINE,
-	NOT_FOOD //Override other FoodSkill
+	NOT_HERBIVORE
 }

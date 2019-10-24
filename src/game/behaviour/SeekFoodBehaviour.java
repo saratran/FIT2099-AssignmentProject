@@ -99,8 +99,7 @@ public class SeekFoodBehaviour implements Behaviour {
 			// (ie the Player)
 			// TODO: this means that actors of the same class won't attack each other -->
 			// Not working ???
-			if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
-					&& consumer.getClass() != destination.getActor().getClass()
+			if (destination.containsAnActor() && consumer.getClass() != destination.getActor().getClass()
 					&& consumer.isFood(destination.getActor())) {
 				attackActions.add(new AttackAction(destination.getActor()));
 			}
@@ -137,8 +136,7 @@ public class SeekFoodBehaviour implements Behaviour {
 					}
 
 					// TODO: this means that actors of the same class won't attack each other
-					if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
-							&& consumer.isFood(destination.getActor())
+					if (destination.containsAnActor() && consumer.isFood(destination.getActor())
 							&& consumer.getClass() != destination.getActor().getClass()) {
 						return new FollowBehaviour(destination.getActor(), actor.getSpeed()).getAction(actor, map);
 					}

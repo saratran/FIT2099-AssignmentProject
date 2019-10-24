@@ -30,7 +30,7 @@ public class Player extends Trader {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
-//		addSkill(FoodSkill.NOT_FOOD);
+		addSkill(FoodSkill.NOT_HERBIVORE);
 		addSkill(DinoSkill.LAND);
 	}
 
