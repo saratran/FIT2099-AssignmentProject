@@ -82,9 +82,6 @@ public class SeekFoodBehaviour implements Behaviour {
 			Location destination = exit.getDestination();
 			checkedLocations.put(locationToKey(destination), destination);
 			locationsToGetExits.add(destination);
-
-			Action action = null;
-			Double foodScore = 0.0;
 			// If ground is food
 			if (consumer.isFood(destination.getGround())) {
 				eatActions.add(new EatGroundAction(destination.getGround(), destination));
@@ -100,10 +97,10 @@ public class SeekFoodBehaviour implements Behaviour {
 			// If actor is food
 			// FoodSkill.NOT_FOOD is used to prevent attack on Actor that carries food items
 			// (ie the Player)
-			// TODO: this means that actors of the same class won't attack each other --> Not working ???
-			if (destination.containsAnActor()
-					&& !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
-							&& consumer.getClass() != destination.getActor().getClass()
+			// TODO: this means that actors of the same class won't attack each other -->
+			// Not working ???
+			if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
+					&& consumer.getClass() != destination.getActor().getClass()
 					&& consumer.isFood(destination.getActor())) {
 				attackActions.add(new AttackAction(destination.getActor()));
 			}
@@ -129,16 +126,13 @@ public class SeekFoodBehaviour implements Behaviour {
 				if (!checkedLocations.containsKey(locationToKey(destination))) {
 					checkedLocations.put(locationToKey(destination), destination);
 					locationsToGetExits.add(destination);
-
-					Action action = null;
-					Double foodScore = 0.0;
 					if (consumer.isFood(destination.getGround())) {
-						return new ToLocationBehaviour(destination).getAction(actor, map);
+						return new ToLocationBehaviour(destination, actor.getSpeed()).getAction(actor, map);
 					}
 
 					for (Item item : destination.getItems()) {
 						if (consumer.isFood(item)) {
-							return new ToLocationBehaviour(destination).getAction(actor, map);
+							return new ToLocationBehaviour(destination, actor.getSpeed()).getAction(actor, map);
 						}
 					}
 
@@ -146,7 +140,7 @@ public class SeekFoodBehaviour implements Behaviour {
 					if (destination.containsAnActor() && !(destination.getActor().hasSkill(FoodSkill.NOT_FOOD))
 							&& consumer.isFood(destination.getActor())
 							&& consumer.getClass() != destination.getActor().getClass()) {
-						return new FollowBehaviour(destination.getActor()).getAction(actor, map);
+						return new FollowBehaviour(destination.getActor(), actor.getSpeed()).getAction(actor, map);
 					}
 				}
 			}
@@ -158,53 +152,4 @@ public class SeekFoodBehaviour implements Behaviour {
 		return location.x() + "," + location.y();
 	}
 
-	/**
-	 * Compute the Manhattan distance between two locations.
-	 * 
-	 * @param a the first location
-	 * @param b the first location
-	 * @return the number of steps between a and b if you only move in the four
-	 *         cardinal directions.
-	 */
-	private int distance(Location a, Location b) {
-		return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
-	}
-
-	private double foodPriority(Location here, Location there, Ground ground) {
-		return 1 / distance(here, there) + ground.getFoodPriority() * 3;
-	}
-
-	private double foodPriority(Location here, Location there, Item item) {
-		return 1 / distance(here, there) + item.getFoodPriority() * 3;
-	}
-
-	private double foodPriority(Location here, Location there, Actor actor) {
-		return 1 / distance(here, there) + actor.getFoodPriority();
-	}
-}
-
-class Pair<L, R> {
-	private L l;
-	private R r;
-
-	public Pair(L l, R r) {
-		this.l = l;
-		this.r = r;
-	}
-
-	public L getL() {
-		return l;
-	}
-
-	public R getR() {
-		return r;
-	}
-
-	public void setL(L l) {
-		this.l = l;
-	}
-
-	public void setR(R r) {
-		this.r = r;
-	}
 }

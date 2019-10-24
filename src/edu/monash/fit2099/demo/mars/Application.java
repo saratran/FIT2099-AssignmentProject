@@ -52,7 +52,7 @@ public class Application {
         Bug bug = new Bug();
         bug.addItemToInventory(new MartianItem("rock", '*', true));
         bug.actionFactories.add(new SpitBehaviour(player));
-        bug.actionFactories.add(new FollowBehaviour(player));
+        bug.actionFactories.add(new FollowBehaviour(player, 1));
         gameMap.at(0, 2).addActor(bug);
 
         world.run();
