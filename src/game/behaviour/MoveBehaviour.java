@@ -23,7 +23,7 @@ public abstract class MoveBehaviour implements Behaviour {
 			Location destination = exit.getDestination();
 			int x_final = current.x() + this.speed*(destination.x() - current.x());
 			int y_final = current.y() + this.speed*(destination.y() - current.y());
-			if ((map.getXRange().contains(x_final)) & (map.getYRange().contains(y_final))){
+			if ((map.getXRange().contains(x_final)) && (map.getYRange().contains(y_final))){
 				Location possibleDestination = map.at(x_final, y_final);
 				locations.add(possibleDestination);
 			}

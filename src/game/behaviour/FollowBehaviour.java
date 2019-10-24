@@ -30,7 +30,6 @@ public class FollowBehaviour implements Behaviour {
 	public Action getAction(Actor actor, GameMap map) {
 		if (!map.contains(target) || !map.contains(actor))
 			return null;
-		;
 		return (new ToLocationBehaviour(map.locationOf(target), speed)).getAction(actor, map);
 	}
 
