@@ -25,7 +25,7 @@ public class Protoceratops extends Dinosaur {
 	 * @param name the name of this Protoceratops
 	 */
 	public Protoceratops(String name, Maturity maturity) {
-		super(name, 'P', 100, maturity);		
+		super(name, 'P', 100, maturity, 1);		
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		layEggChance=0.03;
 		addSkill(DinoSkill.LAND);

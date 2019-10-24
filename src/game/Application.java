@@ -8,9 +8,12 @@ import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.actor.Player;
+import game.dinosaur.DinoSkill;
 import game.dinosaur.Maturity;
 import game.dinosaur.Plesiosaur;
 import game.dinosaur.Protoceratops;
+import game.dinosaur.Pteranodon;
+import game.dinosaur.Tyrannosaurus;
 import game.dinosaur.Velociraptor;
 import game.ground.Dirt;
 import game.ground.Floor;
@@ -76,17 +79,19 @@ public class Application {
 //		gameMap.at(9, 5).addActor(new Protoceratops());
 
 //		gameMap.at(8, 9).addActor(new Protoceratops());
-		gameMap.at(8, 14).addActor(new Velociraptor());
-		gameMap.at(8, 15).addActor(new Protoceratops("Protoceratops"));
-
+//		gameMap.at(8, 14).addActor(new Velociraptor());
+//		gameMap.at(8, 15).addActor(new Protoceratops("Protoceratops"));
+//		Tyrannosaurus t = new Tyrannosaurus();
+//		gameMap.at(8,16).addActor(t);
+		gameMap.at(14,12).addActor(new Pteranodon());
 //		gameMap.at(20, 14).addActor(new Velociraptor(Maturity.BABY));
 
 		gameMap.at(9, 3).setGround(new Store('S'));
 
 //		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.getBuyValue(), Price.ProtoceratopsEgg.getSellValue()));
 
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
+//		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
+//		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
 //		gameMap.at(29, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));
 //		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.getSellValue()));

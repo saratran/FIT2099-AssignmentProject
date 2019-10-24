@@ -35,4 +35,8 @@ public interface ActorInterface {
 	default int getFoodPriority() {
 		return 1;
 	}
+	
+	default int getSpeed() {
+		return 1;
+	}
 }

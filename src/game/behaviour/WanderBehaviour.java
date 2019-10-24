@@ -1,6 +1,7 @@
 package game.behaviour;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
@@ -8,14 +9,23 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.MoveActorAction;
 /**
  * Causes actors to move around the map randomly.
  *
  */
-public class WanderBehaviour implements Behaviour {
-	
-	private Random random = new Random();
+public class WanderBehaviour extends MoveBehaviour {
 
+	private Random random = new Random();
+//	private int speed;
+
+	public WanderBehaviour(int speed) {
+		super(speed);
+	}
+
+	public WanderBehaviour() {
+		this(1);
+	}
 
 	/**
 	 * Returns a MoveAction to wander to a random location, if possible.  
@@ -27,14 +37,11 @@ public class WanderBehaviour implements Behaviour {
 	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
-		ArrayList<Action> actions = new ArrayList<Action>();
-		for (Exit exit : map.locationOf(actor).getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor)) {
-            	actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
-            }
-        }
-		
+		List<Action> actions = new ArrayList<Action>();
+		List<Location> destinations = getPossibleLocations(actor, map);
+		for(Location destination : destinations) {
+			actions.add(new MoveActorAction(destination,"around"));
+		}
 		if (!actions.isEmpty()) {
 			return actions.get(random.nextInt(actions.size()));
 		}
@@ -43,5 +50,4 @@ public class WanderBehaviour implements Behaviour {
 		}
 
 	}
-
 }

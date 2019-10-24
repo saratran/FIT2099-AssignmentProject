@@ -27,7 +27,8 @@ public abstract class Dinosaur extends Consumer {
 	protected Maturity maturity;
 	protected String adultName;
 	private List<Behaviour> behaviours = new ArrayList<Behaviour>();
-
+	private int speed = 1;
+	
 	protected double layEggChance = 0.02;
 	/**
 	 * Constructor.
@@ -36,10 +37,12 @@ public abstract class Dinosaur extends Consumer {
 	 * @param displayChar	the display character seen on the map.
 	 * @param hitPoints	the starting hitpoints of the Dinosaur.
 	 * @param maturity	the maturity of the Dinosaur: adult or baby.
+	 * @param speed TODO
 	 */
-	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
+	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity, int speed) {
 		super(name, displayChar, hitPoints);
 		adultName = name;
+		this.speed = speed;
 		if (maturity == Maturity.BABY) {
 			this.displayChar = Character.toLowerCase(displayChar);
 			this.name = "Baby " + adultName;
@@ -50,7 +53,11 @@ public abstract class Dinosaur extends Consumer {
 		this.maturity = maturity;
 		initFoodLevel();
 		behaviours.add(new SeekFoodBehaviour());
-		behaviours.add(new WanderBehaviour());
+		behaviours.add(new WanderBehaviour(this.speed));
+	}
+	
+	public Dinosaur(String name, char displayChar, int hitPoints, Maturity maturity) {
+		this(name, displayChar, hitPoints, maturity, 1);
 	}
 
 	@Override
@@ -189,14 +196,17 @@ public abstract class Dinosaur extends Consumer {
 	/**
 	 * Changes the maturity of the dinosaur to adult if and only if
 	 * the maturity of the dinosaur was baby.
+	 * @return TODO
 	 */
-	protected void growOlder() {
+	protected boolean growOlder() {
 		if (maturity == Maturity.BABY) {
 			this.maturity = Maturity.ADULT;
 			this.displayChar = Character.toUpperCase(displayChar);
 			System.out.println(name + " has grown!");
 			name = adultName;
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -221,5 +231,8 @@ public abstract class Dinosaur extends Consumer {
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(30, "bites");
 	}
-
+	
+	public int getSpeed() {
+		return speed;
+	}
 }

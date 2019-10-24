@@ -13,10 +13,11 @@ import game.item.Egg;
 public class Pteranodon extends Dinosaur {
 
 	public Pteranodon(String name, Maturity maturity) {
-		super(name, 'F', 100, maturity);		
+		super(name, 'W', 100, maturity, 2);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 		layEggChance=0.02;
-		addSkill(DinoSkill.FLYING);
+		addSkill(DinoSkill.LAND);
+		addSkill(DinoSkill.MARINE);
 		
 	}
 	

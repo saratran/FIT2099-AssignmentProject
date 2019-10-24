@@ -21,7 +21,7 @@ public class Reed extends Vegetation {
 		// Die if overcrowded
 		if (neighbourCount(location, this.getClass()) >= 6) {
 			location.setGround(eatenGround());
-		} else if(Math.random() <= 0.2 && !location.containsAnActor()) {
+		} else if(Math.random() <= 0.02 && !location.containsAnActor()) {
 //			location.addActor(new Fish());
 			location.addItem(new FishItem());
 		}
