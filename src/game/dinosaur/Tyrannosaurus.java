@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
@@ -71,7 +72,7 @@ public class Tyrannosaurus extends Dinosaur {
 		if (this.maturity == Maturity.ADULT) {
 			setFoodLevel(200, 500, 350);
 		} else {
-			setFoodLevel(40, 100, 50);
+			setFoodLevel(150, 500, 350);
 		}
 	}
 
@@ -82,5 +83,13 @@ public class Tyrannosaurus extends Dinosaur {
 		location.addItem(new Egg(baby, Price.TyrannosaurusEgg.buyValue(), Price.TyrannosaurusEgg.sellValue()));
 	}
 
-
+	@Override
+	public int getSellValue() {
+		return 2000;
+	}
+	
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(60, "bites");
+	}
 }

@@ -3,6 +3,7 @@ package game.dinosaur;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
@@ -42,9 +43,9 @@ public class Plesiosaur extends Dinosaur {
 	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
-			setFoodLevel(40, 100, 30);
+			setFoodLevel(150, 200, 100);
 		} else {
-			setFoodLevel(10, 40, 30);
+			setFoodLevel(80, 200, 100);
 		}
 	}
 	
@@ -56,6 +57,11 @@ public class Plesiosaur extends Dinosaur {
 	@Override
 	public int getSellValue() {
 		return 400;
+	}
+	
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(40, "bites");
 	}
 
 }
