@@ -9,11 +9,14 @@ public enum Price {
 	VelociraptorEgg(500, 100),
 	VelociraptorCorpse(0, 50),
 	PlesiosaurEgg(2000, 500),
-	PlesiosaurCorpse(0, 200),
+	PlesiosaurCorpse(0, 300),
+	PteranodonEgg(2000, 500),
+	PteranodonCorpse(0, 300),
 	TyrannosaurusEgg(20000,2500),
 	TyrannosaurusCorpse(0, 2000),
 	HerbivoreFoodItem(20,0),
-	CarnivoreFoodItem(100,0);
+	CarnivoreFoodItem(100,0),
+	MarineFoodItem(200, 0);
 	
 	
 	private int buyValue;

@@ -35,7 +35,7 @@ public class Plesiosaur extends Dinosaur {
 	@Override
 	protected List<Item> itemsDroppedWhenDead() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Plesiosaur corpse", Price.VelociraptorCorpse.sellValue()));
+		items.add(new Corpse("Plesiosaur corpse", Price.PlesiosaurCorpse.sellValue()));
 		return items;
 	}
 	
@@ -50,7 +50,7 @@ public class Plesiosaur extends Dinosaur {
 	
 	@Override
 	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.VelociraptorEgg.buyValue(), Price.VelociraptorEgg.sellValue()));
+		location.addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.PlesiosaurEgg.buyValue(), Price.PlesiosaurEgg.sellValue()));
 	}
 	
 	@Override

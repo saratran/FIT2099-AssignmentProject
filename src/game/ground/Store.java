@@ -22,7 +22,10 @@ import game.actor.Trader;
 import game.dinosaur.Maturity;
 import game.dinosaur.Plesiosaur;
 import game.dinosaur.Protoceratops;
+import game.dinosaur.Pteranodon;
+import game.dinosaur.Tyrannosaurus;
 import game.dinosaur.Velociraptor;
+import game.item.Boat;
 import game.item.DinosaurTag;
 import game.item.Egg;
 import game.item.FoodItem;
@@ -80,15 +83,16 @@ public class Store extends Ground {
 				Price.ProtoceratopsEgg.sellValue()));
 		items.add(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.buyValue(),
 				Price.VelociraptorEgg.sellValue()));
-		// TODO: set correct value
-		items.add(new Egg(new Plesiosaur(Maturity.BABY), Price.VelociraptorEgg.buyValue(),
-				Price.VelociraptorEgg.sellValue()));
-		
+		items.add(new Egg(new Plesiosaur(Maturity.BABY), Price.PlesiosaurEgg.buyValue(),
+				Price.PlesiosaurEgg.sellValue()));
+		items.add(new Egg(new Pteranodon(Maturity.BABY), Price.PteranodonEgg.buyValue(),
+				Price.PteranodonEgg.sellValue()));
+		items.add(new Egg(new Tyrannosaurus(Maturity.BABY), Price.TyrannosaurusEgg.buyValue(),
+				Price.TyrannosaurusEgg.sellValue()));
+		items.add(new Boat());
 		items.add(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.buyValue()));
-		items.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.buyValue()));
-	
-		// TODO: set correct value, may consider combining FoodSkill and DinoSkill
-		items.add(new FoodItem(FoodSkill.MARINE, Price.CarnivoreFoodItem.buyValue()));
+		items.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.buyValue()));	
+		items.add(new FoodItem(FoodSkill.MARINE, Price.MarineFoodItem.buyValue()));
 		items.add(new DinosaurTag());
 
 		return items;

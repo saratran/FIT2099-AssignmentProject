@@ -8,4 +8,16 @@ public class Boat extends PortableDinoItem {
 		super("boat", 'U');
 		addSkill(DinoSkill.MARINE);
 	}
+
+	@Override
+	public int getBuyValue() {
+		return 100;
+	}
+
+	@Override
+	public boolean isBuyable() {
+		return true;
+	}
+	
+	
 }
