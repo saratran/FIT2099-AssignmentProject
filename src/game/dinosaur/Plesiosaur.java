@@ -10,11 +10,9 @@ import game.FoodSkill;
 import game.item.Corpse;
 import game.item.Egg;
 
-public class Plesiosaur extends Dinosaur {
-	// TODO: change sell, buy, hp, food level
-		
+public class Plesiosaur extends Dinosaur {		
 	public Plesiosaur(String name, Maturity maturity) {
-		super(name, 'L', 175, maturity, 1);		
+		super(name, 'L', 200, maturity, 1);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 		edibleFoodSkills.add(FoodSkill.MARINE);
 		addSkill(DinoSkill.MARINE);

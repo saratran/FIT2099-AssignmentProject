@@ -47,7 +47,6 @@ public abstract class Dinosaur extends Consumer {
 		this.speed = speed;
 		if (maturity == Maturity.BABY) {
 			this.displayChar = Character.toLowerCase(displayChar);
-			// TODO: consider splitting baby into prefix
 			this.name = "Baby " + adultName;
 		}
 

@@ -61,7 +61,6 @@ public class Velociraptor extends Dinosaur {
 
 	@Override
 	public Corpse getCorpse() {
-		// TODO Auto-generated method stub
 		return new Corpse("Velociraptor corpse", 50);
 	}
 

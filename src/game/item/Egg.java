@@ -26,15 +26,13 @@ public class Egg extends PortableDinoItem {
 	}
 
 	public Egg(Dinosaur dinosaur, int buyValue, int sellValue) {
-		this(dinosaur.toString() + " egg", 'e', dinosaur, buyValue, sellValue);
+		this(dinosaur.getClass().getSimpleName() + " egg", 'e', dinosaur, buyValue, sellValue);
 	}
 
 	@Override
 	public void tick(Location currentLocation) {
 		age++;
 		// Hatches after certain age and only if there is no Actor standing on top of it
-		// TODO: have to check if can hatch at current or nearby location --> can the
-		// actor enter the ground
 		if (age >= hatch_age) {
 			for (Exit exit : currentLocation.getExits()) {
 				Location destination = exit.getDestination();

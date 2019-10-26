@@ -36,7 +36,6 @@ public class FishItem extends Item {
 			return;
 		}
 		List<Location> locations = new ArrayList<Location>();
-		// TODO: check nearby location canEnter() and then move
 		for(Exit exit : currentLocation.getExits()) {
 			Location destination = exit.getDestination();
 			if(destination.getGround().canItemEnter(this)) {

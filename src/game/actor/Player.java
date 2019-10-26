@@ -84,7 +84,6 @@ public class Player extends Trader {
 
 //	@Override
 //	public boolean isConscious() {
-//		// TODO Auto-generated method stub
 //		return false;
 //	}
 	

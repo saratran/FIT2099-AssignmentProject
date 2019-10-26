@@ -20,7 +20,6 @@ public class ExitGameAction extends Action {
 
 	@Override
 	public String menuDescription(Actor actor) {
-		// TODO Auto-generated method stub
 		return "Exit game";
 	}
 

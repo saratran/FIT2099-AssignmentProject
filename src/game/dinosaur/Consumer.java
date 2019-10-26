@@ -35,23 +35,29 @@ public abstract class Consumer extends Actor {
 	protected int maxFoodLevel = 15;
 	protected int hungryLevel = 50;
 
-	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer can eat
-	protected List<FoodSkill> nonEdibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer cannot eat
+	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer
+																				// can eat
+	protected List<FoodSkill> nonEdibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer
+																				// cannot eat
 	protected List<Object> foodObjects = new ArrayList<Object>();
-	
+
 	public Consumer(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 	}
-	
-	
+
+	/**
+	 * Check if an object is edible
+	 * @param object
+	 * @return
+	 */
 	public boolean isFood(Skilled object) {
 		for (Object food : foodObjects) {
-			if(object.getClass().equals(food.getClass())) {
+			if (object.getClass().equals(food.getClass())) {
 				return true;
 			}
 		}
 		for (FoodSkill skill : nonEdibleFoodSkills) {
-			if(object.hasSkill(skill)) {
+			if (object.hasSkill(skill)) {
 				return false;
 			}
 		}
@@ -87,7 +93,7 @@ public abstract class Consumer extends Actor {
 	 * the status of the actor are found here.
 	 */
 	protected abstract void initFoodLevel();
-	
+
 	/**
 	 * Sets the food levels of the consumer.
 	 * 
@@ -100,6 +106,5 @@ public abstract class Consumer extends Actor {
 		maxFoodLevel = max;
 		hungryLevel = hungry;
 	}
-
 
 }

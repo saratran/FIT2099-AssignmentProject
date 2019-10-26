@@ -29,14 +29,7 @@ public abstract class GrowableGround extends Ground {
 
 	protected void growNearbyLocations(Location location, double chance, Ground ground) {
 		for (Exit exit : location.getExits()) {
-			Location nearbyLocation = exit.getDestination();
-			// TODO: currently Tree can grow on and override Water
-			// probably need to have a better way to control this, like keeping a list of
-			// what can grow on / canGrowOn() method
-//			if(!nearbyLocation.getGround().hasSkill(GroundSkill.CANNOT_GROW_ON)) {
-//				growCurrentLocation(nearbyLocation, chance, ground);
-//			}
-			
+			Location nearbyLocation = exit.getDestination();		
 			// TODO: maybe flip the skill around; instead of spawner knowing, let the spawnee know?
 			if (this.canGrowOn(nearbyLocation.getGround())) {
 				growCurrentLocation(nearbyLocation, chance, ground);
@@ -49,13 +42,6 @@ public abstract class GrowableGround extends Ground {
 	 */
 	protected int neighbourCount(Location location, Class<?> groundClass) {
 		int neighbourCount = 0;
-//		for(Exit exit: location.getExits()) {
-//			Ground nearbyGround = exit.getDestination().getGround();
-//			if(nearbyGround.getClass().equals(groundClass)) {
-//				neighbourCount++;
-//			}
-//		}
-
 		for (Ground ground : getNeighbourGrounds(location)) {
 			if (ground.getClass().equals(groundClass)) {
 				neighbourCount++;
@@ -69,12 +55,6 @@ public abstract class GrowableGround extends Ground {
 	 */
 	protected int neighbourCount(Location location, Enum<?> skill) {
 		int neighbourCount = 0;
-//		for(Exit exit: location.getExits()) {
-//			Ground nearbyGround = exit.getDestination().getGround();
-//			if(nearbyGround.hasSkill(skill)) {
-//				neighbourCount++;
-//			}
-//		}
 		for (Ground ground : getNeighbourGrounds(location)) {
 			if (ground.hasSkill(skill)) {
 				neighbourCount++;
