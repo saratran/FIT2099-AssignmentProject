@@ -6,6 +6,7 @@ import java.util.List;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
+import game.ground.Tree;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.FoodItem;

@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Skilled;
 import game.FoodSkill;
 import game.behaviour.Behaviour;
 
@@ -34,94 +35,28 @@ public abstract class Consumer extends Actor {
 	protected int maxFoodLevel = 15;
 	protected int hungryLevel = 50;
 
-	protected List<Item> foodItems = new ArrayList<Item>();
-	protected List<Ground> foodGrounds = new ArrayList<Ground>();
-	protected List<Actor> foodActors = new ArrayList<Actor>();
 	protected List<FoodSkill> edibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer can eat
 	protected List<FoodSkill> nonEdibleFoodSkills = new ArrayList<FoodSkill>(); // List of food skills that the Consumer cannot eat
+	protected List<Object> foodObjects = new ArrayList<Object>();
 	
 	public Consumer(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 	}
 	
-	/* Analysis/note:
-	 * Currently has 2 different methods to keep track of what is edible:
-	 * 		+ Using FoodSkill for broader control since Skill can be added to an abstract class (ie like Protoceratops can eat all Vegetation)
-	 * 		+ Using lists of edible food for finer control
-	 */
 	
-	/**
-	 * Check if item is food
-	 * 
-	 * @param item
-	 * @return 
-	 */
-	public boolean isFood(Item item) {
-		for (Item food_item : foodItems) {
-			// This means the dino can either eat or not eat a class
-			if (item.getClass().equals(food_item.getClass())) {
+	public boolean isFood(Skilled object) {
+		for (Object food : foodObjects) {
+			if(object.getClass().equals(food.getClass())) {
 				return true;
 			}
 		}
 		for (FoodSkill skill : nonEdibleFoodSkills) {
-			if(item.hasSkill(skill)) {
+			if(object.hasSkill(skill)) {
 				return false;
 			}
 		}
 		for (FoodSkill skill : edibleFoodSkills) {
-			if (item.hasSkill(skill)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Check if ground is food
-	 * 
-	 * @param ground
-	 * @return
-	 */
-	public boolean isFood(Ground ground) {
-		for (Ground food_ground : foodGrounds) {
-			// This means the dino can either eat or not eat a class
-			if (ground.getClass().equals(food_ground.getClass())) {
-				return true;
-			}
-		}
-		for (FoodSkill skill : nonEdibleFoodSkills) {
-			if(ground.hasSkill(skill)) {
-				return false;
-			}
-		}
-		for (FoodSkill skill : edibleFoodSkills) {
-			if (ground.hasSkill(skill)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Check if actor is food
-	 * 
-	 * @param actor
-	 * @return
-	 */
-	public boolean isFood(Actor actor) {
-		for (Actor food_actor : foodActors) {
-			// This means the dino can either eat or not eat a class
-			if (actor.getClass().equals(food_actor.getClass())) {
-				return true;
-			}
-		}
-		for (FoodSkill skill : nonEdibleFoodSkills) {
-			if(actor.hasSkill(skill)) {
-				return false;
-			}
-		}
-		for (FoodSkill skill : edibleFoodSkills) {
-			if (actor.hasSkill(skill)) {
+			if (object.hasSkill(skill)) {
 				return true;
 			}
 		}
