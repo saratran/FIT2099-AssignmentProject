@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.dinosaur.DinoSkill;
-import game.item.Fish;
+import game.item.FishItem;
 
 public class Reed extends Vegetation {
 	
@@ -21,7 +21,7 @@ public class Reed extends Vegetation {
 		if (neighbourCount(location, this.getClass()) >= 6) {
 			location.setGround(eatenGround());
 		} else if(Math.random() <= 0.02) {
-			location.addItem(new Fish());
+			location.addItem(new FishItem());
 		}
 		
 	}

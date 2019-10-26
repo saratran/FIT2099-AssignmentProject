@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.action.ExitGameAction;
+import game.actor.ExitGameAction;
 import game.item.Corpse;
 import game.item.Egg;
 
