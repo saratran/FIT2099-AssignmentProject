@@ -113,7 +113,7 @@ public class DinoWorldInit {
 		Player player = new Player("Player", '@', 1000);
 		player.addMoney(1000000);
 //		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 10));
-//		player.addItemToInventory(v.getCorpse());
+		player.addItemToInventory(v.getCorpse());
 //		player.addItemToInventory(new DinosaurTag());
 		player.addItemToInventory(new Boat());
 		world.addPlayer(player, gameMap.at(9, 4));

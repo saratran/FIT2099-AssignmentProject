@@ -10,11 +10,13 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.Menu;
 import game.FoodSkill;
 import game.action.BuyAction;
 import game.action.ExecuteMultipleActions;
 import game.action.SellAction;
 import game.action.SellTaggedActorsAction;
+import game.action.SubmenuAction;
 import game.actor.Player;
 import game.dinosaur.Dinosaur;
 import game.actor.Trader;
@@ -34,7 +36,8 @@ import game.item.FoodItem;
  *
  */
 public class Store extends Ground {
-
+	private Menu menu = new Menu();
+	
 	/**
 	 * Constructor
 	 * 
@@ -67,8 +70,9 @@ public class Store extends Ground {
 				actions.add(new SellTaggedActorsAction(actor.getTaggedActors()));
 			}
 		}
-
-		return actions;
+		Actions returnedActions = new Actions();
+		returnedActions.add(new SubmenuAction(menu, actions, "Visit store"));
+		return returnedActions;
 	}
 
 	/**
