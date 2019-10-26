@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import game.FoodSkill;
 import game.Skill;
+import game.action.ExitGameAction;
 import game.dinosaur.DinoSkill;
 import game.dinosaur.Dinosaur;
 
