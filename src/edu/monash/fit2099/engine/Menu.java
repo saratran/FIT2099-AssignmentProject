@@ -3,9 +3,13 @@ package edu.monash.fit2099.engine;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Menu {
-
+	private Map<String, Menu> submenus = new HashMap<String, Menu>();
+	private List<String> keys = new ArrayList<String>();
+	
 	/**
 	 * Display a menu to the user and have them select an option.
 	 * Ignores more than 26 options. Go on, write a better one.
@@ -63,4 +67,9 @@ public class Menu {
 			return 0;
 		}
 	}
+	
+	public void addSubmenu(String name, Actor actor, Actions actions, Display display){
+		Menu submenu = new Menu(actor, actions, display);
+	}
+	
 }

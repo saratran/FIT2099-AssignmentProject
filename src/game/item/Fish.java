@@ -11,11 +11,19 @@ import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
 import game.dinosaur.DinoSkill;
 
-public class FishItem extends Item {
+/**
+ * A class to represent Fish.
+ * 
+ * Fish could have been an Actor but since there are a lot of them and making them move around
+ * clutter the display so we chose to make Fish an Item instead
+ * @author Sara Tran
+ *
+ */
+public class Fish extends Item {
 	private Random random = new Random();
 	private int age = 0;
 
-	public FishItem() {
+	public Fish() {
 		super("fish", 'f', false);
 		addSkill(DinoSkill.MARINE);
 		addSkill(FoodSkill.CARNIVORE);
