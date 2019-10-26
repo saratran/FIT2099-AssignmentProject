@@ -21,7 +21,7 @@ public class Grass extends Vegetation{
 	public void tick(Location location) {
 		super.tick(location);
 
-		growCurrentLocation(location, growTreeChance, new Tree());
+		growThisLocation(location, growTreeChance, new Tree());
 
 	}
 

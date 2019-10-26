@@ -32,6 +32,7 @@ public abstract class Dinosaur extends Consumer {
 	private int speed = 1;
 	
 	protected double layEggChance = 0.02;
+	protected int matureAge = 30;
 	/**
 	 * Constructor.
 	 * 
@@ -183,8 +184,14 @@ public abstract class Dinosaur extends Consumer {
 		}
 	}
 	
+	/**
+	 * @return the egg of this dinosaur
+	 */
 	public abstract Egg getEgg();
 	
+	/**
+	 * @return the corpse of this dinosaur
+	 */
 	public abstract Corpse getCorpse();
 
 	/**
@@ -194,7 +201,7 @@ public abstract class Dinosaur extends Consumer {
 	 * @return	Returns true if and only if the dinosaur's age is greater than 20.
 	 */
 	private boolean isMatureAge() {
-		return (age > 30);
+		return (age > matureAge);
 	}
 
 	/**
@@ -236,6 +243,9 @@ public abstract class Dinosaur extends Consumer {
 		return new IntrinsicWeapon(30, "bites");
 	}
 	
+	/**
+	 * @return maximum number of squares the dinosaur can move in 1 turn
+	 */
 	public int getSpeed() {
 		return speed;
 	}

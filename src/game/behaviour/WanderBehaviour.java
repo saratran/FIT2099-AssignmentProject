@@ -17,8 +17,11 @@ import edu.monash.fit2099.engine.MoveActorAction;
 public class WanderBehaviour extends MoveBehaviour {
 
 	private Random random = new Random();
-//	private int speed;
 
+	/**
+	 * Constructor
+	 * @param speed maximum number of squares the actor can move in 1 turn
+	 */
 	public WanderBehaviour(int speed) {
 		super(speed);
 	}

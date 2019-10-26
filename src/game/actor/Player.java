@@ -32,14 +32,15 @@ public class Player extends Trader {
 		super(name, displayChar, hitPoints);
 		addSkill(FoodSkill.NOT_HERBIVORE);
 		addSkill(DinoSkill.LAND);
+		addSkill(FoodSkill.CARNIVORE);
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// Handle multi-turn Actions
 		if(!isConscious()) {
 			return new ExitGameAction("Player is dead");
 		}
+		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		actions.add(new SleepAction());

@@ -15,6 +15,11 @@ import game.actor.ExitGameAction;
 import game.item.Corpse;
 import game.item.Egg;
 
+/**
+ * A carnivorous dinosaur. The player wins when a captive bred tyrannosaurus reaches adulthood.
+ * @author Sara Tran
+ *
+ */
 public class Tyrannosaurus extends Dinosaur {
 
 	public Tyrannosaurus(String name, Maturity maturity) {
@@ -22,6 +27,7 @@ public class Tyrannosaurus extends Dinosaur {
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 		layEggChance=0.02;
 		addSkill(DinoSkill.LAND);
+		matureAge = 50;
 	}
 
 	public Tyrannosaurus(String name) {
@@ -51,9 +57,9 @@ public class Tyrannosaurus extends Dinosaur {
 	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
-			setFoodLevel(200, 500, 350);
+			setFoodLevel(200, 500, 150);
 		} else {
-			setFoodLevel(150, 500, 350);
+			setFoodLevel(150, 500, 150);
 		}
 	}
 
@@ -77,5 +83,5 @@ public class Tyrannosaurus extends Dinosaur {
 	@Override
 	public Corpse getCorpse() {
 		return new Corpse("tyrannosaurus corpse", 2000);
-	}
+	}	
 }

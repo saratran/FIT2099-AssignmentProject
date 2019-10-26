@@ -20,7 +20,7 @@ public class Dirt extends GrowableGround {
 	
 	@Override
 	public void tick(Location location) {
-		growCurrentLocation(location, grass_growth_chance, new Grass() );
+		growThisLocation(location, grass_growth_chance, new Grass() );
 	}
 	
 	@Override

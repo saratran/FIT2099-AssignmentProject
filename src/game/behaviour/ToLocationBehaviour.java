@@ -21,7 +21,7 @@ public class ToLocationBehaviour extends MoveBehaviour {
 	 * Constructor
 	 * 
 	 * @param target target location to go to
-	 * @param speed  TODO
+	 * @param speed  maximum number of squares the actor can move in 1 turn
 	 */
 	public ToLocationBehaviour(Location target, int speed) {
 		super(speed);

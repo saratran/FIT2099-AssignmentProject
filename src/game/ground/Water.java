@@ -21,9 +21,9 @@ public class Water extends GrowableGround {
 	public void tick(Location location) {
 		super.tick(location);
 		if(neighbourCount(location, GroundSkill.LAND) > 0) {
-			growCurrentLocation(location, 0.1, new Reed());
+			growThisLocation(location, 0.1, new Reed());
 		}else if (neighbourCount(location, Reed.class) > 0) {
-			growCurrentLocation(location, 0.05, new Reed());
+			growThisLocation(location, 0.05, new Reed());
 		}
 	}
 

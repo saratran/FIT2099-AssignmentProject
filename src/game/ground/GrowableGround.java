@@ -8,6 +8,11 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * A base class for Ground that can grow into something else at the current or nearby locations.
+ * @author Sara Tran
+ *
+ */
 public abstract class GrowableGround extends Ground {
 	protected List<Ground> grounds = new ArrayList<Ground>();
 
@@ -16,29 +21,30 @@ public abstract class GrowableGround extends Ground {
 	}
 
 	/**
-	 * TODO: modify this Grows grass at the dirts location if the grass growth
-	 * chance is met.
-	 * 
-	 * @param location the location at which the grass will grow.
+	 * Set the location to the given ground based on the chance
 	 */
-	protected void growCurrentLocation(Location location, double chance, Ground ground) {
+	protected void growThisLocation(Location location, double chance, Ground ground) {
 		if (Math.random() < chance) {
 			location.setGround(ground);
 		}
 	}
 
+	/**
+	 * Set nearby locations to the given ground based on the chance
+	 */
 	protected void growNearbyLocations(Location location, double chance, Ground ground) {
 		for (Exit exit : location.getExits()) {
 			Location nearbyLocation = exit.getDestination();		
 			// TODO: maybe flip the skill around; instead of spawner knowing, let the spawnee know?
 			if (this.canGrowOn(nearbyLocation.getGround())) {
-				growCurrentLocation(nearbyLocation, chance, ground);
+				growThisLocation(nearbyLocation, chance, ground);
 			}
 		}
 	}
+	
 
-	/*
-	 * count neighbour with the given class
+	/**
+	 * @return number of neighbours with the given class
 	 */
 	protected int neighbourCount(Location location, Class<?> groundClass) {
 		int neighbourCount = 0;
@@ -50,8 +56,8 @@ public abstract class GrowableGround extends Ground {
 		return neighbourCount;
 	}
 
-	/*
-	 * count neighbour if they have a skill
+	/**
+	 * @return number of neighbours with the given skill
 	 */
 	protected int neighbourCount(Location location, Enum<?> skill) {
 		int neighbourCount = 0;

@@ -10,7 +10,17 @@ import game.FoodSkill;
 import game.item.Corpse;
 import game.item.Egg;
 
+/**
+ * A carnivorous marine dinosaur
+ * @author Sara Tran
+ *
+ */
 public class Plesiosaur extends Dinosaur {		
+	/**
+	 * Constructor
+	 * @param name name of this plesiosaur
+	 * @param maturity adult or baby
+	 */
 	public Plesiosaur(String name, Maturity maturity) {
 		super(name, 'L', 200, maturity, 1);		
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);

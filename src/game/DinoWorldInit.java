@@ -44,7 +44,7 @@ public class DinoWorldInit {
 		addMaps();
 		addPlayer();
 		addActorsAndItems();
-		scenarioTyrannosaurus();
+//		scenarioTyrannosaurus();
 		scenarioPteranodon();
 		scenarioPlesiosaur();
 		return world;
@@ -110,7 +110,7 @@ public class DinoWorldInit {
 	}
 	
 	private void addPlayer() {
-		Player player = new Player("Player", '@', 100);
+		Player player = new Player("Player", '@', 1000);
 		player.addMoney(1000000);
 //		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 10));
 //		player.addItemToInventory(v.getCorpse());
@@ -121,8 +121,8 @@ public class DinoWorldInit {
 	
 	private void addActorsAndItems() {
 //		gameMap.at(9, 5).addActor(new Protoceratops());
-		gameMap.at(8, 9).addActor(new Protoceratops());
-		gameMap.at(8, 14).addActor(new Velociraptor());
+		gameMap.at(8, 9).addActor(new Velociraptor());
+		gameMap.at(8, 14).addActor(new Protoceratops());
 		gameMap.at(8, 15).addActor(new Protoceratops());
 		gameMap.at(8,16).addActor(new Tyrannosaurus());
 		gameMap.at(14,12).addActor(new Pteranodon());

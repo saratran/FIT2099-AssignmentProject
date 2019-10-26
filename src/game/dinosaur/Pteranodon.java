@@ -10,6 +10,11 @@ import game.FoodSkill;
 import game.item.Corpse;
 import game.item.Egg;
 
+/**
+ * A Flying dinosaur
+ * @author Sara Tran
+ *
+ */
 public class Pteranodon extends Dinosaur {
 
 	public Pteranodon(String name, Maturity maturity) {

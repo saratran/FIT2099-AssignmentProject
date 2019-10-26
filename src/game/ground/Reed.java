@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import game.actor.Fish;
 import game.dinosaur.DinoSkill;
 import game.item.FishItem;
 
@@ -21,8 +20,7 @@ public class Reed extends Vegetation {
 		// Die if overcrowded
 		if (neighbourCount(location, this.getClass()) >= 6) {
 			location.setGround(eatenGround());
-		} else if(Math.random() <= 0.02 && !location.containsAnActor()) {
-//			location.addActor(new Fish());
+		} else if(Math.random() <= 0.02) {
 			location.addItem(new FishItem());
 		}
 		
