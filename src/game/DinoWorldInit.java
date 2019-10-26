@@ -33,14 +33,19 @@ public class DinoWorldInit {
 	private World world;
 	private DinoGameMap gameMap;
 	private DinoGameMap gameMap2;
+	private Protoceratops p = new Protoceratops();
+	private Velociraptor v = new Velociraptor();
+	private Plesiosaur l = new Plesiosaur();
+	private Pteranodon w = new Pteranodon();
+	private Tyrannosaurus x =  new Tyrannosaurus();
 	
 	public World worldInit() {
 		this.world = new World(new Display());
 		addMaps();
 		addPlayer();
-//		addActorsAndItems();
-//		scenarioTyrannosaurus();
-//		scenarioPteranodon();
+		addActorsAndItems();
+		scenarioTyrannosaurus();
+		scenarioPteranodon();
 		scenarioPlesiosaur();
 		return world;
 	}
@@ -107,15 +112,15 @@ public class DinoWorldInit {
 	private void addPlayer() {
 		Player player = new Player("Player", '@', 100);
 		player.addMoney(1000000);
-		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.buyValue()));
-		player.addItemToInventory(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		player.addItemToInventory(new DinosaurTag());
+//		player.addItemToInventory(new FoodItem(FoodSkill.HERBIVORE, 10));
+//		player.addItemToInventory(v.getCorpse());
+//		player.addItemToInventory(new DinosaurTag());
 		player.addItemToInventory(new Boat());
 		world.addPlayer(player, gameMap.at(9, 4));
 	}
 	
 	private void addActorsAndItems() {
-		gameMap.at(9, 5).addActor(new Protoceratops());
+//		gameMap.at(9, 5).addActor(new Protoceratops());
 		gameMap.at(8, 9).addActor(new Protoceratops());
 		gameMap.at(8, 14).addActor(new Velociraptor());
 		gameMap.at(8, 15).addActor(new Protoceratops());
@@ -124,15 +129,15 @@ public class DinoWorldInit {
 		gameMap.at(20, 14).addActor(new Velociraptor(Maturity.BABY));
 
 
-		gameMap.at(9, 6).addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));
+		gameMap.at(9, 6).addItem(v.getEgg());
 
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		gameMap.at(29, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		gameMap.at(24, 18).addItem(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
+		gameMap.at(24, 18).addItem(p.getCorpse());
+		gameMap.at(24, 18).addItem(p.getCorpse());
+		gameMap.at(29, 18).addItem(l.getEgg());                          
+		gameMap.at(24, 18).addItem(p.getCorpse());
+		gameMap.at(24, 18).addItem(p.getCorpse());
+		gameMap.at(24, 18).addItem(p.getCorpse());
+		gameMap.at(24, 18).addItem(p.getCorpse());
 		
 		gameMap.at(30, 12).addActor(new Protoceratops("Protoceratops"));
 		gameMap.at(8, 4).addActor(new Protoceratops("Protoceratops"));
@@ -140,7 +145,7 @@ public class DinoWorldInit {
 	
 	private void scenarioTyrannosaurus() { 
 		// This is to test Game Won when captive-bred tyrannosaurus reaches adulthood
-		gameMap.at(29, 18).addItem(new Egg(new Tyrannosaurus(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
+		gameMap.at(29, 18).addItem(x.getEgg());                          
 	}
 	
 	private void scenarioPteranodon() {
@@ -149,13 +154,12 @@ public class DinoWorldInit {
 	}
 	
 	private void scenarioPlesiosaur() {
-		
 		// Egg near water
-		gameMap.at(29, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
-		gameMap.at(29, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
-		gameMap.at(29, 17).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
+		gameMap.at(29, 18).addItem(l.getEgg());                          
+		gameMap.at(29, 18).addItem(l.getEgg());                          
+		gameMap.at(29, 17).addItem(l.getEgg());                          
 
 		// Egg not near water
-		gameMap.at(24, 18).addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));                          
+		gameMap.at(24, 18).addItem(l.getEgg());                          
 	}
 }

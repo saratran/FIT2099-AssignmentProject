@@ -11,7 +11,6 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.Price;
 import game.action.BuyAction;
 import game.action.ExecuteMultipleActions;
 import game.action.SellAction;
@@ -79,20 +78,15 @@ public class Store extends Ground {
 	 */
 	private List<Item> createItemList() {
 		List<Item> items = new ArrayList<Item>();
-		items.add(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(),
-				Price.ProtoceratopsEgg.sellValue()));
-		items.add(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.buyValue(),
-				Price.VelociraptorEgg.sellValue()));
-		items.add(new Egg(new Plesiosaur(Maturity.BABY), Price.PlesiosaurEgg.buyValue(),
-				Price.PlesiosaurEgg.sellValue()));
-		items.add(new Egg(new Pteranodon(Maturity.BABY), Price.PteranodonEgg.buyValue(),
-				Price.PteranodonEgg.sellValue()));
-		items.add(new Egg(new Tyrannosaurus(Maturity.BABY), Price.TyrannosaurusEgg.buyValue(),
-				Price.TyrannosaurusEgg.sellValue()));
+		items.add((new Protoceratops().getEgg()));
+		items.add((new Velociraptor().getEgg()));
+		items.add((new Plesiosaur().getEgg()));
+		items.add((new Pteranodon().getEgg()));
+		items.add((new Tyrannosaurus().getEgg()));
 		items.add(new Boat());
-		items.add(new FoodItem(FoodSkill.HERBIVORE, Price.HerbivoreFoodItem.buyValue()));
-		items.add(new FoodItem(FoodSkill.CARNIVORE, Price.CarnivoreFoodItem.buyValue()));	
-		items.add(new FoodItem(FoodSkill.MARINE, Price.MarineFoodItem.buyValue()));
+		items.add(new FoodItem(FoodSkill.HERBIVORE, 10));
+		items.add(new FoodItem(FoodSkill.CARNIVORE, 50));	
+		items.add(new FoodItem(FoodSkill.MARINE, 100));
 		items.add(new DinosaurTag());
 
 		return items;

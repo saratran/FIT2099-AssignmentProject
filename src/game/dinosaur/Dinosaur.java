@@ -14,7 +14,9 @@ import game.behaviour.Behaviour;
 import game.behaviour.SeekFoodBehaviour;
 import game.behaviour.WanderBehaviour;
 import game.dinosaur.Maturity;
+import game.item.Corpse;
 import game.item.DinosaurTag;
+import game.item.Egg;
 
 /**
  * An abstraction for dinosaurs. Defines behaviours of dinosaurs
@@ -45,6 +47,7 @@ public abstract class Dinosaur extends Consumer {
 		this.speed = speed;
 		if (maturity == Maturity.BABY) {
 			this.displayChar = Character.toLowerCase(displayChar);
+			// TODO: consider splitting baby into prefix
 			this.name = "Baby " + adultName;
 		}
 
@@ -133,7 +136,12 @@ public abstract class Dinosaur extends Consumer {
 	 * 
 	 * @return a List of the items that will be dropped upon death.
 	 */
-	protected abstract List<Item> itemsDroppedWhenDead(); // Support adding multiple items to ground when dino dies
+	protected List<Item> itemsDroppedWhenDead(){
+		// Support adding multiple items to ground when dino dies
+		List<Item> items = new ArrayList<Item>();
+		items.add(getCorpse());
+		return items;
+	}
 	
 	@Override
 	protected abstract void initFoodLevel();
@@ -170,18 +178,15 @@ public abstract class Dinosaur extends Consumer {
 	 */
 	private void layEggAttempt(Location location) {
 		if (maturity == Maturity.ADULT && Math.random() < this.layEggChance) {
-			this.layEgg(location);
+			location.addItem(getEgg());
 			name = adultName;
 			System.out.println(name + " laid an egg!");
 		}
 	}
-
-	/**
-	 * Lays an egg at a specified location.
-	 * 
-	 * @param location the location that the egg will be laid.
-	 */
-	protected abstract void layEgg(Location location);
+	
+	public abstract Egg getEgg();
+	
+	public abstract Corpse getCorpse();
 
 	/**
 	 * Returns true if and only if the dinosaur is old enough to 

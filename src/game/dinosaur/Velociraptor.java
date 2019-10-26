@@ -6,7 +6,6 @@ import java.util.List;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.Price;
 import game.item.Corpse;
 import game.item.Egg;
 import game.item.FoodItem;
@@ -23,13 +22,13 @@ public class Velociraptor extends Dinosaur {
 	 * @param name the name of this Velociraptor
 	 */
 	public Velociraptor(String name, Maturity maturity) {
-		super(name, 'V', 175, maturity, 1);		
+		super(name, 'V', 175, maturity, 1);
 		edibleFoodSkills.add(FoodSkill.CARNIVORE);
 		addSkill(DinoSkill.LAND);
 	}
 
 	public Velociraptor(String name) {
-		this(name, Maturity.ADULT);	
+		this(name, Maturity.ADULT);
 	}
 
 	public Velociraptor(Maturity maturity) {
@@ -39,14 +38,7 @@ public class Velociraptor extends Dinosaur {
 	public Velociraptor() {
 		this("Velociraptor");
 	}
-	
-	@Override
-	protected List<Item> itemsDroppedWhenDead() {
-		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Velociraptor corpse", Price.VelociraptorCorpse.sellValue()));
-		return items;
-	}
-	
+
 	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
@@ -55,15 +47,21 @@ public class Velociraptor extends Dinosaur {
 			setFoodLevel(10, 40, 30);
 		}
 	}
-	
-	@Override
-	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Velociraptor(Maturity.BABY), Price.VelociraptorEgg.buyValue(), Price.VelociraptorEgg.sellValue()));
-	}
-	
+
 	@Override
 	public int getSellValue() {
 		return 400;
+	}
+
+	@Override
+	public Egg getEgg() {
+		return new Egg(new Velociraptor(Maturity.BABY), 500, 100);
+	}
+
+	@Override
+	public Corpse getCorpse() {
+		// TODO Auto-generated method stub
+		return new Corpse("Velociraptor corpse", 50);
 	}
 
 }

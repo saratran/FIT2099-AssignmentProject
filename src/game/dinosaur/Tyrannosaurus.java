@@ -11,7 +11,6 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.Price;
 import game.actor.ExitGameAction;
 import game.item.Corpse;
 import game.item.Egg;
@@ -38,16 +37,6 @@ public class Tyrannosaurus extends Dinosaur {
 		this("Tyrannosaurus");
 	}
 
-	//	@Override
-	//	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-	//		Action action =  super.playTurn(actions, lastAction, map, display);
-	//		if ((maturity == Maturity.ADULT) & (this.hasSkill(DinoSkill.CAPTIVE_BRED))){
-	//			return new ExitGameAction("A captive bred T-Rex has reached adulthood! You won!");
-	//		} else {
-	//		return action;
-	//		}
-	//	}
-
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		Action action =  super.playTurn(actions, lastAction, map, display);
@@ -61,26 +50,12 @@ public class Tyrannosaurus extends Dinosaur {
 	}
 
 	@Override
-	protected List<Item> itemsDroppedWhenDead() {
-		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("tyrannosaurus corpse", Price.TyrannosaurusCorpse.sellValue()));
-		return items;
-	}
-
-	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
 			setFoodLevel(200, 500, 350);
 		} else {
 			setFoodLevel(150, 500, 350);
 		}
-	}
-
-	@Override
-	protected void layEgg(Location location) {
-		Tyrannosaurus baby = new Tyrannosaurus(Maturity.BABY);
-		baby.addSkill(DinoSkill.CAPTIVE_BRED);
-		location.addItem(new Egg(baby, Price.TyrannosaurusEgg.buyValue(), Price.TyrannosaurusEgg.sellValue()));
 	}
 
 	@Override
@@ -91,5 +66,17 @@ public class Tyrannosaurus extends Dinosaur {
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(60, "bites");
+	}
+
+	@Override
+	public Egg getEgg() {
+		Tyrannosaurus baby = new Tyrannosaurus(Maturity.BABY);
+		baby.addSkill(DinoSkill.CAPTIVE_BRED);
+		return new Egg(baby, 20000, 5000);
+	}
+
+	@Override
+	public Corpse getCorpse() {
+		return new Corpse("tyrannosaurus corpse", 2000);
 	}
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.Price;
 import game.ground.Tree;
 import game.item.Corpse;
 import game.item.Egg;
@@ -25,31 +24,24 @@ public class Protoceratops extends Dinosaur {
 	 * @param name the name of this Protoceratops
 	 */
 	public Protoceratops(String name, Maturity maturity) {
-		super(name, 'P', 100, maturity, 1);		
+		super(name, 'P', 100, maturity, 1);
 		edibleFoodSkills.add(FoodSkill.HERBIVORE);
 		nonEdibleFoodSkills.add(FoodSkill.NOT_HERBIVORE);
-		layEggChance=0.03;
+		layEggChance = 0.03;
 		addSkill(DinoSkill.LAND);
-		
+
 	}
-	
+
 	public Protoceratops(String name) {
-		this(name, Maturity.ADULT);	
+		this(name, Maturity.ADULT);
 	}
-	
+
 	public Protoceratops(Maturity maturity) {
 		this("Protoceratops", maturity);
 	}
-	
+
 	public Protoceratops() {
 		this("Protoceratops");
-	}
-		
-	@Override
-	protected List<Item> itemsDroppedWhenDead() {
-		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("protoceratops corpse", Price.ProtoceratopsCorpse.sellValue()));
-		return items;
 	}
 
 	@Override
@@ -62,13 +54,19 @@ public class Protoceratops extends Dinosaur {
 	}
 
 	@Override
-	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Protoceratops(Maturity.BABY), Price.ProtoceratopsEgg.buyValue(), Price.ProtoceratopsEgg.sellValue()));
-	}
-
-	@Override
 	public int getSellValue() {
 		return 100;
 	}
+
+	@Override
+	public Egg getEgg() {
+		return new Egg(new Protoceratops(Maturity.BABY), 50, 10);
+	}
+
+	@Override
+	public Corpse getCorpse() {
+		return new Corpse("protoceratops corpse", 5);
+	}
+	
 
 }

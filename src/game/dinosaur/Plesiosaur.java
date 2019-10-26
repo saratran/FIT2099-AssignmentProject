@@ -7,7 +7,6 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.FoodSkill;
-import game.Price;
 import game.item.Corpse;
 import game.item.Egg;
 
@@ -34,24 +33,12 @@ public class Plesiosaur extends Dinosaur {
 	}
 	
 	@Override
-	protected List<Item> itemsDroppedWhenDead() {
-		List<Item> items = new ArrayList<Item>();
-		items.add(new Corpse("Plesiosaur corpse", Price.PlesiosaurCorpse.sellValue()));
-		return items;
-	}
-	
-	@Override
 	protected void initFoodLevel() {
 		if (this.maturity == Maturity.ADULT) {
 			setFoodLevel(150, 200, 100);
 		} else {
 			setFoodLevel(80, 200, 100);
 		}
-	}
-	
-	@Override
-	protected void layEgg(Location location) {
-		location.addItem(new Egg(new Plesiosaur(Maturity.BABY), Price.PlesiosaurEgg.buyValue(), Price.PlesiosaurEgg.sellValue()));
 	}
 	
 	@Override
@@ -62,6 +49,16 @@ public class Plesiosaur extends Dinosaur {
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(40, "bites");
+	}
+	
+	@Override
+	public Egg getEgg() {
+		return new Egg(new Plesiosaur(Maturity.BABY), 2000, 500);
+	}
+
+	@Override
+	public Corpse getCorpse() {
+		return new Corpse("plesiosaur corpse", 300);
 	}
 
 }
