@@ -1,6 +1,1 @@
-# Assignment 2
-Changes to design documents:
-* Design rationale
-* Class diagram
-* PlaceTagAction SD
-* SellTaggedActorsAction SD
+# Monash FIT2099 Semester 2, 2019 project
